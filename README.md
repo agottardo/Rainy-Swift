@@ -6,6 +6,6 @@
 Rainy is über-cool because:
 
 - It uses no external libraries! The entire source code + image and font assets package is only 1.2 MB, saving space on your iPhone.
-- It is GDPR-compliant! Meaning: it merely performs a single HTTP request to get your weather. No BS, no analytics frameworks, no advertisements, no pinging unknown Chinese ad networks that deliver personalized noodles recommendations. 🍜
+- It is GDPR-compliant! Meaning: it merely performs a single HTTPS request to get your weather. No BS, no analytics frameworks, no advertisements, no pinging unknown Chinese ad networks that deliver personalized noodles recommendations. 🍜
 
 The app was open-sourced on September 3<sup>rd</sup>, 2018. More details will follow.
