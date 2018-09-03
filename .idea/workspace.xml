@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="11eec03e-7cdc-4027-8105-60808533ad64" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/AppIcon.appiconset/rainy-1024.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/AppIcon.appiconset/rainy-20.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/AppIcon.appiconset/rainy-20@2x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/AppIcon.appiconset/rainy-20@3x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/AppIcon.appiconset/rainy-29.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/AppIcon.appiconset/rainy-29@2x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/AppIcon.appiconset/rainy-29@3x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/AppIcon.appiconset/rainy-40.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/AppIcon.appiconset/rainy-40@2x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/AppIcon.appiconset/rainy-40@3x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/AppIcon.appiconset/rainy-60@2x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/AppIcon.appiconset/rainy-60@3x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/AppIcon.appiconset/rainy-76.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/AppIcon.appiconset/rainy-76@2x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/AppIcon.appiconset/rainy-83.5@2x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/Contents.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/SettingsGear.imageset/Contents.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/SettingsGear.imageset/settings-2.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/SettingsGear.imageset/settings-3.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/SettingsGear.imageset/settings-4.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/drop.imageset/Contents.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/drop.imageset/drop.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/raindroppatt-trans.imageset/Contents.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/raindroppatt-trans.imageset/raindroppatt.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/raindroppatt.imageset/Contents.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/raindroppatt.imageset/raindroppatt.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/FiraSans-Regular.ttf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/HomeTableViewController.swift" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/HourlyDetailViewController.swift" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/HourlyStub.swift" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/HourlyStubTableViewCell.swift" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/InfoTableViewController.swift" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/InsightTableViewCell.swift" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/LocationBrain.swift" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Providers/DarkSkyProvider.swift" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/Providers/YRnoProvider.swift" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Rainy/WeatherUpdate.swift" />
+      <change beforePath="$PROJECT_DIR$/Rainy.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Rainy.xcodeproj/project.pbxproj" />
+      <change beforePath="$PROJECT_DIR$/Rainy/AppDelegate.swift" afterPath="$PROJECT_DIR$/Rainy/AppDelegate.swift" />
+      <change beforePath="$PROJECT_DIR$/Rainy/Assets.xcassets/AppIcon.appiconset/Contents.json" afterPath="$PROJECT_DIR$/Rainy/Assets.xcassets/AppIcon.appiconset/Contents.json" />
+      <change beforePath="$PROJECT_DIR$/Rainy/Base.lproj/LaunchScreen.storyboard" afterPath="$PROJECT_DIR$/Rainy/Base.lproj/LaunchScreen.storyboard" />
+      <change beforePath="$PROJECT_DIR$/Rainy/Base.lproj/Main.storyboard" afterPath="$PROJECT_DIR$/Rainy/Base.lproj/Main.storyboard" />
+      <change beforePath="$PROJECT_DIR$/Rainy/Info.plist" afterPath="$PROJECT_DIR$/Rainy/Info.plist" />
+      <change beforePath="$PROJECT_DIR$/Rainy/Rainy.xcdatamodeld/Rainy.xcdatamodel/contents" afterPath="$PROJECT_DIR$/Rainy/Rainy.xcdatamodeld/Rainy.xcdatamodel/contents" />
+      <change beforePath="$PROJECT_DIR$/Rainy/ViewController.swift" afterPath="" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_" />
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="HomeTableViewController.swift" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Rainy/HomeTableViewController.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="156">
+              <caret line="12" column="26" lean-forward="false" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+              <folding>
+                <element signature="e#93#105#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DarkSkyProvider.swift" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Rainy/Providers/DarkSkyProvider.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="130">
+              <caret line="10" column="16" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+              <folding>
+                <element signature="e#149#166#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Podfile" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Podfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="156">
+              <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="YRnoProvider.swift" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Rainy/Providers/YRnoProvider.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="130">
+              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding>
+                <element signature="e#110#127#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Rainy/HomeTableViewController.swift" />
+        <option value="$PROJECT_DIR$/Podfile" />
+        <option value="$PROJECT_DIR$/Rainy/Providers/YRnoProvider.swift" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="Pods" type="1d218c8b:XcodeProjectNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="Rainy" type="1d218c8b:XcodeProjectNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="Rainy" type="1d218c8b:XcodeProjectNode" />
+              <item name="Rainy" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="Rainy" type="1d218c8b:XcodeProjectNode" />
+              <item name="Rainy" type="fcab9f18:XcodeViewNode" />
+              <item name="Providers" type="fcab9f18:XcodeViewNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Cidr.FilesView" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="CocoaPods" />
+    <property name="OBJC.PRESERVED_TARGET_SELECTION" value="Rainy" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Rainy" type="AppleRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Rainy" TARGET_NAME="Rainy" CONFIG_NAME="Debug" SCHEME_NAME="Rainy" RUN_TARGET_PROJECT_NAME="Rainy" RUN_TARGET_NAME="Rainy" MAKE_ACTIVE="TRUE">
+      <envs />
+      <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
+        <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
+      </EXTENSION>
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="11eec03e-7cdc-4027-8105-60808533ad64" name="Default" comment="" />
+      <created>1510963412005</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1510963412005</updated>
+      <workItem from="1510963416092" duration="805000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="805000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24305555" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Rainy/AppDelegate.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rainy/LocationBrain.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rainy/HomeTableViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="12" column="26" lean-forward="false" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+          <folding>
+            <element signature="e#93#105#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Podfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rainy/Providers/DarkSkyProvider.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="10" column="16" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+          <folding>
+            <element signature="e#149#166#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rainy/Providers/YRnoProvider.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="e#110#127#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
