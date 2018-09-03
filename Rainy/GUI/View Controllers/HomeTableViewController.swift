@@ -9,12 +9,16 @@ import UIKit
 import CoreLocation
 
 class HomeTableViewController: UITableViewController {
+    
+    // MARK: - Constants
 
     let provider: Provider = DarkSkyProvider()
     let locBrain = LocationBrain()
     var latestWU: WeatherUpdate?
     var insight  = "Welcome back. Please wait while I fetch your weather..."
     let stagSans = UIFont(name: "StagSans-Semibold", size: 20.0)
+    
+    // MARK: - Big Two
 
     override func viewDidAppear(_ animated: Bool) {
         self.refreshControl?.beginRefreshing()
@@ -29,21 +33,6 @@ class HomeTableViewController: UITableViewController {
         self.refreshControl?.beginRefreshing()
         startRefresh()
         self.refreshControl?.addTarget(self, action: #selector(startRefresh), for: .valueChanged)
-    }
-
-    func presentNewData(wu: WeatherUpdate) {
-        latestWU = wu
-        insight = weatherInsight()
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-            self.refreshControl?.endRefreshing()
-            self.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh! 😍", attributes: [NSAttributedString.Key.font: self.stagSans!])
-        }
-    }
-
-    @objc private func startRefresh() {
-        self.refreshControl?.attributedTitle = NSAttributedString(string: "Finding your location...", attributes: [NSAttributedString.Key.font: stagSans!])
-        locBrain.start()
     }
 
     // MARK: - Table view data source
@@ -63,7 +52,7 @@ class HomeTableViewController: UITableViewController {
     /**
     Creates a cell for the hourly weather information.
     */
-    fileprivate func newHourlyCell(_ indexPath: IndexPath) -> UITableViewCell {
+    private func newHourlyCell(_ indexPath: IndexPath) -> UITableViewCell {
         let cell: HourlyStubTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "hourlyStubCell", for: indexPath) as! HourlyStubTableViewCell
         let hourlyStub = latestWU!.hourlyStubs[indexPath.row-1]
         let dateFormatter = DateFormatter()
@@ -84,7 +73,8 @@ class HomeTableViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView,
+                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         if indexPath.row == 0 {
             // Assistant message at top.
@@ -96,30 +86,43 @@ class HomeTableViewController: UITableViewController {
         }
     }
 
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView,
+                            heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
             return 115
         } else {
             return 51
         }
     }
-
-    func tempToString(temp: Double) -> String {
+    
+    /**
+    Returns a String with the given Double temperature.
+     - Todo: this expects the API to always return a temperature
+     expressed in Fahrenheit, just like DarkSky.net does. We gotta abstract
+     this.
+    */
+    private func tempToString(temp: Double) -> String {
         if UserDefaults.standard.bool(forKey: "fahren") {
-            // fahrenheit selected
+            // Fahrenheit selected
             return String(lround(temp)) + "°"
         } else {
-            // celsius selected
+            // Celsius selected
             return String(lround(0.55555*((temp)-32))) + "°"
         }
     }
 
-    func weatherInsight() -> String {
+    /**
+    Produces a human-readable message describing the current
+    weather conditions.
+     */
+    private func weatherInsight() -> String {
 
         var sharedMessage = "Now: " +
             tempToString(temp: latestWU!.currentTemperature) +
             " - " + latestWU!.currentCondition + "\n"
-
+        
+        // The two variables here contain the precipitation amount expected
+        // in the next 18 hours, and in the next 6 hours (close).
         var totalRainSum = 0.0
         var totalRainSumClose = 0.0
         var counter = 0
@@ -132,6 +135,7 @@ class HomeTableViewController: UITableViewController {
             totalRainSumClose+=latestWU!.hourlyStubs[counter].precipIntensity
             counter+=1
         }
+        
         if totalRainSumClose > 0.20 {
             sharedMessage += "Rain everywhere... so depressing! 😭"
         } else if totalRainSum > 0.20 {
@@ -139,14 +143,39 @@ class HomeTableViewController: UITableViewController {
         } else {
             sharedMessage += "Awesome! No rain expected any time soon. 😎"
         }
+        
         return sharedMessage
     }
 
+    /**
+     Allows the user to share the current weather conditions by means of a
+     text snippet, shared with the UIActivityViewController API.
+    */
     @IBAction func didPressShareButton(_ sender: Any) {
         let contr = UIActivityViewController(activityItems: [weatherInsight()], applicationActivities: nil)
         present(contr, animated: true) { }
     }
+    
+    // MARK: - Communication with model
+    
+    @objc private func startRefresh() {
+        self.refreshControl?.attributedTitle = NSAttributedString(string: "Finding your location...", attributes: [NSAttributedString.Key.font: stagSans!])
+        locBrain.start()
+    }
+    
+    private func presentNewData(wu: WeatherUpdate) {
+        latestWU = wu
+        insight = weatherInsight()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
+            self.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh! 😍", attributes: [NSAttributedString.Key.font: self.stagSans!])
+        }
+    }
 
+    /**
+     Called by the LocationBrain once the user location has been found.
+    */
     func newLocationAvailable(location: CLLocation) {
         let font = UIFont(name: "StagSans-Book", size: 12.0)
         self.refreshControl?.attributedTitle = NSAttributedString(string: "Fetching the latest weather information...", attributes: [NSAttributedString.Key.font: font!])
@@ -161,7 +190,12 @@ class HomeTableViewController: UITableViewController {
         }
         provider.getWeatherDataForCoordinates(coordinates: CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude), completion: handler)
     }
-
+    
+    /**
+     Called by the LocationBrain if a error verifies while fetching the user
+     location.
+     - Todo: implement fallbacks on earlier iOS versions.
+     */
     func locationErrorOccurred() {
         let controller: UIAlertController = UIAlertController(title: "Unable to obtain your location ☹️", message: "Rainy can't download the latest weather data because you denied Rainy access to your location. You cannot use Rainy until you have enabled Location Services. Go to the Settings app and enable Location for Rainy, then come back here to get your weather.", preferredStyle: .actionSheet)
         let goToLocs = UIAlertAction(title: "Take me there!", style: .default) { (_) in

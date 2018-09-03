@@ -24,18 +24,18 @@ final class LocationBrain: NSObject, CLLocationManagerDelegate {
     Sets up the CLLocationManager and asks for a location update.
     */
     func start() {
-        if CLLocationManager.locationServicesEnabled() {
-            manager.delegate = self
-            manager.requestWhenInUseAuthorization()
-            // Who cares about more accuracy than 1 km? Clouds are big.
-            manager.desiredAccuracy = kCLLocationAccuracyKilometer
-            // Ask for one location only, not more than one update.
-            manager.requestLocation()
-        } else {
+        guard CLLocationManager.locationServicesEnabled() else {
             // If location access was not available, tell the calling view
             // controller to display an error message.
             callbackHome?.locationErrorOccurred()
+            return
         }
+        manager.delegate = self
+        manager.requestWhenInUseAuthorization()
+        // Who cares about more accuracy than 1 km? Clouds are big.
+        manager.desiredAccuracy = kCLLocationAccuracyKilometer
+        // Ask for one location only, not more than one update.
+        manager.requestLocation()
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
