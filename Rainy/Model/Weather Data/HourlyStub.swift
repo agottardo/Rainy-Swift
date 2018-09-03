@@ -16,15 +16,15 @@ import Foundation
  let's fetch it, maybe we'll use it in the future.
  */
 struct HourlyStub {
-    let temperature : Double
-    let windSpeed : Double
-    let humidity : Double
-    let cloudCover : Double
-    let time : Date
-    let uvIndex : Double
-    let hourSummary : String
-    let icon : String
-    let precipIntensity : Double
-    let visibility : Double
-    let precipProbability : Double
+    let temperature: Double
+    let windSpeed: Double
+    let humidity: Double
+    let cloudCover: Double
+    let time: Date
+    let uvIndex: Double
+    let hourSummary: String
+    let icon: String
+    let precipIntensity: Double
+    let visibility: Double
+    let precipProbability: Double
 }

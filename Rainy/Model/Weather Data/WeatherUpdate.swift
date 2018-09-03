@@ -13,23 +13,23 @@ import CoreLocation
  A bucket of weather data coming straight from the API.
 */
 class WeatherUpdate {
-    
-    let hourlyStubs : [HourlyStub]
-    let currentCondition : String
-    let currentTemperature : Double
-    
+
+    let hourlyStubs: [HourlyStub]
+    let currentCondition: String
+    let currentTemperature: Double
+
     init(stubs: [HourlyStub], currentCondition: String, currentTemperature: Double) {
         self.hourlyStubs = stubs
         self.currentCondition = currentCondition
         self.currentTemperature = currentTemperature
     }
-    
+
     /**
      Returns the number of days the forecast spans across.
     */
     var numDays: Int {
-        var count   : Int = 0
-        var lastDay : Int = 0
+        var count: Int = 0
+        var lastDay: Int = 0
         let calendar = Calendar.current
         for hourlyStub in hourlyStubs {
             let day = calendar.component(.day, from: hourlyStub.time)
@@ -40,5 +40,5 @@ class WeatherUpdate {
         }
         return count
     }
-    
+
 }

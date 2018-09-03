@@ -13,32 +13,32 @@ import CoreLocation
 /**
  A Provider that implements the DarkSky.net API.
  */
-final class DarkSkyProvider : Provider {
-    
-    static let BASE_URL = "https://api.darksky.net/forecast/1e9b4ab3c751d4dab0fbb82f3dab1737/"
+final class DarkSkyProvider: Provider {
+
+    static let BaseUrl = "https://api.darksky.net/forecast/1e9b4ab3c751d4dab0fbb82f3dab1737/"
     // 10 seconds before network requests timeouts.
-    static let MAX_TIMEOUT_LIMIT = TimeInterval(10)
-    
+    static let MaxTimeOutLimit = TimeInterval(10)
+
     /**
      Single point of entry into the provider. Data is returned to the
      ViewController via the completion handler.
     */
     func getWeatherDataForCoordinates(coordinates: CLLocationCoordinate2D,
-    completion: @escaping (_ data: WeatherUpdate?, _ error: ProviderError?) -> Void) {
-        
+                                      completion: @escaping (_ data: WeatherUpdate?, _ error: ProviderError?) -> Void) {
+
         // Start spinning the networking activity indicator. Will be stopped
         // at the end of parsing.
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
+
         // Setup a HTTP request to the API, using the default caching policy
         // for HTTP.
         let urlSession = URLSession(configuration: URLSessionConfiguration.ephemeral)
-        let requestURL = URL(string: DarkSkyProvider.BASE_URL+String(coordinates.latitude)+","+String(coordinates.longitude))!
+        let requestURL = URL(string: DarkSkyProvider.BaseUrl+String(coordinates.latitude)+","+String(coordinates.longitude))!
         // 10 seconds timeout?
-        let urlRequest = URLRequest(url: requestURL, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: DarkSkyProvider.MAX_TIMEOUT_LIMIT)
-        
-        let task = urlSession.dataTask(with: urlRequest) { (data, urlresponse, error) in
-            if (data != nil) {
+        let urlRequest = URLRequest(url: requestURL, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: DarkSkyProvider.MaxTimeOutLimit)
+
+        let task = urlSession.dataTask(with: urlRequest) { (data, _, _) in
+            if data != nil {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!,
                                                                 options: []) as? [String: Any]
@@ -47,28 +47,28 @@ final class DarkSkyProvider : Provider {
                     completion(self.parseJSON(json: json!), nil)
                 } catch {
                     // Unable to convert the JSON dictionary into a Swift dictionary.
-                    completion(nil, ProviderError.ParsingError)
+                    completion(nil, ProviderError.parsing)
                 }
             } else {
                 // Networking error: unable to obtain data from the API.
-                completion(nil, ProviderError.NetworkError)
+                completion(nil, ProviderError.network)
             }
         }
         // Start the HTTP request.
         task.resume()
     }
-    
+
     /**
      Parses the dictionary coming from the API, and returns it as a nice
      WeatherUpdate instance. 🌦
     */
-    func parseJSON(json: [String:Any]) -> WeatherUpdate? {
-        let data : [String:Any] = json
-        let hourly : [String:Any] = data["hourly"] as! [String : Any]
-        let currently : [String:Any] = data["currently"] as! [String : Any]
-        let currentCondition : String = currently["summary"] as! String
-        let currentTemp : Double = currently["temperature"] as! Double
-        let hourlyData : [[String:Any]] = hourly["data"] as! [[String:Any]]
+    func parseJSON(json: [String: Any]) -> WeatherUpdate? {
+        let data: [String: Any] = json
+        let hourly: [String: Any] = data["hourly"] as! [String: Any]
+        let currently: [String: Any] = data["currently"] as! [String: Any]
+        let currentCondition: String = currently["summary"] as! String
+        let currentTemp: Double = currently["temperature"] as! Double
+        let hourlyData: [[String: Any]] = hourly["data"] as! [[String: Any]]
         var hourlyStubs = [HourlyStub]()
         for hourlyStub in hourlyData {
             // For each piece of hourly weather information, we construct

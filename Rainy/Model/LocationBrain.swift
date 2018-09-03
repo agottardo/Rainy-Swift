@@ -17,9 +17,9 @@ import CoreLocation
 final class LocationBrain: NSObject, CLLocationManagerDelegate {
 
     let manager = CLLocationManager()
-    var lastLocation : CLLocation?
-    var callbackHome : HomeTableViewController? = nil
-    
+    var lastLocation: CLLocation?
+    var callbackHome: HomeTableViewController?
+
     /**
     Sets up the CLLocationManager and asks for a location update.
     */
@@ -37,13 +37,13 @@ final class LocationBrain: NSObject, CLLocationManagerDelegate {
             callbackHome?.locationErrorOccurred()
         }
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         lastLocation = locations[0]
         // Inform the calling view controller that a location is available.
         callbackHome?.newLocationAvailable(location: lastLocation!)
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         // Inform the calling view controller that something went wrong when
         // obtaining the user location.

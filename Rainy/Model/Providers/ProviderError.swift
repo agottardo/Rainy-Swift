@@ -9,6 +9,6 @@
 import Foundation
 
 enum ProviderError: Error {
-    case NetworkError
-    case ParsingError
+    case network
+    case parsing
 }
