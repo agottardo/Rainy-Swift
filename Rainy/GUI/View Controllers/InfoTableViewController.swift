@@ -57,7 +57,7 @@ class InfoTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (indexPath.row == 0) {
-            return 259
+            return 155
         } else {
             return 44
         }

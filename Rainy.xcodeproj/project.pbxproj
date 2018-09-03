@@ -8,14 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		402332711FB7CDA100749E26 /* WeatherUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402332701FB7CDA100749E26 /* WeatherUpdate.swift */; };
-		403B2A5B21261EAC00A0DCC9 /* DateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B2A5A21261EAC00A0DCC9 /* DateTableViewCell.swift */; };
+		4030D606213DCEBD000CA8B9 /* HourlyStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FBF161FB6ADAD008D4258 /* HourlyStub.swift */; };
 		4053FE80213DB339002C2235 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053FE7F213DB339002C2235 /* Provider.swift */; };
 		4053FE82213DB7D1002C2235 /* ProviderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053FE81213DB7D1002C2235 /* ProviderError.swift */; };
 		4053FE85213DBD12002C2235 /* Stag Sans-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4053FE83213DBD12002C2235 /* Stag Sans-Book.otf */; };
 		4053FE86213DBD12002C2235 /* Stag Sans-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4053FE84213DBD12002C2235 /* Stag Sans-Semibold.otf */; };
 		406653DF2076DA730013519B /* InfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406653DE2076DA730013519B /* InfoTableViewController.swift */; };
 		406653E12076DA7C0013519B /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406653E02076DA7C0013519B /* HomeTableViewController.swift */; };
-		408FBF171FB6ADAD008D4258 /* HourlyStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FBF161FB6ADAD008D4258 /* HourlyStub.swift */; };
 		408FBF191FB6B4CD008D4258 /* HourlyStubTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FBF181FB6B4CD008D4258 /* HourlyStubTableViewCell.swift */; };
 		408FBF1B1FB6C0AC008D4258 /* InsightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FBF1A1FB6C0AC008D4258 /* InsightTableViewCell.swift */; };
 		40D8D6E51FB64B3E002CFD6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D8D6E41FB64B3E002CFD6A /* AppDelegate.swift */; };
@@ -28,9 +27,8 @@
 
 /* Begin PBXFileReference section */
 		402332701FB7CDA100749E26 /* WeatherUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherUpdate.swift; sourceTree = "<group>"; };
-		403B2A5A21261EAC00A0DCC9 /* DateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTableViewCell.swift; sourceTree = "<group>"; };
 		4053FE7F213DB339002C2235 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
-		4053FE81213DB7D1002C2235 /* ProviderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProviderError.swift; path = Providers/ProviderError.swift; sourceTree = "<group>"; };
+		4053FE81213DB7D1002C2235 /* ProviderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderError.swift; sourceTree = "<group>"; };
 		4053FE83213DBD12002C2235 /* Stag Sans-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Stag Sans-Book.otf"; sourceTree = "<group>"; };
 		4053FE84213DBD12002C2235 /* Stag Sans-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Stag Sans-Semibold.otf"; sourceTree = "<group>"; };
 		406653DE2076DA730013519B /* InfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewController.swift; sourceTree = "<group>"; };
@@ -59,14 +57,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		407A5BFC20F58D2E0006B2F0 /* Model */ = {
+		4030D605213DCD1B000CA8B9 /* Weather Data */ = {
 			isa = PBXGroup;
 			children = (
 				408FBF161FB6ADAD008D4258 /* HourlyStub.swift */,
+				402332701FB7CDA100749E26 /* WeatherUpdate.swift */,
+			);
+			path = "Weather Data";
+			sourceTree = "<group>";
+		};
+		407A5BFC20F58D2E0006B2F0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4030D605213DCD1B000CA8B9 /* Weather Data */,
 				40E5C0F31FB69CD000A4C884 /* LocationBrain.swift */,
 				40E5C0EE1FB6984600A4C884 /* Providers */,
-				402332701FB7CDA100749E26 /* WeatherUpdate.swift */,
-				4053FE81213DB7D1002C2235 /* ProviderError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -88,7 +93,6 @@
 				407A5BFD20F58D7C0006B2F0 /* View Controllers */,
 				408FBF181FB6B4CD008D4258 /* HourlyStubTableViewCell.swift */,
 				408FBF1A1FB6C0AC008D4258 /* InsightTableViewCell.swift */,
-				403B2A5A21261EAC00A0DCC9 /* DateTableViewCell.swift */,
 			);
 			path = GUI;
 			sourceTree = "<group>";
@@ -129,6 +133,7 @@
 			children = (
 				40E5C0EF1FB6986000A4C884 /* DarkSkyProvider.swift */,
 				4053FE7F213DB339002C2235 /* Provider.swift */,
+				4053FE81213DB7D1002C2235 /* ProviderError.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -217,13 +222,12 @@
 			files = (
 				40E5C0F01FB6986000A4C884 /* DarkSkyProvider.swift in Sources */,
 				40D8D6E51FB64B3E002CFD6A /* AppDelegate.swift in Sources */,
-				408FBF171FB6ADAD008D4258 /* HourlyStub.swift in Sources */,
 				4053FE82213DB7D1002C2235 /* ProviderError.swift in Sources */,
 				40E5C0F41FB69CD000A4C884 /* LocationBrain.swift in Sources */,
 				408FBF1B1FB6C0AC008D4258 /* InsightTableViewCell.swift in Sources */,
-				403B2A5B21261EAC00A0DCC9 /* DateTableViewCell.swift in Sources */,
 				406653E12076DA7C0013519B /* HomeTableViewController.swift in Sources */,
 				4053FE80213DB339002C2235 /* Provider.swift in Sources */,
+				4030D606213DCEBD000CA8B9 /* HourlyStub.swift in Sources */,
 				408FBF191FB6B4CD008D4258 /* HourlyStubTableViewCell.swift in Sources */,
 				406653DF2076DA730013519B /* InfoTableViewController.swift in Sources */,
 				402332711FB7CDA100749E26 /* WeatherUpdate.swift in Sources */,
@@ -371,7 +375,7 @@
 				DEVELOPMENT_TEAM = ZM2TBP23P7;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
 				INFOPLIST_FILE = Rainy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.gottardo.Rainy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -389,7 +393,7 @@
 				DEVELOPMENT_TEAM = ZM2TBP23P7;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
 				INFOPLIST_FILE = Rainy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.gottardo.Rainy;
 				PRODUCT_NAME = "$(TARGET_NAME)";

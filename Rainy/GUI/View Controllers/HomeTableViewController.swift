@@ -14,18 +14,18 @@ class HomeTableViewController: UITableViewController {
     let locBrain = LocationBrain()
     var latestWU : WeatherUpdate?
     var insight  = "Welcome back. Please wait while I fetch your weather..."
-    let avenir   = UIFont(name: "StagSans-Book", size: 12.0)
+    let stagSans = UIFont(name: "StagSans-Semibold", size: 20.0)
     
     override func viewDidAppear(_ animated: Bool) {
-        //self.refreshControl?.beginRefreshing()
-        //startRefresh()
+        self.refreshControl?.beginRefreshing()
+        startRefresh()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         locBrain.callbackHome = self
         self.navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.font: UIFont(name: "StagSans-Book", size: 20)!]
+            [NSAttributedString.Key.font: stagSans!]
         self.refreshControl?.beginRefreshing()
         startRefresh()
         self.refreshControl?.addTarget(self, action: #selector(startRefresh), for: .valueChanged)
@@ -37,28 +37,24 @@ class HomeTableViewController: UITableViewController {
         DispatchQueue.main.async {
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
-            self.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSAttributedString.Key.font:self.avenir!])
+            self.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh! 😍", attributes: [NSAttributedString.Key.font:self.stagSans!])
         }
     }
 
     @objc private func startRefresh() {
-        self.refreshControl?.attributedTitle = NSAttributedString(string: "Finding your location...", attributes: [NSAttributedString.Key.font:avenir!])
+        self.refreshControl?.attributedTitle = NSAttributedString(string: "Finding your location...", attributes: [NSAttributedString.Key.font:stagSans!])
         locBrain.start()
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        if latestWU != nil {
-            return 1 + latestWU!.numDays
-        } else {
-            return 1
-        }
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (latestWU != nil) {
-            return 1 + latestWU!.hourlyStubs.count + dateIndexPaths().count
+            return 1 + latestWU!.hourlyStubs.count
         } else {
             return 1
         }
@@ -69,7 +65,7 @@ class HomeTableViewController: UITableViewController {
     */
     fileprivate func newHourlyCell(_ indexPath: IndexPath) -> UITableViewCell {
         let cell : HourlyStubTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "hourlyStubCell", for: indexPath) as! HourlyStubTableViewCell
-        let hourlyStub = latestWU!.hourlyStubs[indexPath.row-2]
+        let hourlyStub = latestWU!.hourlyStubs[indexPath.row-1]
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "h a"
         let hourStr = dateFormatter.string(from: (hourlyStub.time))
@@ -91,16 +87,9 @@ class HomeTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if (indexPath.row == 0) {
-            // initial text
+            // Assistant message at top.
             let cell : InsightTableViewCell = tableView.dequeueReusableCell(withIdentifier: "welcomeCell", for: indexPath) as! InsightTableViewCell
             cell.insightLabel.text = insight
-            return cell
-        } else if dateIndexPaths().contains(indexPath.row) {
-            let cell : DateTableViewCell = tableView.dequeueReusableCell(withIdentifier: "dateCell", for: indexPath) as! DateTableViewCell
-            let formatter = DateFormatter()
-            formatter.dateStyle = .full
-            formatter.timeZone = TimeZone.current
-            cell.dateLabel.text = formatter.string(from: Date())
             return cell
         } else {
             return newHourlyCell(indexPath)
@@ -195,25 +184,6 @@ class HomeTableViewController: UITableViewController {
         controller.addAction(goToLocs)
         present(controller, animated: true, completion: nil)
     }
-    
-    /**
-    Determines at which row indexes we should insert a cell containing the date
-    the forecast refers to.
-    */
-    func dateIndexPaths() -> [Int] {
-        var indexes = [1]
-        var addedSoFar = 0
-        for (index, hourlyStub) in (latestWU?.hourlyStubs.enumerated())! {
-            if hourlyStub.time == Calendar.current.startOfDay(for: hourlyStub.time) {
-                if index != 0 {
-                    indexes.append(index+2+addedSoFar)
-                    addedSoFar+=1
-                }
-            }
-        }
-        return indexes
-    }
-    
 }
 
 // Helper function inserted by Swift 4.2 migrator.

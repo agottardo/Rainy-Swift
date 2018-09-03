@@ -4,6 +4,6 @@
     "author" : "xcode"
   },
   "properties" : {
-    "compression-type" : "gpu-optimized-smallest"
+    "compression-type" : "automatic"
   }
 }

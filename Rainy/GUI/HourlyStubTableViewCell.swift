@@ -9,12 +9,16 @@
 import UIKit
 
 /**
- A cell containing weather information for an hour,
- derived from an HourlyStub.
+ A UITableViewCell containing weather information for an hour,
+ data displayed comes from an HourlyStub.
  */
 class HourlyStubTableViewCell: UITableViewCell {
+    /// Hour label.
     @IBOutlet weak var timeLabel: UILabel!
+    /// Weather condition label.
     @IBOutlet weak var conditionLabel: UILabel!
+    /// Temperature label.
     @IBOutlet weak var temperatureLabel: UILabel!
+    /// Precipitation amount background layer.
     @IBOutlet weak var rainBox: UIView!
 }

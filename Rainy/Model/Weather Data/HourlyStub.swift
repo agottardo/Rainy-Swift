@@ -12,6 +12,8 @@ import Foundation
  A piece of weather information relative to a 60-minutes interval
  of the day, containing data such as temperature, wind speed or
  humidity.
+ We are not using many of these fields, but since the data is there...
+ let's fetch it, maybe we'll use it in the future.
  */
 struct HourlyStub {
     let temperature : Double

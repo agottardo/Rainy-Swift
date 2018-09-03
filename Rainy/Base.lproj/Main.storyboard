@@ -18,7 +18,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Rainy-->
+        <!--Rainy! ☔️-->
         <scene sceneID="QJh-5e-LtB">
             <objects>
                 <tableViewController id="oLP-kC-sXO" customClass="HomeTableViewController" customModule="Rainy" customModuleProvider="target" sceneMemberID="viewController">
@@ -34,14 +34,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="115"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome back. Please wait while I fetch your weather..." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkc-gg-7FC">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome back. Please wait while I fetch your weather..." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hkc-gg-7FC">
                                             <rect key="frame" x="16" y="11" width="343" height="93"/>
-                                            <fontDescription key="fontDescription" name="StagSans-Book" family="Stag Sans" pointSize="18"/>
+                                            <fontDescription key="fontDescription" name="StagSans-Semibold" family="Stag Sans" pointSize="20"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.0" green="0.60995268821716309" blue="0.60466468334197998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.10980392156862745" green="0.45882352941176469" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
                                         <constraint firstItem="hkc-gg-7FC" firstAttribute="leading" secondItem="C0a-NK-yGf" secondAttribute="leading" constant="16" id="5PH-80-jnx"/>
                                         <constraint firstAttribute="trailing" secondItem="hkc-gg-7FC" secondAttribute="trailing" constant="16" id="Ulc-vS-Qpz"/>
@@ -56,36 +56,8 @@
                                     <outlet property="insightLabel" destination="hkc-gg-7FC" id="k3N-Ut-gcD"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="dateCell" rowHeight="51" id="eR7-Bg-76q" userLabel="Date Cell" customClass="DateTableViewCell" customModule="Rainy" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="143" width="375" height="51"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eR7-Bg-76q" id="tiO-Zz-aCO">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thursday, August 16th" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bam-Q4-9uY">
-                                            <rect key="frame" x="16" y="11" width="164" height="29"/>
-                                            <fontDescription key="fontDescription" name="StagSans-Book" family="Stag Sans" pointSize="17"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" red="0.68838071823120117" green="0.83102673292160034" blue="0.84314268827438354" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Bam-Q4-9uY" secondAttribute="bottom" id="Hnq-vr-NTG"/>
-                                        <constraint firstItem="Bam-Q4-9uY" firstAttribute="centerY" secondItem="tiO-Zz-aCO" secondAttribute="centerY" id="hH9-TM-upy"/>
-                                        <constraint firstItem="Bam-Q4-9uY" firstAttribute="leading" secondItem="tiO-Zz-aCO" secondAttribute="leading" constant="16" id="ywT-f1-d9j"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" notEnabled="YES"/>
-                                </accessibility>
-                                <connections>
-                                    <outlet property="dateLabel" destination="Bam-Q4-9uY" id="F2r-kF-9Bc"/>
-                                </connections>
-                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="hourlyStubCell" rowHeight="51" id="3wB-33-0WN" userLabel="Hourly Stub Cell" customClass="HourlyStubTableViewCell" customModule="Rainy" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="194" width="375" height="51"/>
+                                <rect key="frame" x="0.0" y="143" width="375" height="51"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3wB-33-0WN" id="HsH-rT-6cK">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
@@ -94,18 +66,19 @@
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dDc-pu-m39">
                                             <rect key="frame" x="0.0" y="0.0" width="10" height="51"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.0" green="0.60995268821716309" blue="0.60466468334197998" alpha="0.3047410102739726" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.39732142857142855" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6w-6h-3hD">
                                             <rect key="frame" x="16" y="16" width="62" height="19"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="62" id="flM-tb-1We"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="62" id="flM-tb-1We"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="StagSans-Book" family="Stag Sans" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="StagSans-Semibold" family="Stag Sans" pointSize="17"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Partly Cloudy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pi-q1-wfG">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Partly Cloudy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pi-q1-wfG">
                                             <rect key="frame" x="88" y="16" width="201" height="19"/>
                                             <fontDescription key="fontDescription" name="StagSans-Book" family="Stag Sans" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -114,10 +87,10 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bod-oZ-C1T">
                                             <rect key="frame" x="297" y="13.666666666666664" width="62" height="22"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="62" id="lje-W1-Wa5"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="62" id="lje-W1-Wa5"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="StagSans-Book" family="Stag Sans" pointSize="20"/>
-                                            <color key="textColor" red="0.0" green="0.60995268821716309" blue="0.60466468334197998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="fontDescription" name="StagSans-Semibold" family="Stag Sans" pointSize="20"/>
+                                            <color key="textColor" red="0.109271206" green="0.45724385979999999" blue="0.99613279099999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -129,6 +102,7 @@
                                         <constraint firstItem="H6w-6h-3hD" firstAttribute="leading" secondItem="HsH-rT-6cK" secondAttribute="leadingMargin" id="6Cf-gv-Enw"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="H6w-6h-3hD" secondAttribute="bottom" constant="5" id="COg-rV-98V"/>
                                         <constraint firstItem="3pi-q1-wfG" firstAttribute="baseline" secondItem="bod-oZ-C1T" secondAttribute="baseline" id="cE1-rR-77r"/>
+                                        <constraint firstItem="bod-oZ-C1T" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3pi-q1-wfG" secondAttribute="trailing" constant="8" symbolic="YES" id="e1B-Gf-ZRQ"/>
                                         <constraint firstItem="3pi-q1-wfG" firstAttribute="firstBaseline" secondItem="bod-oZ-C1T" secondAttribute="firstBaseline" id="gVt-yn-QY0"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="3pi-q1-wfG" secondAttribute="trailing" constant="70" id="hhX-mv-Ogu"/>
                                         <constraint firstItem="H6w-6h-3hD" firstAttribute="firstBaseline" secondItem="3pi-q1-wfG" secondAttribute="firstBaseline" id="pi7-MN-bhS"/>
@@ -149,7 +123,7 @@
                             <outlet property="delegate" destination="oLP-kC-sXO" id="VCB-sh-VqT"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Rainy" largeTitleDisplayMode="always" id="QNI-YG-Eg9">
+                    <navigationItem key="navigationItem" title="Rainy! ☔️" largeTitleDisplayMode="always" id="QNI-YG-Eg9">
                         <barButtonItem key="leftBarButtonItem" systemItem="action" id="1Dk-SF-628">
                             <connections>
                                 <action selector="didPressShareButton:" destination="oLP-kC-sXO" id="9iv-Wn-afT"/>
@@ -181,65 +155,52 @@
                         <sections>
                             <tableViewSection id="wtC-p7-yiL">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="259" id="cJm-SZ-aaD">
-                                        <rect key="frame" x="0.0" y="35" width="375" height="259"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="155" id="cJm-SZ-aaD">
+                                        <rect key="frame" x="0.0" y="35" width="375" height="155"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cJm-SZ-aaD" id="CaG-bX-Ifp">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="258.66666666666669"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="154.66666666666666"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drop" translatesAutoresizingMaskIntoConstraints="NO" id="YHV-Qy-VYx">
-                                                    <rect key="frame" x="163.66666666666666" y="11" width="48" height="82"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is Rainy for iOS." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Q6G-9P-tXv">
+                                                    <rect key="frame" x="16" y="11" width="194.66666666666666" height="25"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="48" id="SfF-EB-vZj"/>
-                                                        <constraint firstAttribute="height" constant="82" id="ikQ-Sb-Fq2"/>
+                                                        <constraint firstAttribute="height" constant="25" id="1MJ-OD-v2X"/>
                                                     </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="6QI-6r-L0D">
-                                                    <rect key="frame" x="16" y="136" width="343" height="116"/>
+                                                    <fontDescription key="fontDescription" name="StagSans-Semibold" family="Stag Sans" pointSize="21"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="6QI-6r-L0D">
+                                                    <rect key="frame" x="16" y="44" width="343" height="96"/>
                                                     <string key="text">Rainy is a simple weather application that just tells you when it's gonna rain, without the BS you usually find in other weather apps.
 
-© 2018 Andrea Gottardo
-Made with ❤️ in 🇨🇦</string>
+An open-source project, available on GitHub.
+Made with love in Vancouver, Canada.</string>
                                                     <fontDescription key="fontDescription" name="StagSans-Book" family="Stag Sans" pointSize="16"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rainy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6G-9P-tXv">
-                                                    <rect key="frame" x="155" y="103" width="65" height="25"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="1MJ-OD-v2X"/>
-                                                        <constraint firstAttribute="width" constant="65" id="FDJ-63-ycW"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="StagSans-Semibold" family="Stag Sans" pointSize="21"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Q6G-9P-tXv" firstAttribute="centerX" secondItem="6QI-6r-L0D" secondAttribute="centerX" id="32p-Yk-aJ5"/>
+                                                <constraint firstAttribute="bottom" secondItem="6QI-6r-L0D" secondAttribute="bottom" constant="14.666666666666657" id="6Y9-WM-X2e"/>
                                                 <constraint firstItem="6QI-6r-L0D" firstAttribute="top" secondItem="Q6G-9P-tXv" secondAttribute="bottom" constant="8" symbolic="YES" id="NAB-tp-Khi"/>
                                                 <constraint firstItem="6QI-6r-L0D" firstAttribute="trailing" secondItem="CaG-bX-Ifp" secondAttribute="trailingMargin" id="QCk-CH-N9x"/>
-                                                <constraint firstItem="YHV-Qy-VYx" firstAttribute="top" secondItem="CaG-bX-Ifp" secondAttribute="topMargin" id="h0n-pv-xfg"/>
+                                                <constraint firstItem="Q6G-9P-tXv" firstAttribute="leading" secondItem="6QI-6r-L0D" secondAttribute="leading" id="bmH-DQ-JOL"/>
                                                 <constraint firstItem="6QI-6r-L0D" firstAttribute="leading" secondItem="CaG-bX-Ifp" secondAttribute="leadingMargin" id="is2-zc-vfy"/>
-                                                <constraint firstItem="YHV-Qy-VYx" firstAttribute="centerX" secondItem="Q6G-9P-tXv" secondAttribute="centerX" id="o1A-Ps-lHd"/>
-                                                <constraint firstAttribute="bottom" secondItem="6QI-6r-L0D" secondAttribute="bottom" constant="6.6666660308837891" id="opm-pC-pda"/>
-                                                <constraint firstItem="Q6G-9P-tXv" firstAttribute="top" secondItem="YHV-Qy-VYx" secondAttribute="bottom" constant="10" id="pgh-vN-C7Y"/>
+                                                <constraint firstItem="Q6G-9P-tXv" firstAttribute="top" secondItem="CaG-bX-Ifp" secondAttribute="top" constant="11" id="zw6-TW-xFo"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="44" id="rid-Ks-dbJ">
-                                        <rect key="frame" x="0.0" y="294" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="44" id="rid-Ks-dbJ">
+                                        <rect key="frame" x="0.0" y="190" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rid-Ks-dbJ" id="SLL-rP-bJw">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Units:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bJ-te-zPe">
-                                                    <rect key="frame" x="16" y="0.0" width="58" height="43.666666666666664"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="58" id="12v-sQ-flW"/>
-                                                    </constraints>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Units:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9bJ-te-zPe">
+                                                    <rect key="frame" x="16" y="0.0" width="42" height="43.666666666666664"/>
                                                     <fontDescription key="fontDescription" name="StagSans-Book" family="Stag Sans" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -268,7 +229,7 @@ Made with ❤️ in 🇨🇦</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="rJg-Wg-fIJ" style="IBUITableViewCellStyleDefault" id="yfE-CD-9fV">
-                                        <rect key="frame" x="0.0" y="338" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="234" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yfE-CD-9fV" id="RJN-2j-ueK">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.666666666666664"/>
@@ -285,7 +246,7 @@ Made with ❤️ in 🇨🇦</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="TJe-vM-AlK" style="IBUITableViewCellStyleDefault" id="bkT-K5-1Um">
-                                        <rect key="frame" x="0.0" y="382" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="278" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bkT-K5-1Um" id="BEM-6Q-6ze">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.666666666666664"/>
@@ -530,7 +491,5 @@ Made with ❤️ in 🇨🇦</string>
     </scenes>
     <resources>
         <image name="SettingsGear" width="57.599998474121094" height="57.599998474121094"/>
-        <image name="drop" width="303.3599853515625" height="512.15997314453125"/>
     </resources>
-    <color key="tintColor" red="0.0" green="0.60995268821716309" blue="0.60466468334197998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
