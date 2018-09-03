@@ -28,7 +28,6 @@
 
 /* Begin PBXFileReference section */
 		402332701FB7CDA100749E26 /* WeatherUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherUpdate.swift; sourceTree = "<group>"; };
-		402332721FB7CF0500749E26 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		403B2A5A21261EAC00A0DCC9 /* DateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTableViewCell.swift; sourceTree = "<group>"; };
 		4053FE7F213DB339002C2235 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		4053FE81213DB7D1002C2235 /* ProviderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProviderError.swift; path = Providers/ProviderError.swift; sourceTree = "<group>"; };
@@ -137,7 +136,6 @@
 		574B5D0A4E448438AE2E5503 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				402332721FB7CF0500749E26 /* MapKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -373,7 +371,7 @@
 				DEVELOPMENT_TEAM = ZM2TBP23P7;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
 				INFOPLIST_FILE = Rainy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.gottardo.Rainy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -391,7 +389,7 @@
 				DEVELOPMENT_TEAM = ZM2TBP23P7;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
 				INFOPLIST_FILE = Rainy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.gottardo.Rainy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
