@@ -8,6 +8,8 @@
 
 import Foundation
 
+/// An enum to represent errors fired by a Provider,
+/// either parsing or networking errors.
 enum ProviderError: Error {
     case network
     case parsing

@@ -35,7 +35,9 @@ final class DarkSkyProvider: Provider {
         let urlSession = URLSession(configuration: URLSessionConfiguration.ephemeral)
         let requestURL = URL(string: DarkSkyProvider.BaseUrl+String(coordinates.latitude)+","+String(coordinates.longitude))!
         // 10 seconds timeout?
-        let urlRequest = URLRequest(url: requestURL, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: DarkSkyProvider.MaxTimeOutLimit)
+        let urlRequest = URLRequest(url: requestURL,
+                                    cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy,
+                                    timeoutInterval: DarkSkyProvider.MaxTimeOutLimit)
 
         let task = urlSession.dataTask(with: urlRequest) { (data, _, _) in
             if data != nil {
@@ -86,10 +88,22 @@ final class DarkSkyProvider: Provider {
             let precipIntensity = hourlyStub["precipIntensity"] as! Double
             let visibility = 0.0
             let precipProbability = hourlyStub["precipProbability"] as! Double
-            let hourlyStub = HourlyStub(temperature: temperature, windSpeed: windSpeed, humidity: humidity, cloudCover: cloudCover, time: nstime, uvIndex: uvIndex, hourSummary: hourSummary, icon: icon, precipIntensity: precipIntensity, visibility: visibility, precipProbability: precipProbability)
+            let hourlyStub = HourlyStub(temperature: temperature,
+                                        windSpeed: windSpeed,
+                                        humidity: humidity,
+                                        cloudCover: cloudCover,
+                                        time: nstime,
+                                        uvIndex: uvIndex,
+                                        hourSummary: hourSummary,
+                                        icon: icon,
+                                        precipIntensity: precipIntensity,
+                                        visibility: visibility,
+                                        precipProbability: precipProbability)
             hourlyStubs.append(hourlyStub)
         }
-        let weatherUpdate = WeatherUpdate(stubs: hourlyStubs, currentCondition: currentCondition, currentTemperature: currentTemp)
+        let weatherUpdate = WeatherUpdate(stubs: hourlyStubs,
+                                          currentCondition: currentCondition,
+                                          currentTemperature: currentTemp)
         DispatchQueue.main.async {
             // Stop the networking activity indicator.
             UIApplication.shared.isNetworkActivityIndicatorVisible = false

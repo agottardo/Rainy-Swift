@@ -15,8 +15,8 @@ import CoreLocation
  app with different data providers in addition to DarkSky.net.
  
  A Provider is composed of two main functions. The first one is the Provider
- single access point. It takes care of networking, while the other does parsing. It then returns data to the calling
- ViewController by using a completion handler.
+ single access point, which also takes care of networking. Later on, the Provider
+ returns data to the calling ViewController by using a completion handler.
  */
 protocol Provider {
 
@@ -24,7 +24,7 @@ protocol Provider {
      Downloads a JSON dictionary from the API. ⏬
      */
     func getWeatherDataForCoordinates(coordinates: CLLocationCoordinate2D,
-                                      completion: @escaping (_ data: WeatherUpdate?, _ error: ProviderError?) -> Void)
+                                      completion: @escaping (_ data: WeatherUpdate?,_ error: ProviderError?) -> Void)
 
     /**
      Performs JSON parsing. 🙇🏻‍♂️
