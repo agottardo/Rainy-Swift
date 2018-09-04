@@ -9,7 +9,7 @@ import UIKit
 import CoreLocation
 
 class HomeTableViewController: UITableViewController {
-    
+
     // MARK: - Constants
 
     let provider: Provider = DarkSkyProvider()
@@ -17,7 +17,7 @@ class HomeTableViewController: UITableViewController {
     var latestWU: WeatherUpdate?
     var insight  = "Welcome back. Please wait while I fetch your weather..."
     let stagSans = UIFont(name: "StagSans-Semibold", size: 20.0)
-    
+
     // MARK: - Big Two
 
     override func viewDidAppear(_ animated: Bool) {
@@ -53,7 +53,7 @@ class HomeTableViewController: UITableViewController {
     Creates a cell for the hourly weather information.
     */
     private func newHourlyCell(_ indexPath: IndexPath) -> UITableViewCell {
-        let cell: HourlyStubTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "hourlyStubCell", for: indexPath) as! HourlyStubTableViewCell
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "hourlyStubCell", for: indexPath) as! HourlyStubTableViewCell
         let hourlyStub = latestWU!.hourlyStubs[indexPath.row-1]
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "h a"
@@ -94,7 +94,7 @@ class HomeTableViewController: UITableViewController {
             return 51
         }
     }
-    
+
     /**
     Returns a String with the given Double temperature.
      - Todo: this expects the API to always return a temperature
@@ -120,7 +120,7 @@ class HomeTableViewController: UITableViewController {
         var sharedMessage = "Now: " +
             tempToString(temp: latestWU!.currentTemperature) +
             " - " + latestWU!.currentCondition + "\n"
-        
+
         // The two variables here contain the precipitation amount expected
         // in the next 18 hours, and in the next 6 hours (close).
         var totalRainSum = 0.0
@@ -135,7 +135,7 @@ class HomeTableViewController: UITableViewController {
             totalRainSumClose+=latestWU!.hourlyStubs[counter].precipIntensity
             counter+=1
         }
-        
+
         if totalRainSumClose > 0.20 {
             sharedMessage += "Rain everywhere... so depressing! 😭"
         } else if totalRainSum > 0.20 {
@@ -143,7 +143,7 @@ class HomeTableViewController: UITableViewController {
         } else {
             sharedMessage += "Awesome! No rain expected any time soon. 😎"
         }
-        
+
         return sharedMessage
     }
 
@@ -155,14 +155,14 @@ class HomeTableViewController: UITableViewController {
         let contr = UIActivityViewController(activityItems: [weatherInsight()], applicationActivities: nil)
         present(contr, animated: true) { }
     }
-    
+
     // MARK: - Communication with model
-    
+
     @objc private func startRefresh() {
         self.refreshControl?.attributedTitle = NSAttributedString(string: "Finding your location...", attributes: [NSAttributedString.Key.font: stagSans!])
         locBrain.start()
     }
-    
+
     private func presentNewData(wu: WeatherUpdate) {
         latestWU = wu
         insight = weatherInsight()
@@ -190,14 +190,16 @@ class HomeTableViewController: UITableViewController {
         }
         provider.getWeatherDataForCoordinates(coordinates: CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude), completion: handler)
     }
-    
+
     /**
      Called by the LocationBrain if a error verifies while fetching the user
      location.
      - Todo: implement fallbacks on earlier iOS versions.
      */
     func locationErrorOccurred() {
-        let controller: UIAlertController = UIAlertController(title: "Unable to obtain your location ☹️", message: "Rainy can't download the latest weather data because you denied Rainy access to your location. You cannot use Rainy until you have enabled Location Services. Go to the Settings app and enable Location for Rainy, then come back here to get your weather.", preferredStyle: .actionSheet)
+        let controller: UIAlertController = UIAlertController(title: "Unable to obtain your location ☹️",
+                                                              message: NSLocalizedString("Rainy can't download the latest weather data because you denied Rainy access to your location. You cannot use Rainy until you have enabled Location Services. Go to the Settings app and enable Location for Rainy, then come back here to get your weather.", comment: ""),
+                                                              preferredStyle: .actionSheet)
         let goToLocs = UIAlertAction(title: "Take me there!", style: .default) { (_) in
             if !CLLocationManager.locationServicesEnabled() {
                 if let url = URL(string: "App-Prefs:root=Privacy&path=LOCATION") {

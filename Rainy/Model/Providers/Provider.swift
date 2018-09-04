@@ -24,11 +24,11 @@ protocol Provider {
      Downloads a JSON dictionary from the API. ⏬
      */
     func getWeatherDataForCoordinates(coordinates: CLLocationCoordinate2D,
-                                      completion: @escaping (_ data: WeatherUpdate?,_ error: ProviderError?) -> Void)
+                                      completion: @escaping (_ data: WeatherUpdate?, _ error: ProviderError?) -> Void)
 
     /**
      Performs JSON parsing. 🙇🏻‍♂️
      */
-    func parseJSON(json: [String: Any]) -> WeatherUpdate?
+    func parseJSON(data: [String: Any]?) -> WeatherUpdate?
 
 }
