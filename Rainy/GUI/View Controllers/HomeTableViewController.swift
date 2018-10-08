@@ -201,30 +201,12 @@ class HomeTableViewController: UITableViewController {
                                                               message: NSLocalizedString("Rainy can't download the latest weather data because you denied Rainy access to your location. You cannot use Rainy until you have enabled Location Services. Go to the Settings app and enable Location for Rainy, then come back here to get your weather.", comment: ""),
                                                               preferredStyle: .actionSheet)
         let goToLocs = UIAlertAction(title: "Take me there!", style: .default) { (_) in
-            if !CLLocationManager.locationServicesEnabled() {
-                if let url = URL(string: "App-Prefs:root=Privacy&path=LOCATION") {
-                    if #available(iOS 10.0, *) {
-                        UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
-                    } else {
-                        // TODO: Fallback on earlier versions
-                    }
-                }
-            } else {
-                if let url = URL(string: UIApplication.openSettingsURLString) {
-                    if #available(iOS 10.0, *) {
-                        UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
-                    } else {
-                        // TODO: Fallback on earlier versions
-                    }
-                }
+            guard let urlGeneral = URL(string: UIApplication.openSettingsURLString) else {
+                return
             }
+            UIApplication.shared.open(urlGeneral)
         }
         controller.addAction(goToLocs)
         present(controller, animated: true, completion: nil)
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-private func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }
