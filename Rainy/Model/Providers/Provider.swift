@@ -19,16 +19,8 @@ import CoreLocation
  returns data to the calling ViewController by using a completion handler.
  */
 protocol Provider {
-
-    /**
-     Downloads a JSON dictionary from the API. ⏬
-     */
+    /// Downloads a JSON dictionary from the API.
     func getWeatherDataForCoordinates(coordinates: CLLocationCoordinate2D,
-                                      completion: @escaping (_ data: WeatherUpdate?, _ error: ProviderError?) -> Void)
-
-    /**
-     Performs JSON parsing. 🙇🏻‍♂️
-     */
-    func parseJSON(data: [String: Any]?) -> WeatherUpdate?
+                                      completion: @escaping (Result<WeatherUpdate, NSError>) -> Void)
 
 }
