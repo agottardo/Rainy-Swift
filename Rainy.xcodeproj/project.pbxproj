@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		402332711FB7CDA100749E26 /* WeatherUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402332701FB7CDA100749E26 /* WeatherUpdate.swift */; };
-		4030D606213DCEBD000CA8B9 /* HourlyStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FBF161FB6ADAD008D4258 /* HourlyStub.swift */; };
 		4053FE80213DB339002C2235 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053FE7F213DB339002C2235 /* Provider.swift */; };
 		4053FE82213DB7D1002C2235 /* ProviderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053FE81213DB7D1002C2235 /* ProviderError.swift */; };
 		4053FE85213DBD12002C2235 /* Stag Sans-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4053FE83213DBD12002C2235 /* Stag Sans-Book.otf */; };
@@ -23,6 +22,7 @@
 		40D8D6F21FB64B3E002CFD6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40D8D6F01FB64B3E002CFD6A /* LaunchScreen.storyboard */; };
 		40E5C0F01FB6986000A4C884 /* DarkSkyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5C0EF1FB6986000A4C884 /* DarkSkyProvider.swift */; };
 		40E5C0F41FB69CD000A4C884 /* LocationBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5C0F31FB69CD000A4C884 /* LocationBrain.swift */; };
+		65ECB1B1230528D000BA3320 /* TempUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ECB1B0230528D000BA3320 /* TempUnit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +33,6 @@
 		4053FE84213DBD12002C2235 /* Stag Sans-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Stag Sans-Semibold.otf"; sourceTree = "<group>"; };
 		406653DE2076DA730013519B /* InfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewController.swift; sourceTree = "<group>"; };
 		406653E02076DA7C0013519B /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
-		408FBF161FB6ADAD008D4258 /* HourlyStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyStub.swift; sourceTree = "<group>"; };
 		408FBF181FB6B4CD008D4258 /* HourlyStubTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyStubTableViewCell.swift; sourceTree = "<group>"; };
 		408FBF1A1FB6C0AC008D4258 /* InsightTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightTableViewCell.swift; sourceTree = "<group>"; };
 		40D8D6E11FB64B3E002CFD6A /* Rainy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rainy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +43,7 @@
 		40D8D6F31FB64B3E002CFD6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40E5C0EF1FB6986000A4C884 /* DarkSkyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkSkyProvider.swift; sourceTree = "<group>"; };
 		40E5C0F31FB69CD000A4C884 /* LocationBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationBrain.swift; sourceTree = "<group>"; };
+		65ECB1B0230528D000BA3320 /* TempUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempUnit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +60,6 @@
 		4030D605213DCD1B000CA8B9 /* Weather Data */ = {
 			isa = PBXGroup;
 			children = (
-				408FBF161FB6ADAD008D4258 /* HourlyStub.swift */,
 				402332701FB7CDA100749E26 /* WeatherUpdate.swift */,
 			);
 			path = "Weather Data";
@@ -72,6 +71,7 @@
 				4030D605213DCD1B000CA8B9 /* Weather Data */,
 				40E5C0F31FB69CD000A4C884 /* LocationBrain.swift */,
 				40E5C0EE1FB6984600A4C884 /* Providers */,
+				65ECB1B0230528D000BA3320 /* TempUnit.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -169,7 +169,7 @@
 				TargetAttributes = {
 					40D8D6E01FB64B3E002CFD6A = {
 						CreatedOnToolsVersion = 9.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1030;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -219,7 +219,7 @@
 				408FBF1B1FB6C0AC008D4258 /* InsightTableViewCell.swift in Sources */,
 				406653E12076DA7C0013519B /* HomeTableViewController.swift in Sources */,
 				4053FE80213DB339002C2235 /* Provider.swift in Sources */,
-				4030D606213DCEBD000CA8B9 /* HourlyStub.swift in Sources */,
+				65ECB1B1230528D000BA3320 /* TempUnit.swift in Sources */,
 				408FBF191FB6B4CD008D4258 /* HourlyStubTableViewCell.swift in Sources */,
 				406653DF2076DA730013519B /* InfoTableViewController.swift in Sources */,
 				402332711FB7CDA100749E26 /* WeatherUpdate.swift in Sources */,
@@ -375,7 +375,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.gottardo.Rainy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = arm64;
 			};
@@ -396,7 +396,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.gottardo.Rainy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = arm64;
 			};

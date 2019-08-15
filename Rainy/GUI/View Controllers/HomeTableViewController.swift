@@ -9,28 +9,21 @@ import UIKit
 import CoreLocation
 
 class HomeTableViewController: UITableViewController {
-
-    // MARK: - Constants
+    struct Constants {
+        static let stagSans = UIFont(name: "StagSans-Semibold", size: 20.0)!
+    }
 
     let provider: Provider = DarkSkyProvider()
-    let locBrain = LocationBrain()
+    var locBrain: LocationBrain!
     var latestWU: WeatherUpdate?
-    var insight  = "Welcome back. Please wait while I fetch your weather..."
-    let stagSans = UIFont(name: "StagSans-Semibold", size: 20.0)
-
-    // MARK: - Big Two
-
-    override func viewDidAppear(_ animated: Bool) {
-        self.refreshControl?.beginRefreshing()
-        startRefresh()
-    }
+    var insight = "Welcome back. Please wait while I fetch your weather..."
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        locBrain.callbackHome = self
+        self.locBrain = LocationBrain(delegate: self)
         self.navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.font: stagSans!]
-        self.refreshControl?.beginRefreshing()
+            [NSAttributedString.Key.font: Constants.stagSans]
+        
         startRefresh()
         self.refreshControl?.addTarget(self, action: #selector(startRefresh), for: .valueChanged)
     }
@@ -42,11 +35,12 @@ class HomeTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if latestWU != nil {
-            return 1 + latestWU!.hourlyStubs.count
-        } else {
+        guard let wu = self.latestWU,
+            let hourlyData = wu.hourly?.data else {
             return 1
         }
+        
+        return 1 + hourlyData.count
     }
 
     /**
@@ -54,22 +48,42 @@ class HomeTableViewController: UITableViewController {
     */
     private func newHourlyCell(_ indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "hourlyStubCell", for: indexPath) as! HourlyStubTableViewCell
-        let hourlyStub = latestWU!.hourlyStubs[indexPath.row-1]
+        guard let wu = self.latestWU,
+            let hourlyData = wu.hourly?.data else {
+                return cell
+        }
+        let hourly = hourlyData[indexPath.row-1]
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "h a"
-        let hourStr = dateFormatter.string(from: (hourlyStub.time))
-        cell.timeLabel.text = hourStr
-        if UserDefaults.standard.bool(forKey: "fahren") {
-            // Fahrenheit selected
-            cell.temperatureLabel.text = String(lround(hourlyStub.temperature)) + "°"
-        } else {
-            // Celsius selected
-            cell.temperatureLabel.text = String(lround(0.55555*((hourlyStub.temperature)-32))) + "°"
+        if let time = hourly.time {
+            let hourStr = dateFormatter.string(from: Date.init(timeIntervalSince1970: TimeInterval(time)))
+            cell.timeLabel.text = hourStr
         }
-        cell.conditionLabel.text = hourlyStub.hourSummary
-        var newFrame = cell.rainBox.frame
-        newFrame.size.width = CGFloat(10 + 20 * hourlyStub.precipProbability * 100 * hourlyStub.precipIntensity)
-        cell.rainBox.frame = newFrame
+        
+        if let temperature = hourly.temperature {
+            switch TempUnitCoordinator.getCurrentTempUnit() {
+            case .celsius:
+                cell.temperatureLabel.text = String(lround(0.55555*((temperature)-32))) + "°"
+            case .fahrenheit:
+                cell.temperatureLabel.text = String(lround(temperature)) + "°"
+            }
+        }
+        
+        if let summary = hourly.summary {
+            cell.conditionLabel.isHidden = false
+            cell.conditionLabel.text = summary
+        } else {
+            cell.conditionLabel.isHidden = true
+        }
+        
+        if let precipProbability = hourly.precipProbability,
+            let precipIntensity = hourly.precipIntensity {
+            var newFrame = cell.rainBox.frame
+            newFrame.size.width = CGFloat(10 + 20 * precipProbability * 100 * precipIntensity)
+            cell.rainBox.frame = newFrame
+        }
+        
         return cell
     }
 
@@ -102,12 +116,11 @@ class HomeTableViewController: UITableViewController {
      this.
     */
     private func tempToString(temp: Double) -> String {
-        if UserDefaults.standard.bool(forKey: "fahren") {
-            // Fahrenheit selected
-            return String(lround(temp)) + "°"
-        } else {
-            // Celsius selected
+        switch TempUnitCoordinator.getCurrentTempUnit() {
+        case .celsius:
             return String(lround(0.55555*((temp)-32))) + "°"
+        case .fahrenheit:
+            return String(lround(temp)) + "°"
         }
     }
 
@@ -115,11 +128,18 @@ class HomeTableViewController: UITableViewController {
     Produces a human-readable message describing the current
     weather conditions.
      */
-    private func weatherInsight() -> String {
+    private func generateWeatherInsight() {
+        
+        guard let wu = self.latestWU,
+            let temperature = wu.currently?.temperature,
+            let summary = wu.currently?.summary else {
+                return
+        }
 
-        var sharedMessage = "Now: " +
-            tempToString(temp: latestWU!.currentTemperature) +
-            " - " + latestWU!.currentCondition + "\n"
+        let temperatureString = tempToString(temp: temperature)
+        
+        self.insight = "Now: " + temperatureString +
+            " - " + summary + "\n"
 
         // The two variables here contain the precipitation amount expected
         // in the next 18 hours, and in the next 6 hours (close).
@@ -127,24 +147,30 @@ class HomeTableViewController: UITableViewController {
         var totalRainSumClose = 0.0
         var counter = 0
         while counter < 18 {
-            totalRainSum+=latestWU!.hourlyStubs[counter].precipIntensity
-            counter+=1
+            guard let hourlyData = wu.hourly?.data?[counter] else {
+                continue
+            }
+            
+            totalRainSum += hourlyData.precipIntensity ?? 0.0
+            counter += 1
         }
         counter = 0
         while counter < 6 {
-            totalRainSumClose+=latestWU!.hourlyStubs[counter].precipIntensity
-            counter+=1
+            guard let hourlyData = wu.hourly?.data?[counter] else {
+                continue
+            }
+            
+            totalRainSumClose += hourlyData.precipIntensity ?? 0.0
+            counter += 1
         }
 
         if totalRainSumClose > 0.20 {
-            sharedMessage += "Rain everywhere... so depressing! 😭"
+            self.insight += "Rain everywhere... so depressing! 😭"
         } else if totalRainSum > 0.20 {
-            sharedMessage += "Remember the umbrella. It's going to rain soon. ☹️"
+            self.insight += "Remember the umbrella. It's going to rain soon. ☹️"
         } else {
-            sharedMessage += "Awesome! No rain expected any time soon. 😎"
+            self.insight += "Awesome! No rain expected any time soon. 😎"
         }
-
-        return sharedMessage
     }
 
     /**
@@ -152,43 +178,50 @@ class HomeTableViewController: UITableViewController {
      text snippet, shared with the UIActivityViewController API.
     */
     @IBAction func didPressShareButton(_ sender: Any) {
-        let contr = UIActivityViewController(activityItems: [weatherInsight()], applicationActivities: nil)
-        present(contr, animated: true) { }
+        let contr = UIActivityViewController(activityItems: [self.insight], applicationActivities: nil)
+        self.present(contr, animated: true)
     }
 
     // MARK: - Communication with model
 
     @objc private func startRefresh() {
-        self.refreshControl?.attributedTitle = NSAttributedString(string: "Finding your location...", attributes: [NSAttributedString.Key.font: stagSans!])
+        self.refreshControl?.attributedTitle = NSAttributedString(string: "Fetching weather information...",
+                                                                  attributes: [NSAttributedString.Key.font: Constants.stagSans])
+        self.refreshControl?.beginRefreshing()
         locBrain.start()
     }
 
     private func presentNewData(wu: WeatherUpdate) {
-        latestWU = wu
-        insight = weatherInsight()
+        self.latestWU = wu
+        self.generateWeatherInsight()
         DispatchQueue.main.async {
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
-            self.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh! 😍", attributes: [NSAttributedString.Key.font: self.stagSans!])
+            self.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh! 😍", attributes: [NSAttributedString.Key.font: Constants.stagSans])
         }
     }
 
     /**
-     Called by the LocationBrain once the user location has been found.
+     Called by the LocationBrainDelegate once the user location has been found.
     */
-    func newLocationAvailable(location: CLLocation) {
+    func newLocationAvailable(location: CLLocationCoordinate2D) {
         let font = UIFont(name: "StagSans-Book", size: 12.0)
         self.refreshControl?.attributedTitle = NSAttributedString(string: "Fetching the latest weather information...", attributes: [NSAttributedString.Key.font: font!])
-        let handler: (WeatherUpdate?, ProviderError?) -> Void = {
-            if $1 != nil {
-                let alert = UIAlertController(title: "Error", message: "Sorry, we had a problem fetching your weather.", preferredStyle: UIAlertController.Style.alert)
+
+        provider.getWeatherDataForCoordinates(coordinates: location) { result in
+            
+            switch result {
+            case .success(let weatherUpdate):
+                self.presentNewData(wu: weatherUpdate)
+                
+            case .failure(let error):
+                let alert = UIAlertController(title: "An error occurred.",
+                                              message: "Sorry, we had a problem fetching your weather: " + error.localizedDescription,
+                                              preferredStyle: .alert)
                 self.present(alert, animated: true)
-            } else {
-                // Can safely force-unwrap here.
-                self.presentNewData(wu: $0!)
             }
+            
         }
-        provider.getWeatherDataForCoordinates(coordinates: CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude), completion: handler)
     }
 
     /**
@@ -209,4 +242,32 @@ class HomeTableViewController: UITableViewController {
         controller.addAction(goToLocs)
         present(controller, animated: true, completion: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let navVC = segue.destination as? UINavigationController,
+            let settingsVC = navVC.viewControllers.first as? InfoTableViewController else {
+            return
+        }
+        settingsVC.setDelegate(self)
+    }
+}
+
+extension HomeTableViewController: InfoTableViewControllerDelegate {
+    func didChangeTempUnitSetting(toUnit unit: TempUnit) {
+        self.tableView.reloadData()
+    }
+}
+
+extension HomeTableViewController: LocationBrainDelegate {
+    func didFetchLocation(location: CLLocationCoordinate2D) {
+        NSLog("Got a location!")
+        self.newLocationAvailable(location: location)
+    }
+    
+    func didErrorOccur(error: NSError) {
+        let alert = UIAlertController(title: "A location error did occur", message: error.localizedDescription, preferredStyle: .alert)
+        self.present(alert, animated: true)
+    }
+    
+    
 }

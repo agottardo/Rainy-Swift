@@ -6,41 +6,62 @@
 import UIKit
 import SafariServices
 
+protocol InfoTableViewControllerDelegate: class {
+    func didChangeTempUnitSetting(toUnit unit: TempUnit)
+}
+
 /**
- Provides a view for settings and information
- regarding the app.
+ Provides a view for settings and information regarding the app.
  */
 class InfoTableViewController: UITableViewController {
-
-    /**
-     Allows the user to pick between Celsius and Fahrenheit.
-     */
+    struct Constants {
+        static let masterRowHeight: CGFloat = 155.0
+        static let otherRowsHeight: CGFloat = 44.0
+    }
+    
+    enum Row: Int, CaseIterable {
+        case master
+        case units
+        case darksky
+        case aboutme
+        
+        var height: CGFloat {
+            switch self {
+            case .master:
+                return Constants.masterRowHeight
+                
+            case .units, .darksky, .aboutme:
+                return Constants.otherRowsHeight
+            }
+        }
+    }
+    
+    var visibleRows: [Row] = Row.allCases
+    /// Allows the user to pick between Celsius and Fahrenheit.
     @IBOutlet weak var tempUnitsControl: UISegmentedControl!
+    /// Main view controller delegate
+    weak var delegate: InfoTableViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupGUI()
-
+    }
+    
+    /// Lets the main view controller subscribe to unit changes updates.
+    ///
+    /// - Parameter delegate: main view controller
+    func setDelegate(_ delegate: InfoTableViewControllerDelegate) {
+        self.delegate = delegate
     }
 
-    /**
-     Sets the correct font types and sizes on the GUI elements.
-     */
+    /// Sets the correct font types and sizes on the GUI elements.
     private func setupGUI() {
         self.navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.font: UIFont(name: "StagSans-Book", size: 20)!]
         let font = UIFont.init(name: "StagSans-Book", size: 13)
         tempUnitsControl.setTitleTextAttributes([NSAttributedString.Key.font: font!],
                                                 for: .normal)
-    }
-
-    /**
-     Sets the value of the UI controls to their current value.
-     */
-    private func setupControls() {
-        if UserDefaults.standard.bool(forKey: "fahren") {
-            tempUnitsControl.selectedSegmentIndex = 1
-        }
+        tempUnitsControl.selectedSegmentIndex = TempUnitCoordinator.getCurrentTempUnit().rawValue
     }
 
     // MARK: - Table view data source
@@ -50,15 +71,11 @@ class InfoTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return Row.allCases.count
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return 155
-        } else {
-            return 44
-        }
+        return self.visibleRows[indexPath.row].height
     }
 
     @IBAction func didPressDoneButton(_ sender: Any) {
@@ -66,10 +83,17 @@ class InfoTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 2 {
+        let row = self.visibleRows[indexPath.row]
+        
+        switch row {
+        case .darksky:
             presentSafariVCWithURL(url: "https://darksky.net/dev")
-        } else if indexPath.row == 3 {
+            
+        case .aboutme:
             presentSafariVCWithURL(url: "https://gottardo.me/rainy")
+            
+        case .master, .units:
+            break
         }
     }
 
@@ -83,14 +107,12 @@ class InfoTableViewController: UITableViewController {
     }
 
     @IBAction func didChangeTempUnits(_ sender: Any) {
-        if tempUnitsControl.selectedSegmentIndex == 0 {
-            // Celsius was selected
-            UserDefaults.standard.set(false, forKey: "fahren")
-        } else if tempUnitsControl.selectedSegmentIndex == 1 {
-            // Fahrenheit was selected
-            UserDefaults.standard.set(true, forKey: "fahren")
+        guard let newUnit = TempUnit(rawValue: tempUnitsControl.selectedSegmentIndex) else {
+            NSLog("Failed to determine newly selected temperature unit.")
+            return
         }
-        UserDefaults.standard.synchronize()
+        TempUnitCoordinator.setCurrentTempUnit(newValue: newUnit)
+        self.delegate?.didChangeTempUnitSetting(toUnit: newUnit)
     }
 
 }

@@ -21,6 +21,6 @@ import CoreLocation
 protocol Provider {
     /// Downloads a JSON dictionary from the API.
     func getWeatherDataForCoordinates(coordinates: CLLocationCoordinate2D,
-                                      completion: @escaping (Result<WeatherUpdate, NSError>) -> Void)
+                                      completion: @escaping (Result<WeatherUpdate, ProviderError>) -> Void)
 
 }
