@@ -16,6 +16,7 @@ class HomeTableViewController: UITableViewController {
     let provider: Provider = DarkSkyProvider()
     var locBrain: LocationBrain!
     var latestWU: WeatherUpdate?
+    var localityName: String?
     var insight = "Welcome back. Please wait while I fetch your weather..."
 
     override func viewDidLoad() {
@@ -129,7 +130,6 @@ class HomeTableViewController: UITableViewController {
     weather conditions.
      */
     private func generateWeatherInsight() {
-        
         guard let wu = self.latestWU,
             let temperature = wu.currently?.temperature,
             let summary = wu.currently?.summary else {
@@ -138,8 +138,11 @@ class HomeTableViewController: UITableViewController {
 
         let temperatureString = tempToString(temp: temperature)
         
-        self.insight = "Now: " + temperatureString +
-            " - " + summary + "\n"
+        if let localityName = self.localityName {
+            self.insight = "It's \(temperatureString) and \(summary.lowercased()) in \(localityName).\n"
+        } else {
+            self.insight = "It's \(temperatureString) and \(summary.lowercased()).\n"
+        }
 
         // The two variables here contain the precipitation amount expected
         // in the next 18 hours, and in the next 6 hours (close).
@@ -259,9 +262,10 @@ extension HomeTableViewController: InfoTableViewControllerDelegate {
 }
 
 extension HomeTableViewController: LocationBrainDelegate {
-    func didFetchLocation(location: CLLocationCoordinate2D) {
+    func didFetchLocation(location: CLLocationCoordinate2D, name: String?) {
         NSLog("Got a location!")
         self.newLocationAvailable(location: location)
+        self.localityName = name
     }
     
     func didErrorOccur(error: NSError) {

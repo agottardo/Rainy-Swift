@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 
 protocol LocationBrainDelegate: class {
-    func didFetchLocation(location: CLLocationCoordinate2D)
+    func didFetchLocation(location: CLLocationCoordinate2D, name: String?)
     func didErrorOccur(error: NSError)
 }
 
@@ -55,9 +55,18 @@ final class LocationBrain: NSObject, CLLocationManagerDelegate {
             let lastLocation = locations.first else {
                 return
         }
+        manager.stopUpdatingLocation()
         self.lastLocation = lastLocation
-        // Inform the calling view controller that a location is available.
-        self.delegate?.didFetchLocation(location: lastLocation.coordinate)
+        
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(lastLocation) { (placemarks, error) in
+            // Inform the calling view controller that a location is available.
+            guard error == nil, let placemark = placemarks?.first else {
+                self.delegate?.didFetchLocation(location: lastLocation.coordinate, name: nil)
+                return
+            }
+            self.delegate?.didFetchLocation(location: lastLocation.coordinate, name: placemark.locality)
+        }
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
