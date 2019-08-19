@@ -6,10 +6,11 @@
 //  Copyright © 2017 Andrea Gottardo. All rights reserved.
 //
 
-import Foundation
 import CoreLocation
+import Foundation
 
 // MARK: - WeatherUpdate
+
 struct WeatherUpdate: Codable {
     let latitude, longitude: Double?
     let timezone: String?
@@ -20,6 +21,7 @@ struct WeatherUpdate: Codable {
 }
 
 // MARK: - Currently
+
 struct Currently: Codable {
     let time: Int?
     let summary: String?
@@ -35,6 +37,7 @@ struct Currently: Codable {
 }
 
 // MARK: - Daily
+
 struct Daily: Codable {
     let summary: String?
     let icon: String?
@@ -42,6 +45,7 @@ struct Daily: Codable {
 }
 
 // MARK: - Datum
+
 struct Datum: Codable {
     let time: Int?
     let summary, icon: String?
@@ -74,6 +78,7 @@ struct Datum: Codable {
 }
 
 // MARK: - Hourly
+
 struct Hourly: Codable {
     let summary: String?
     let icon: String?

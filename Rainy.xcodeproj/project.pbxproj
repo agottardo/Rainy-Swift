@@ -22,6 +22,8 @@
 		40D8D6F21FB64B3E002CFD6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40D8D6F01FB64B3E002CFD6A /* LaunchScreen.storyboard */; };
 		40E5C0F01FB6986000A4C884 /* DarkSkyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5C0EF1FB6986000A4C884 /* DarkSkyProvider.swift */; };
 		40E5C0F41FB69CD000A4C884 /* LocationBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5C0F31FB69CD000A4C884 /* LocationBrain.swift */; };
+		6512163A230A0E63009404F7 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65121639230A0E63009404F7 /* Storage.swift */; };
+		6512163C230A1284009404F7 /* HomeTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6512163B230A1284009404F7 /* HomeTableViewModel.swift */; };
 		65ECB1B1230528D000BA3320 /* TempUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ECB1B0230528D000BA3320 /* TempUnit.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +45,8 @@
 		40D8D6F31FB64B3E002CFD6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40E5C0EF1FB6986000A4C884 /* DarkSkyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkSkyProvider.swift; sourceTree = "<group>"; };
 		40E5C0F31FB69CD000A4C884 /* LocationBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationBrain.swift; sourceTree = "<group>"; };
+		65121639230A0E63009404F7 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		6512163B230A1284009404F7 /* HomeTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewModel.swift; sourceTree = "<group>"; };
 		65ECB1B0230528D000BA3320 /* TempUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempUnit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,6 +72,7 @@
 		407A5BFC20F58D2E0006B2F0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				65121638230A0E53009404F7 /* Caching */,
 				4030D605213DCD1B000CA8B9 /* Weather Data */,
 				40E5C0F31FB69CD000A4C884 /* LocationBrain.swift */,
 				40E5C0EE1FB6984600A4C884 /* Providers */,
@@ -81,6 +86,7 @@
 			children = (
 				406653E02076DA7C0013519B /* HomeTableViewController.swift */,
 				406653DE2076DA730013519B /* InfoTableViewController.swift */,
+				6512163B230A1284009404F7 /* HomeTableViewModel.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -135,6 +141,14 @@
 				4053FE81213DB7D1002C2235 /* ProviderError.swift */,
 			);
 			path = Providers;
+			sourceTree = "<group>";
+		};
+		65121638230A0E53009404F7 /* Caching */ = {
+			isa = PBXGroup;
+			children = (
+				65121639230A0E63009404F7 /* Storage.swift */,
+			);
+			path = Caching;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,7 +231,9 @@
 				4053FE82213DB7D1002C2235 /* ProviderError.swift in Sources */,
 				40E5C0F41FB69CD000A4C884 /* LocationBrain.swift in Sources */,
 				408FBF1B1FB6C0AC008D4258 /* InsightTableViewCell.swift in Sources */,
+				6512163A230A0E63009404F7 /* Storage.swift in Sources */,
 				406653E12076DA7C0013519B /* HomeTableViewController.swift in Sources */,
+				6512163C230A1284009404F7 /* HomeTableViewModel.swift in Sources */,
 				4053FE80213DB339002C2235 /* Provider.swift in Sources */,
 				65ECB1B1230528D000BA3320 /* TempUnit.swift in Sources */,
 				408FBF191FB6B4CD008D4258 /* HourlyStubTableViewCell.swift in Sources */,

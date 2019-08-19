@@ -14,11 +14,11 @@ import UIKit
  */
 class HourlyStubTableViewCell: UITableViewCell {
     /// Hour label.
-    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet var timeLabel: UILabel!
     /// Weather condition label.
-    @IBOutlet weak var conditionLabel: UILabel!
+    @IBOutlet var conditionLabel: UILabel!
     /// Temperature label.
-    @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet var temperatureLabel: UILabel!
     /// Precipitation amount background layer.
-    @IBOutlet weak var rainBox: UIView!
+    @IBOutlet var rainBox: UIView!
 }

@@ -6,10 +6,10 @@
 //  Copyright © 2017 Andrea Gottardo. All rights reserved.
 //
 
-import Foundation
 import CoreLocation
+import Foundation
 
-protocol LocationBrainDelegate: class {
+protocol LocationBrainDelegate: AnyObject {
     func didFetchLocation(location: CLLocationCoordinate2D, name: String?)
     func didErrorOccur(error: NSError)
 }
@@ -23,23 +23,23 @@ final class LocationBrain: NSObject, CLLocationManagerDelegate {
     let manager = CLLocationManager()
     var lastLocation: CLLocation?
     weak var delegate: LocationBrainDelegate?
-    
+
     init(delegate: LocationBrainDelegate) {
         self.delegate = delegate
     }
 
     /**
-    Sets up the CLLocationManager and asks for a location update.
-    */
+     Sets up the CLLocationManager and asks for a location update.
+     */
     func start() {
         guard CLLocationManager.locationServicesEnabled() else {
             // If location access was not available, tell the calling view
             // controller to display an error message.
-            self.delegate?.didErrorOccur(error: NSError(domain: "location",
-                                                        code: -1,
-                                                        userInfo: [
-                NSLocalizedDescriptionKey: "Location Services were not authorized."
-                ]))
+            delegate?.didErrorOccur(error: NSError(domain: "location",
+                                                   code: -1,
+                                                   userInfo: [
+                                                       NSLocalizedDescriptionKey: "Location Services were not authorized.",
+                                                   ]))
             return
         }
         manager.delegate = self
@@ -53,13 +53,13 @@ final class LocationBrain: NSObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard locations.count > 0,
             let lastLocation = locations.first else {
-                return
+            return
         }
         manager.stopUpdatingLocation()
         self.lastLocation = lastLocation
-        
+
         let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(lastLocation) { (placemarks, error) in
+        geocoder.reverseGeocodeLocation(lastLocation) { placemarks, error in
             // Inform the calling view controller that a location is available.
             guard error == nil, let placemark = placemarks?.first else {
                 self.delegate?.didFetchLocation(location: lastLocation.coordinate, name: nil)
@@ -69,9 +69,9 @@ final class LocationBrain: NSObject, CLLocationManagerDelegate {
         }
     }
 
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    func locationManager(_: CLLocationManager, didFailWithError error: Error) {
         // Inform the calling view controller that something went wrong when
         // obtaining the user location.
-        self.delegate?.didErrorOccur(error: error as NSError)
+        delegate?.didErrorOccur(error: error as NSError)
     }
 }

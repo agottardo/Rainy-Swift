@@ -6,9 +6,9 @@
 //  Copyright © 2017 Andrea Gottardo. All rights reserved.
 //
 
+import CoreLocation
 import Foundation
 import UIKit
-import CoreLocation
 
 /// A Provider that implements the DarkSky.net API.
 final class DarkSkyProvider: Provider {
@@ -18,36 +18,35 @@ final class DarkSkyProvider: Provider {
         /// 10 seconds before network requests timeouts.
         static let maxTimeoutLimit = TimeInterval(10)
     }
-    
+
     func getWeatherDataForCoordinates(coordinates: CLLocationCoordinate2D,
                                       completion: @escaping (Result<WeatherUpdate, ProviderError>) -> Void) {
-        
         // Start spinning the networking activity indicator. Will be stopped
         // at the end of parsing.
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
+
         // Setup a HTTP request to the API, using the default caching policy
         // for HTTP.
         let urlSession = URLSession(configuration: URLSessionConfiguration.ephemeral)
-        let requestURL = URL(string: Constants.baseUrl+String(coordinates.latitude)+","+String(coordinates.longitude))!
+        let requestURL = URL(string: Constants.baseUrl + String(coordinates.latitude) + "," + String(coordinates.longitude))!
         let urlRequest = URLRequest(url: requestURL,
                                     cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy,
                                     timeoutInterval: Constants.maxTimeoutLimit)
-        
-        let task = urlSession.dataTask(with: urlRequest) { (data, _, error) in
-            
+
+        let task = urlSession.dataTask(with: urlRequest) { data, _, error in
+
             if let error = error {
                 // Networking error
                 NSLog(error.localizedDescription)
                 completion(.failure(ProviderError.network(networkError: error as NSError)))
                 return
             }
-            
+
             guard let data = data,
                 let weatherUpdate = try? JSONDecoder().decode(WeatherUpdate.self, from: data) else {
-                    NSLog("Parsing failed.")
-                    completion(.failure(ProviderError.parsing(parsingError: NSError(domain: "parsing", code: -1, userInfo: nil))))
-                    return
+                NSLog("Parsing failed.")
+                completion(.failure(ProviderError.parsing(parsingError: NSError(domain: "parsing", code: -1, userInfo: nil))))
+                return
             }
             completion(.success(weatherUpdate))
         }

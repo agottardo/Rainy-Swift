@@ -11,8 +11,8 @@ import UIKit
 /**
  A UITableViewCell that displays a message for the user,
  placed at the top of the HomeTableViewController.
-*/
+ */
 class InsightTableViewCell: UITableViewCell {
     /// The message displayed in the cell.
-    @IBOutlet weak var insightLabel: UILabel!
+    @IBOutlet var insightLabel: UILabel!
 }

@@ -21,7 +21,7 @@ class TempUnitCoordinator {
             return .celsius
         }
     }
-    
+
     static func setCurrentTempUnit(newValue: TempUnit) {
         switch newValue {
         case .celsius:

@@ -26,15 +26,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="welcomeCell" rowHeight="115" id="Y78-o3-xLP" userLabel="Welcome Cell" customClass="InsightTableViewCell" customModule="Rainy" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="115"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="welcomeCell" id="Y78-o3-xLP" userLabel="Welcome Cell" customClass="InsightTableViewCell" customModule="Rainy" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Y78-o3-xLP" id="C0a-NK-yGf">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="115"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome back. Please wait while I fetch your weather..." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hkc-gg-7FC">
-                                            <rect key="frame" x="16" y="11" width="382" height="93"/>
+                                            <rect key="frame" x="16" y="11" width="382" height="22"/>
                                             <fontDescription key="fontDescription" name="StagSans-Semibold" family="Stag Sans" pointSize="20"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -46,8 +46,6 @@
                                         <constraint firstAttribute="trailing" secondItem="hkc-gg-7FC" secondAttribute="trailing" constant="16" id="Ulc-vS-Qpz"/>
                                         <constraint firstItem="hkc-gg-7FC" firstAttribute="top" secondItem="C0a-NK-yGf" secondAttribute="top" constant="11" id="anh-jv-3Bs"/>
                                         <constraint firstAttribute="bottom" secondItem="hkc-gg-7FC" secondAttribute="bottom" constant="11" id="kEH-wT-VEP"/>
-                                        <constraint firstItem="hkc-gg-7FC" firstAttribute="top" secondItem="C0a-NK-yGf" secondAttribute="topMargin" id="nTW-Ii-sZW"/>
-                                        <constraint firstItem="hkc-gg-7FC" firstAttribute="bottom" secondItem="C0a-NK-yGf" secondAttribute="bottomMargin" id="zVA-gl-iaI"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="tintColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -56,7 +54,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="hourlyStubCell" rowHeight="51" id="3wB-33-0WN" userLabel="Hourly Stub Cell" customClass="HourlyStubTableViewCell" customModule="Rainy" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="143" width="414" height="51"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="51"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3wB-33-0WN" id="HsH-rT-6cK">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="51"/>
