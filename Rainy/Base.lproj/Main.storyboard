@@ -1,46 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="shp-K1-Sb9">
-    <device id="retina6_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="shp-K1-Sb9">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Stag Sans-Book.otf">
-            <string>StagSans-Book</string>
-        </array>
-        <array key="Stag Sans-Semibold.otf">
-            <string>StagSans-Semibold</string>
-        </array>
-    </customFonts>
     <scenes>
-        <!--Rainy! ☔️-->
+        <!--Rainy-->
         <scene sceneID="QJh-5e-LtB">
             <objects>
                 <tableViewController id="oLP-kC-sXO" customClass="HomeTableViewController" customModule="Rainy" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5kN-sn-J5g">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5kN-sn-J5g">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="welcomeCell" id="Y78-o3-xLP" userLabel="Welcome Cell" customClass="InsightTableViewCell" customModule="Rainy" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="64.666664123535156"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Y78-o3-xLP" id="C0a-NK-yGf">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="64.666664123535156"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome back. Please wait while I fetch your weather..." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hkc-gg-7FC">
-                                            <rect key="frame" x="16" y="11" width="382" height="22"/>
-                                            <fontDescription key="fontDescription" name="StagSans-Semibold" family="Stag Sans" pointSize="20"/>
+                                            <rect key="frame" x="16" y="10.999999999999996" width="382" height="42.666666666666657"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.10980392156862745" green="0.45882352941176469" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="hkc-gg-7FC" firstAttribute="leading" secondItem="C0a-NK-yGf" secondAttribute="leading" constant="16" id="5PH-80-jnx"/>
                                         <constraint firstAttribute="trailing" secondItem="hkc-gg-7FC" secondAttribute="trailing" constant="16" id="Ulc-vS-Qpz"/>
@@ -48,13 +38,13 @@
                                         <constraint firstAttribute="bottom" secondItem="hkc-gg-7FC" secondAttribute="bottom" constant="11" id="kEH-wT-VEP"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="tintColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="insightLabel" destination="hkc-gg-7FC" id="k3N-Ut-gcD"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="hourlyStubCell" rowHeight="51" id="3wB-33-0WN" userLabel="Hourly Stub Cell" customClass="HourlyStubTableViewCell" customModule="Rainy" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="414" height="51"/>
+                                <rect key="frame" x="0.0" y="92.666664123535156" width="414" height="51"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3wB-33-0WN" id="HsH-rT-6cK">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="51"/>
@@ -71,27 +61,26 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="62" id="flM-tb-1We"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="StagSans-Semibold" family="Stag Sans" pointSize="17"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Partly Cloudy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pi-q1-wfG">
                                             <rect key="frame" x="92" y="16" width="232" height="19"/>
-                                            <fontDescription key="fontDescription" name="StagSans-Book" family="Stag Sans" pointSize="17"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bod-oZ-C1T">
-                                            <rect key="frame" x="332" y="13.666666666666664" width="62" height="22"/>
+                                            <rect key="frame" x="332" y="16" width="62" height="19"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="62" id="lje-W1-Wa5"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="StagSans-Semibold" family="Stag Sans" pointSize="20"/>
-                                            <color key="textColor" red="0.109271206" green="0.45724385979999999" blue="0.99613279099999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="bod-oZ-C1T" firstAttribute="trailing" secondItem="HsH-rT-6cK" secondAttribute="trailingMargin" id="0xQ-tZ-OcI"/>
                                         <constraint firstItem="H6w-6h-3hD" firstAttribute="centerY" secondItem="HsH-rT-6cK" secondAttribute="centerY" id="33E-9c-Iem"/>
@@ -120,7 +109,7 @@
                             <outlet property="delegate" destination="oLP-kC-sXO" id="VCB-sh-VqT"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Rainy! ☔️" largeTitleDisplayMode="always" id="QNI-YG-Eg9">
+                    <navigationItem key="navigationItem" title="Rainy" largeTitleDisplayMode="never" id="QNI-YG-Eg9">
                         <barButtonItem key="leftBarButtonItem" systemItem="action" id="1Dk-SF-628">
                             <connections>
                                 <action selector="didPressShareButton:" destination="oLP-kC-sXO" id="9iv-Wn-afT"/>
@@ -146,66 +135,67 @@
             <objects>
                 <tableViewController id="flf-8H-clz" customClass="InfoTableViewController" customModule="Rainy" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="9Nv-ls-0CI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
                             <tableViewSection id="wtC-p7-yiL">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="155" id="cJm-SZ-aaD">
-                                        <rect key="frame" x="0.0" y="35" width="414" height="155"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="142" id="cJm-SZ-aaD">
+                                        <rect key="frame" x="0.0" y="18" width="414" height="142"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cJm-SZ-aaD" id="CaG-bX-Ifp">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="154.66666666666666"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="142"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is Rainy for iOS." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Q6G-9P-tXv">
-                                                    <rect key="frame" x="20" y="11" width="194.66666666666666" height="25"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="1MJ-OD-v2X"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="StagSans-Semibold" family="Stag Sans" pointSize="21"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="6QI-6r-L0D">
-                                                    <rect key="frame" x="20" y="44" width="374" height="96"/>
-                                                    <string key="text">Rainy is a simple weather application that just tells you when it's gonna rain, without the BS you usually find in other weather apps.
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="kli-Bm-7ua">
+                                                    <rect key="frame" x="20" y="11" width="374" height="131"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is Rainy for iOS." lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6G-9P-tXv">
+                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="25"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="25" id="1MJ-OD-v2X"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6QI-6r-L0D">
+                                                            <rect key="frame" x="0.0" y="35" width="374" height="96"/>
+                                                            <string key="text">Rainy is a simple weather application that just tells you when it's gonna rain, without the BS you usually find in other weather apps.
 
 An open-source project, available on GitHub.
 Made with love in Vancouver, Canada.</string>
-                                                    <fontDescription key="fontDescription" name="StagSans-Book" family="Stag Sans" pointSize="16"/>
-                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="6QI-6r-L0D" secondAttribute="bottom" constant="14.666666666666657" id="6Y9-WM-X2e"/>
-                                                <constraint firstItem="6QI-6r-L0D" firstAttribute="top" secondItem="Q6G-9P-tXv" secondAttribute="bottom" constant="8" symbolic="YES" id="NAB-tp-Khi"/>
-                                                <constraint firstItem="6QI-6r-L0D" firstAttribute="trailing" secondItem="CaG-bX-Ifp" secondAttribute="trailingMargin" id="QCk-CH-N9x"/>
-                                                <constraint firstItem="Q6G-9P-tXv" firstAttribute="leading" secondItem="6QI-6r-L0D" secondAttribute="leading" id="bmH-DQ-JOL"/>
-                                                <constraint firstItem="6QI-6r-L0D" firstAttribute="leading" secondItem="CaG-bX-Ifp" secondAttribute="leadingMargin" id="is2-zc-vfy"/>
-                                                <constraint firstItem="Q6G-9P-tXv" firstAttribute="top" secondItem="CaG-bX-Ifp" secondAttribute="top" constant="11" id="zw6-TW-xFo"/>
+                                                <constraint firstAttribute="bottom" secondItem="kli-Bm-7ua" secondAttribute="bottomMargin" id="8Kn-Wd-EWd"/>
+                                                <constraint firstItem="kli-Bm-7ua" firstAttribute="leading" secondItem="CaG-bX-Ifp" secondAttribute="leadingMargin" id="9SG-ne-2pG"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="kli-Bm-7ua" secondAttribute="trailing" id="HJD-sH-bhA"/>
+                                                <constraint firstItem="kli-Bm-7ua" firstAttribute="top" secondItem="CaG-bX-Ifp" secondAttribute="topMargin" id="La4-D7-lRh"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="44" id="rid-Ks-dbJ">
-                                        <rect key="frame" x="0.0" y="190" width="414" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="56" id="rid-Ks-dbJ">
+                                        <rect key="frame" x="0.0" y="160" width="414" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rid-Ks-dbJ" id="SLL-rP-bJw">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Units:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9bJ-te-zPe">
-                                                    <rect key="frame" x="20" y="0.0" width="42" height="43.666666666666664"/>
-                                                    <fontDescription key="fontDescription" name="StagSans-Book" family="Stag Sans" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <rect key="frame" x="20.000000000000004" y="11" width="44.333333333333343" height="31"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1bN-yp-cOM">
-                                                    <rect key="frame" x="224" y="8" width="170" height="29"/>
+                                                    <rect key="frame" x="225" y="11" width="169" height="32"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="170" id="pow-KF-5qq"/>
+                                                        <constraint firstAttribute="height" constant="31" id="BZZ-q3-usx"/>
                                                     </constraints>
                                                     <segments>
                                                         <segment title="Celsius"/>
@@ -217,43 +207,44 @@ Made with love in Vancouver, Canada.</string>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="9bJ-te-zPe" firstAttribute="top" secondItem="SLL-rP-bJw" secondAttribute="top" id="CWf-nL-ph8"/>
+                                                <constraint firstItem="1bN-yp-cOM" firstAttribute="top" secondItem="SLL-rP-bJw" secondAttribute="topMargin" id="4hr-xb-fXy"/>
+                                                <constraint firstItem="9bJ-te-zPe" firstAttribute="top" secondItem="SLL-rP-bJw" secondAttribute="topMargin" id="CWf-nL-ph8"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="9bJ-te-zPe" secondAttribute="bottom" id="HG1-C6-BXT"/>
+                                                <constraint firstItem="1bN-yp-cOM" firstAttribute="bottom" secondItem="SLL-rP-bJw" secondAttribute="bottomMargin" id="NI8-Ks-vjY"/>
                                                 <constraint firstItem="9bJ-te-zPe" firstAttribute="leading" secondItem="SLL-rP-bJw" secondAttribute="leadingMargin" id="RLv-1C-ZbE"/>
-                                                <constraint firstItem="9bJ-te-zPe" firstAttribute="centerY" secondItem="SLL-rP-bJw" secondAttribute="centerY" id="WHR-O0-NOA"/>
+                                                <constraint firstItem="9bJ-te-zPe" firstAttribute="centerY" secondItem="SLL-rP-bJw" secondAttribute="centerY" id="TJD-qi-JQw"/>
                                                 <constraint firstItem="1bN-yp-cOM" firstAttribute="trailing" secondItem="SLL-rP-bJw" secondAttribute="trailingMargin" id="bVk-yw-UZi"/>
                                                 <constraint firstItem="1bN-yp-cOM" firstAttribute="centerY" secondItem="SLL-rP-bJw" secondAttribute="centerY" id="gq9-AK-Pha"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="rJg-Wg-fIJ" style="IBUITableViewCellStyleDefault" id="yfE-CD-9fV">
-                                        <rect key="frame" x="0.0" y="234" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="216" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yfE-CD-9fV" id="RJN-2j-ueK">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="382.66666666666669" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Weather data by Dark Sky" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rJg-Wg-fIJ">
-                                                    <rect key="frame" x="20" y="0.0" width="356" height="43.666666666666664"/>
+                                                    <rect key="frame" x="20" y="0.0" width="354.66666666666669" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" name="StagSans-Book" family="Stag Sans" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="TJe-vM-AlK" style="IBUITableViewCellStyleDefault" id="bkT-K5-1Um">
-                                        <rect key="frame" x="0.0" y="278" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="260" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bkT-K5-1Um" id="BEM-6Q-6ze">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="382.66666666666669" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Go to Rainy's homepage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TJe-vM-AlK">
-                                                    <rect key="frame" x="20" y="0.0" width="356" height="43.666666666666664"/>
+                                                    <rect key="frame" x="20" y="0.0" width="354.66666666666669" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" name="StagSans-Book" family="Stag Sans" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -280,14 +271,14 @@ Made with love in Vancouver, Canada.</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3iZ-Gc-VDO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749.60000000000002" y="-104.92610837438424"/>
+            <point key="canvasLocation" x="749.27536231884062" y="-105.13392857142857"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aZS-nW-qSO">
             <objects>
                 <navigationController id="diy-qf-4iz" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mOF-5w-FpO">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -302,7 +293,7 @@ Made with love in Vancouver, Canada.</string>
         <scene sceneID="Jdr-ME-AYm">
             <objects>
                 <navigationController id="shp-K1-Sb9" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UWT-xV-9rR">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="UWT-xV-9rR">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

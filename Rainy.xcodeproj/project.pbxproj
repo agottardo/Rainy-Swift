@@ -3,15 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		402332711FB7CDA100749E26 /* WeatherUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402332701FB7CDA100749E26 /* WeatherUpdate.swift */; };
 		4053FE80213DB339002C2235 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053FE7F213DB339002C2235 /* Provider.swift */; };
 		4053FE82213DB7D1002C2235 /* ProviderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053FE81213DB7D1002C2235 /* ProviderError.swift */; };
-		4053FE85213DBD12002C2235 /* Stag Sans-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4053FE83213DBD12002C2235 /* Stag Sans-Book.otf */; };
-		4053FE86213DBD12002C2235 /* Stag Sans-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4053FE84213DBD12002C2235 /* Stag Sans-Semibold.otf */; };
 		406653DF2076DA730013519B /* InfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406653DE2076DA730013519B /* InfoTableViewController.swift */; };
 		406653E12076DA7C0013519B /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406653E02076DA7C0013519B /* HomeTableViewController.swift */; };
 		408FBF191FB6B4CD008D4258 /* HourlyStubTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FBF181FB6B4CD008D4258 /* HourlyStubTableViewCell.swift */; };
@@ -31,8 +29,6 @@
 		402332701FB7CDA100749E26 /* WeatherUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherUpdate.swift; sourceTree = "<group>"; };
 		4053FE7F213DB339002C2235 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		4053FE81213DB7D1002C2235 /* ProviderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderError.swift; sourceTree = "<group>"; };
-		4053FE83213DBD12002C2235 /* Stag Sans-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Stag Sans-Book.otf"; sourceTree = "<group>"; };
-		4053FE84213DBD12002C2235 /* Stag Sans-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Stag Sans-Semibold.otf"; sourceTree = "<group>"; };
 		406653DE2076DA730013519B /* InfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewController.swift; sourceTree = "<group>"; };
 		406653E02076DA7C0013519B /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		408FBF181FB6B4CD008D4258 /* HourlyStubTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyStubTableViewCell.swift; sourceTree = "<group>"; };
@@ -94,8 +90,6 @@
 		407A5BFE20F58D8C0006B2F0 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
-				4053FE83213DBD12002C2235 /* Stag Sans-Book.otf */,
-				4053FE84213DBD12002C2235 /* Stag Sans-Semibold.otf */,
 				407A5BFD20F58D7C0006B2F0 /* View Controllers */,
 				408FBF181FB6B4CD008D4258 /* HourlyStubTableViewCell.swift */,
 				408FBF1A1FB6C0AC008D4258 /* InsightTableViewCell.swift */,
@@ -189,7 +183,7 @@
 				};
 			};
 			buildConfigurationList = 40D8D6DC1FB64B3E002CFD6A /* Build configuration list for PBXProject "Rainy" */;
-			compatibilityVersion = "Xcode 10.0";
+			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -212,10 +206,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				40D8D6F21FB64B3E002CFD6A /* LaunchScreen.storyboard in Resources */,
-				4053FE85213DBD12002C2235 /* Stag Sans-Book.otf in Resources */,
 				40D8D6EF1FB64B3E002CFD6A /* Assets.xcassets in Resources */,
 				40D8D6EA1FB64B3E002CFD6A /* Main.storyboard in Resources */,
-				4053FE86213DBD12002C2235 /* Stag Sans-Semibold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,7 +376,7 @@
 				DEVELOPMENT_TEAM = ZM2TBP23P7;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
 				INFOPLIST_FILE = Rainy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -405,7 +397,7 @@
 				DEVELOPMENT_TEAM = ZM2TBP23P7;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
 				INFOPLIST_FILE = Rainy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
