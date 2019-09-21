@@ -10,7 +10,7 @@ import UIKit
 
 class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate {
     struct Constants {
-        static let stagSans = UIFont(name: "StagSans-Semibold", size: 20.0)!
+        static let defaultFont = UIFont.systemFont(ofSize: 20.0)
     }
     
     var viewModel: HomeTableViewModel!
@@ -20,7 +20,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
         self.viewModel = HomeTableViewModel(delegate: self)
         
         navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.font: Constants.stagSans]
+            [NSAttributedString.Key.font: Constants.defaultFont]
 
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: #selector(startRefresh), for: .valueChanged)
@@ -52,11 +52,18 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
      Creates a cell for the hourly weather information.
      */
     private func newHourlyCell(_ indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "hourlyStubCell", for: indexPath) as! HourlyStubTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "hourlyStubCell", for: indexPath)
+            as? HourlyStubTableViewCell else {
+                NSLog("Failed to make a cell with this identifier")
+                return UITableViewCell()
+        }
+        
         guard let wu = self.viewModel.latestWU,
             let hourlyData = wu.hourly?.data else {
-            return cell
+                NSLog("No hourly weather data available.")
+                return cell
         }
+        
         let hourly = hourlyData[indexPath.row - 1]
 
         let dateFormatter = DateFormatter()
@@ -96,7 +103,11 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             // Assistant message at top.
-            let cell: InsightTableViewCell = tableView.dequeueReusableCell(withIdentifier: "welcomeCell", for: indexPath) as! InsightTableViewCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "welcomeCell", for: indexPath)
+                as? InsightTableViewCell else {
+                    NSLog("Could not dequeue welcomeCell.")
+                    return UITableViewCell()
+            }
             cell.insightLabel.text = self.viewModel.insight
             return cell
         } else {
@@ -127,7 +138,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
     func didChangeStatus(newStatus: FetchStatus) {
         DispatchQueue.main.async {
             self.refreshControl?.attributedTitle = NSAttributedString(string: newStatus.localizedString,
-                                                                                attributes: [NSAttributedString.Key.font: Constants.stagSans])
+                                                                                attributes: [NSAttributedString.Key.font: Constants.defaultFont])
         }
     }
     

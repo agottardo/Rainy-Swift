@@ -14,26 +14,11 @@ protocol InfoTableViewControllerDelegate: AnyObject {
  Provides a view for settings and information regarding the app.
  */
 class InfoTableViewController: UITableViewController {
-    struct Constants {
-        static let masterRowHeight: CGFloat = 155.0
-        static let otherRowsHeight: CGFloat = 44.0
-    }
-
     enum Row: Int, CaseIterable {
         case master
         case units
         case darksky
         case aboutme
-
-        var height: CGFloat {
-            switch self {
-            case .master:
-                return Constants.masterRowHeight
-
-            case .units, .darksky, .aboutme:
-                return Constants.otherRowsHeight
-            }
-        }
     }
 
     var visibleRows: [Row] = Row.allCases
@@ -44,7 +29,7 @@ class InfoTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupGUI()
+        self.setupGUI()
     }
 
     /// Lets the main view controller subscribe to unit changes updates.
@@ -56,12 +41,7 @@ class InfoTableViewController: UITableViewController {
 
     /// Sets the correct font types and sizes on the GUI elements.
     private func setupGUI() {
-        navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.font: UIFont(name: "StagSans-Book", size: 20)!]
-        let font = UIFont(name: "StagSans-Book", size: 13)
-        tempUnitsControl.setTitleTextAttributes([NSAttributedString.Key.font: font!],
-                                                for: .normal)
-        tempUnitsControl.selectedSegmentIndex = TempUnitCoordinator.getCurrentTempUnit().rawValue
+        self.tempUnitsControl.selectedSegmentIndex = TempUnitCoordinator.getCurrentTempUnit().rawValue
     }
 
     // MARK: - Table view data source
@@ -75,7 +55,7 @@ class InfoTableViewController: UITableViewController {
     }
 
     override func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return visibleRows[indexPath.row].height
+        return UITableView.automaticDimension
     }
 
     @IBAction func didPressDoneButton(_: Any) {
@@ -102,7 +82,11 @@ class InfoTableViewController: UITableViewController {
      - Parameter url: the URL to display in the Safari view controller
      */
     private func presentSafariVCWithURL(url: String) {
-        let svc = SFSafariViewController(url: URL(string: url)!)
+        guard let url = URL(string: url) else {
+            NSLog("Passed an invalid URL!")
+            return
+        }
+        let svc = SFSafariViewController(url: url)
         present(svc, animated: true, completion: nil)
     }
 
