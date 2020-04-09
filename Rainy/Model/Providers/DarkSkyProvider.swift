@@ -21,10 +21,6 @@ final class DarkSkyProvider: Provider {
 
     func getWeatherDataForCoordinates(coordinates: CLLocationCoordinate2D,
                                       completion: @escaping (Result<WeatherUpdate, ProviderError>) -> Void) {
-        // Start spinning the networking activity indicator. Will be stopped
-        // at the end of parsing.
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-
         // Setup a HTTP request to the API, using the default caching policy
         // for HTTP.
         let urlSession = URLSession(configuration: URLSessionConfiguration.ephemeral)
@@ -37,14 +33,14 @@ final class DarkSkyProvider: Provider {
 
             if let error = error {
                 // Networking error
-                NSLog(error.localizedDescription)
+                Log.warning("Networking error: \(error)")
                 completion(.failure(ProviderError.network(networkError: error as NSError)))
                 return
             }
 
             guard let data = data,
                 let weatherUpdate = try? JSONDecoder().decode(WeatherUpdate.self, from: data) else {
-                NSLog("Parsing failed.")
+                Log.error("Parsing failed.")
                 completion(.failure(ProviderError.parsing(parsingError: NSError(domain: "parsing", code: -1, userInfo: nil))))
                 return
             }

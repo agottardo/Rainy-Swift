@@ -25,7 +25,7 @@ final class CodableStorage<T> where T: Codable {
     }
 
     func save(_ codable: T) {
-        guard let location = self.cacheLocation else {
+        guard let location = cacheLocation else {
             print("Saving codable failed: could not get cache folder.")
             return
         }
@@ -39,7 +39,7 @@ final class CodableStorage<T> where T: Codable {
     }
 
     func read() -> T? {
-        guard let location = self.cacheLocation,
+        guard let location = cacheLocation,
             FileManager.default.fileExists(atPath: location.path) else {
             return nil
         }

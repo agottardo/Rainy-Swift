@@ -1,0 +1,19 @@
+#strings:
+#  inputs: Resources/Base.lproj
+#  filter: .+\.strings$
+#  outputs:
+#    - templateName: structured-swift4
+#      output: Generated/strings.swift
+xcassets:
+    inputs:
+        Rainy/Resources/Assets.xcassets
+    outputs:
+        templateName: swift4
+        output: Rainy/Generated/assets-images.swift
+
+ib:
+    inputs:
+        - Rainy/
+    outputs:
+        templateName: scenes-swift4
+        output: Rainy/Generated/ib-scenes.swift

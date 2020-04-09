@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="HourlyTableViewCell" customModule="Rainy" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZLh-uQ-PDA">
+                        <rect key="frame" x="0.0" y="0.0" width="5" height="44"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.39732142860000003" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="1un-ve-p1O"/>
+                            <constraint firstAttribute="width" constant="5" id="MIe-cQ-VHK"/>
+                        </constraints>
+                    </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CPl-G5-6hd">
+                        <rect key="frame" x="20" y="0.0" width="280" height="44"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pNE-KP-7TM">
+                                <rect key="frame" x="0.0" y="12" width="62" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="62" id="rbs-GU-Y0b"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud.hail" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ILd-Gd-dTA">
+                                <rect key="frame" x="72" y="11.5" width="22" height="23.5"/>
+                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ILd-Gd-dTA" secondAttribute="height" multiplier="1:1" id="37t-U9-xww"/>
+                                    <constraint firstAttribute="width" constant="22" id="9hg-AS-ftF"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Partly Cloudy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbB-3o-UAa">
+                                <rect key="frame" x="104" y="12" width="104" height="20.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4g-za-dux">
+                                <rect key="frame" x="218" y="12" width="62" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="62" id="3Xl-BE-Yfp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ZLh-uQ-PDA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="1dH-Nf-7GV"/>
+                    <constraint firstAttribute="trailing" secondItem="CPl-G5-6hd" secondAttribute="trailing" constant="20" id="Blw-ZU-Wzm"/>
+                    <constraint firstItem="CPl-G5-6hd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="J7R-By-AdF"/>
+                    <constraint firstItem="ZLh-uQ-PDA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="TKI-ZS-v6G"/>
+                    <constraint firstAttribute="bottom" secondItem="CPl-G5-6hd" secondAttribute="bottom" id="s7j-Wj-bMX"/>
+                    <constraint firstItem="CPl-G5-6hd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="sS6-z5-MlR"/>
+                    <constraint firstAttribute="bottom" secondItem="ZLh-uQ-PDA" secondAttribute="bottom" id="uwd-dj-KhN"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="conditionLabel" destination="kbB-3o-UAa" id="GvZ-wP-RLH"/>
+                <outlet property="icon" destination="ILd-Gd-dTA" id="NF0-gp-Dsk"/>
+                <outlet property="rainBox" destination="ZLh-uQ-PDA" id="A5f-3G-AcX"/>
+                <outlet property="rainBoxConstraint" destination="MIe-cQ-VHK" id="bDJ-pF-zHd"/>
+                <outlet property="temperatureLabel" destination="S4g-za-dux" id="aEx-zK-4yV"/>
+                <outlet property="timeLabel" destination="pNE-KP-7TM" id="Put-GT-N4a"/>
+            </connections>
+            <point key="canvasLocation" x="132" y="126"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="cloud.hail" catalog="system" width="128" height="125"/>
+    </resources>
+</document>
