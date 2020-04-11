@@ -13,6 +13,7 @@ enum SettingKey: String, CaseIterable {
     case temperatureUnit
     case diagnostics
     case currentLocationIndex
+    case themeName
 }
 
 /// Central point of entry for all settings. Add new properties by adding a new computed property
@@ -64,6 +65,19 @@ final class SettingsManager {
                 return
             }
             defaults.set(newValue + 1, forKey: SettingKey.currentLocationIndex.rawValue)
+            defaults.synchronize()
+        }
+    }
+
+    var theme: Theme {
+        get {
+            guard let name = defaults.string(forKey: SettingKey.themeName.rawValue) else {
+                return .blue
+            }
+            return Theme(rawValue: name) ?? .blue
+        }
+        set {
+            defaults.set(newValue.rawValue, forKey: SettingKey.themeName.rawValue)
             defaults.synchronize()
         }
     }

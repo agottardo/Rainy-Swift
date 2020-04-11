@@ -32,6 +32,8 @@ internal enum StoryboardScene {
         internal static let initialScene = InitialSceneType<UIKit.UINavigationController>(storyboard: Main.self)
 
         internal static let hourlyDetail = SceneType<Rainy.HourlyDetailViewController>(storyboard: Main.self, identifier: "hourlyDetail")
+
+        internal static let themePicker = SceneType<Rainy.ThemePickerViewController>(storyboard: Main.self, identifier: "themePicker")
     }
 }
 

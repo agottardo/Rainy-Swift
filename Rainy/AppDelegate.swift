@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             print("\(error)")
         }
+        window?.tintColor = Theme.current.accentTint
         return true
     }
 }

@@ -7,11 +7,11 @@ import SafariServices
 import Sentry
 import UIKit
 
-protocol InfoTableViewControllerDelegate: AnyObject {
+protocol SettingsViewControllerDelegate: AnyObject {
     func didChangeTempUnitSetting(toUnit unit: TempUnit)
 }
 
-class InfoTableViewModel {
+class SettingsViewModel {
     let settingsManager: SettingsManager
 
     init(settingsManager: SettingsManager = .shared) {
@@ -22,17 +22,22 @@ class InfoTableViewModel {
 /**
  Provides a view for settings and information regarding the app.
  */
-class InfoTableViewController: UITableViewController {
+class SettingsViewController: UITableViewController {
     enum Section: Int, CaseIterable {
         case general
+        case customization
         case diagnostics
     }
 
     enum GeneralRow: Int, CaseIterable {
         case master
-        case units
         case darksky
         case aboutme
+    }
+
+    enum CustomizationRow: Int, CaseIterable {
+        case units
+        case theme
     }
 
     enum DiagnosticsRow: Int, CaseIterable {
@@ -47,6 +52,10 @@ class InfoTableViewController: UITableViewController {
         GeneralRow.allCases
     }
 
+    var visibleCustomizationRows: [CustomizationRow] {
+        CustomizationRow.allCases
+    }
+
     var visibleDiagnosticsRows: [DiagnosticsRow] {
         DiagnosticsRow.allCases
     }
@@ -54,10 +63,11 @@ class InfoTableViewController: UITableViewController {
     /// Allows the user to pick between Celsius and Fahrenheit.
     @IBOutlet var tempUnitsControl: UISegmentedControl!
     @IBOutlet var diagnosticsSwitch: UISwitch!
+    @IBOutlet var themeNameLabel: UILabel!
 
-    lazy var viewModel = InfoTableViewModel()
+    lazy var viewModel = SettingsViewModel()
     /// Main view controller delegate
-    weak var delegate: InfoTableViewControllerDelegate?
+    weak var delegate: SettingsViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +77,7 @@ class InfoTableViewController: UITableViewController {
     /// Lets the main view controller subscribe to unit changes updates.
     ///
     /// - Parameter delegate: main view controller
-    func setDelegate(_ delegate: InfoTableViewControllerDelegate) {
+    func setDelegate(_ delegate: SettingsViewControllerDelegate) {
         self.delegate = delegate
     }
 
@@ -75,6 +85,7 @@ class InfoTableViewController: UITableViewController {
     private func setupGUI() {
         tempUnitsControl.selectedSegmentIndex = viewModel.settingsManager.temperatureUnit.rawValue
         diagnosticsSwitch.isOn = viewModel.settingsManager.diagnosticsEnabled
+        themeNameLabel.text = Theme.current.localizedString
     }
 
     // MARK: - Table view data source
@@ -91,6 +102,9 @@ class InfoTableViewController: UITableViewController {
         case .general:
             return visibleGeneralRows.count
 
+        case .customization:
+            return visibleCustomizationRows.count
+
         case .diagnostics:
             return visibleDiagnosticsRows.count
         }
@@ -105,17 +119,39 @@ class InfoTableViewController: UITableViewController {
     }
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let row = visibleGeneralRows[indexPath.row]
+        guard let section = visibleSections[safe: indexPath.section] else {
+            return
+        }
+        switch section {
+        case .general:
+            guard let row = visibleGeneralRows[safe: indexPath.row] else {
+                return
+            }
+            switch row {
+            case .darksky:
+                presentSafariVCWithURL(urlString: "https://darksky.net/dev")
 
-        switch row {
-        case .darksky:
-            presentSafariVCWithURL(urlString: "https://darksky.net/dev")
+            case .aboutme:
+                presentSafariVCWithURL(urlString: "https://gottardo.me/")
 
-        case .aboutme:
-            presentSafariVCWithURL(urlString: "https://gottardo.me/")
+            case .master:
+                break
+            }
+        case .customization:
+            guard let row = visibleCustomizationRows[safe: indexPath.row] else {
+                return
+            }
+            switch row {
+            case .theme:
+                Log.debug("Pressed theme.")
+                return
 
-        case .master, .units:
-            break
+            case .units:
+                return
+            }
+
+        case .diagnostics:
+            return
         }
     }
 
