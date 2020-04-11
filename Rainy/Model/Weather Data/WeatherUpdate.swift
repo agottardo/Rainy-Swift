@@ -138,26 +138,27 @@ struct Datum: Codable {
     let precipIntensityMaxTime: Int?
     let precipProbability: Double?
     let precipType: String?
-    let temperatureHigh: Double?
+    let temperatureHigh: Temperature?
     let temperatureHighTime: Int?
-    let temperatureLow: Double?
+    let temperatureLow: Temperature?
     let temperatureLowTime: Int?
-    let apparentTemperatureHigh: Double?
+    let apparentTemperatureHigh: Temperature?
     let apparentTemperatureHighTime: Int?
-    let apparentTemperatureLow: Double?
+    let apparentTemperatureLow: Temperature?
     let apparentTemperatureLowTime: Int?
     let dewPoint, humidity, pressure, windSpeed: Double?
     let windGust: Double?
     let windGustTime, windBearing: Int?
     let cloudCover: Double?
     let uvIndex, uvIndexTime: Int?
-    let visibility, ozone, temperatureMin: Double?
+    let visibility, ozone: Double?
+    let temperatureMin: Temperature?
     let temperatureMinTime: Int?
-    let temperatureMax: Double?
+    let temperatureMax: Temperature?
     let temperatureMaxTime: Int?
-    let apparentTemperatureMin: Double?
+    let apparentTemperatureMin: Temperature?
     let apparentTemperatureMinTime: Int?
-    let apparentTemperatureMax: Double?
+    let apparentTemperatureMax: Temperature?
     let apparentTemperatureMaxTime: Int?
 }
 
