@@ -20,6 +20,12 @@ class HourlyTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     @IBOutlet var icon: UIImageView!
     @IBOutlet var rainBoxConstraint: NSLayoutConstraint!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        rainBox.backgroundColor = Theme.current.accentTint.withAlphaComponent(0.4)
+        temperatureLabel.textColor = Theme.current.accentTint
+    }
+
     func configure(using data: HourCondition,
                    previous: HourCondition?,
                    timeFormatter: DateFormatter) {

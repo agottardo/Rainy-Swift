@@ -26,6 +26,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = HomeTableViewModel(delegate: self)
+        title = viewModel.locationsManager.currentLocation?.displayName ?? "Rainy"
         setupTableView()
     }
 
@@ -34,11 +35,30 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
         startRefresh()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showLocationPickerIfFirstStart()
+    }
+
     private func setupTableView() {
         tableView.register(CurrentInfoTableViewCell.self)
         tableView.register(HourlyTableViewCell.self)
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(startRefresh), for: .valueChanged)
+    }
+
+    private func showLocationPickerIfFirstStart() {
+        guard viewModel.locationsManager.currentLocation == nil else {
+            return
+        }
+        Log.debug("Showing location picker on first launch.")
+        let alert = UIAlertController(title: "Welcome to Rainy.",
+                                      message: "To get started, we need to pick a location.", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Let's do it!", style: .cancel) { [weak self] _ in
+            self?.didPressLocationsButton(alert)
+        }
+        alert.addAction(action)
+        present(alert, animated: true)
     }
 
     @objc private func startRefresh() {
@@ -59,6 +79,10 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+        guard viewModel.locationsManager.currentLocation != nil else {
+            return 0
+        }
+
         guard let wu = viewModel.latestWU,
             let hourlyData = wu.hourly?.data else {
             return 1
@@ -87,8 +111,35 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
             cell.configure(using: currentData,
                            previous: hourlyData[safe: indexPath.row - 2],
                            timeFormatter: timeFormatter)
+            cell.selectionStyle = .default
             return cell
         }
+    }
+
+    override func tableView(_: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard indexPath.row > 0 else {
+            // Do not show trailing swipe action on the first cell.
+            return nil
+        }
+        let detailsAction = UIContextualAction(
+            style: .normal,
+            title: nil
+        ) { [weak self] _, _, completion in
+            guard let self = self, let wu = self.viewModel.latestWU,
+                let hourlyData = wu.hourly?.data else {
+                Log.info("No hourly weather data to show.")
+                return
+            }
+
+            let detailsVC = StoryboardScene.Main.hourlyDetail.instantiate()
+            let data = hourlyData[indexPath.row - 1]
+            detailsVC.viewModel = HourlyDetailViewModel(hourlyData: data)
+            self.present(UINavigationController(rootViewController: detailsVC), animated: true, completion: nil)
+            completion(true)
+        }
+        detailsAction.image = UIImage(systemName: "list.dash")
+        detailsAction.backgroundColor = .systemOrange
+        return UISwipeActionsConfiguration(actions: [detailsAction])
     }
 
     override func tableView(_: UITableView,
@@ -125,14 +176,14 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
 
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         guard let navVC = segue.destination as? UINavigationController,
-            let settingsVC = navVC.viewControllers.first as? InfoTableViewController else {
+            let settingsVC = navVC.viewControllers.first as? SettingsViewController else {
             return
         }
         settingsVC.setDelegate(self)
     }
 }
 
-extension HomeTableViewController: InfoTableViewControllerDelegate {
+extension HomeTableViewController: SettingsViewControllerDelegate {
     func didChangeTempUnitSetting(toUnit _: TempUnit) {
         tableView.reloadData()
     }
@@ -140,6 +191,7 @@ extension HomeTableViewController: InfoTableViewControllerDelegate {
 
 extension HomeTableViewController: LocationsListDelegate {
     func currentLocationWasChanged() {
+        title = viewModel.locationsManager.currentLocation?.displayName
         viewModel.startFetching()
     }
 }
