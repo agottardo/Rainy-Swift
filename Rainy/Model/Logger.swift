@@ -50,6 +50,7 @@ class Log {
 
     private static func log(_ level: Level, message: String) {
         os_log("%@", type: level.osLogType, message)
+
         if level.shouldBeUploadedToSentry {
             let sentryEvent = Event(level: level.sentrySeverity)
             sentryEvent.message = message

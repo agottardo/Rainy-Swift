@@ -35,35 +35,32 @@ protocol HomeTableViewModelDelegate: AnyObject {
 
 class HomeTableViewModel {
     let provider: Provider = DarkSkyProvider()
-    var locBrain: LocationBrain?
     var latestWU: WeatherUpdate?
-    var localityName: String?
     var insight = "Welcome back. Rainy is fetching your weather..."
     var storage = CodableStorage<WeatherUpdate>()
+    var locationsManager: LocationsManager
     let delegate: HomeTableViewModelDelegate
 
-    init(delegate: HomeTableViewModelDelegate) {
+    init(delegate: HomeTableViewModelDelegate,
+         locationsManager: LocationsManager = .shared) {
         self.delegate = delegate
-        locBrain = LocationBrain(delegate: self)
-        latestWU = storage.read()
+        self.locationsManager = locationsManager
+        latestWU = storage.read(.weatherCache)
     }
 
     func startFetching() {
         delegate.didStartFetchingData()
         delegate.didChangeStatus(newStatus: .fetchingLocation)
-        locBrain?.start()
-    }
-}
-
-extension HomeTableViewModel: LocationBrainDelegate {
-    func didFetchLocation(location: CLLocationCoordinate2D, name: String?) {
-        delegate.didChangeStatus(newStatus: .fetchingData)
-        Log.debug("Received a location.")
-        provider.getWeatherDataForCoordinates(coordinates: location) { result in
+        guard let currentLocation = locationsManager.currentLocation else {
+            // TODO: handle no current location saved.
+            return
+        }
+        provider.getWeatherDataForCoordinates(coordinates: currentLocation.coordinate) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case let .success(data):
                 self.latestWU = data
-                self.storage.save(data)
+                self.storage.save(.weatherCache, codable: data)
                 self.delegate.didChangeStatus(newStatus: .done)
                 self.delegate.didEndFetchingData()
 
@@ -72,9 +69,10 @@ extension HomeTableViewModel: LocationBrainDelegate {
                 self.delegate.didEndFetchingData()
             }
         }
-        localityName = name
     }
+}
 
+extension HomeTableViewModel {
     func didErrorOccur(error: NSError) {
         delegate.didOccurError(error: error)
     }

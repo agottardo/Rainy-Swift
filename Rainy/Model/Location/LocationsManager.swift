@@ -12,13 +12,34 @@ class LocationsManager {
     static let shared = LocationsManager()
 
     let storage = CodableStorage<[Location]>()
+    let settingsManager = SettingsManager.shared
 
     var locations: [Location] {
         get {
-            storage.read() ?? []
+            storage.read(.locations) ?? []
         }
         set {
-            storage.save(newValue)
+            storage.save(.locations, codable: newValue)
+        }
+    }
+
+    var currentLocation: Location? {
+        get {
+            guard let index = settingsManager.currentLocationIndex,
+                let location = locations[safe: index] else {
+                Log.debug("Tried to access current location, but it has not been set yet.")
+                return nil
+            }
+            return location
+        }
+        set {
+            guard let newValue = newValue else {
+                Log.warning("Setting current location to nil, was this intended?")
+                settingsManager.currentLocationIndex = nil
+                return
+            }
+            settingsManager.currentLocationIndex = locations.firstIndex(of: newValue)
+            Log.debug("The current location is now: \(newValue.displayName)")
         }
     }
 

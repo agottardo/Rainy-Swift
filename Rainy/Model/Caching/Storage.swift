@@ -12,21 +12,26 @@ enum StorageError: Error {
     case fileDoesNotExist
 }
 
+enum StorageKey: String {
+    case weatherCache
+    case locations
+}
+
 final class CodableStorage<T> where T: Codable {
-    private var cacheLocation: URL? {
+    func cacheLocation(forKey key: StorageKey) -> URL? {
         guard let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory,
                                                              .userDomainMask,
                                                              true).first else {
             print("Could not get path.")
             return nil
         }
-        let subfolder = "me.gottardo.Rainy.weatherStore"
+        let subfolder = "me.gottardo.Rainy.storage." + key.rawValue
         return URL(fileURLWithPath: path).appendingPathComponent(subfolder)
     }
 
-    func save(_ codable: T) {
-        guard let location = cacheLocation else {
-            print("Saving codable failed: could not get cache folder.")
+    func save(_ key: StorageKey, codable: T) {
+        guard let location = cacheLocation(forKey: key) else {
+            print("Saving codable failed: could not get cache location.")
             return
         }
 
@@ -34,12 +39,12 @@ final class CodableStorage<T> where T: Codable {
             let data = try JSONEncoder().encode(codable)
             try data.write(to: location)
         } catch {
-            print("Saving codable failed: \(error)")
+            print("Saving codable for key \(key) failed: \(error)")
         }
     }
 
-    func read() -> T? {
-        guard let location = cacheLocation,
+    func read(_ key: StorageKey) -> T? {
+        guard let location = cacheLocation(forKey: key),
             FileManager.default.fileExists(atPath: location.path) else {
             return nil
         }

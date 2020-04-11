@@ -9,7 +9,7 @@
 import CoreLocation
 import Foundation
 
-struct Location: Codable {
+struct Location: Codable, Equatable {
     let uuid: UUID
     let displayName: String
     let subtitle: String
@@ -38,5 +38,9 @@ struct Location: Codable {
         displayName = availableFields.first ?? placemark.description
         subtitle = availableFields.dropFirst().joined(separator: ", ")
         uuid = UUID()
+    }
+
+    static func == (lhs: Location, rhs: Location) -> Bool {
+        lhs.uuid == rhs.uuid
     }
 }

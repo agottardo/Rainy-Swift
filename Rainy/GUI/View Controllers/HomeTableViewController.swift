@@ -134,3 +134,9 @@ extension HomeTableViewController: InfoTableViewControllerDelegate {
         tableView.reloadData()
     }
 }
+
+extension HomeTableViewController: LocationsListDelegate {
+    func currentLocationWasChanged() {
+        viewModel.startFetching()
+    }
+}

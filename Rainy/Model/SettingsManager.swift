@@ -12,6 +12,7 @@ import Foundation
 enum SettingKey: String, CaseIterable {
     case temperatureUnit
     case diagnostics
+    case currentLocationIndex
 }
 
 /// Central point of entry for all settings. Add new properties by adding a new computed property
@@ -41,6 +42,28 @@ final class SettingsManager {
         }
         set {
             defaults.set(newValue, forKey: SettingKey.diagnostics.rawValue)
+            defaults.synchronize()
+        }
+    }
+
+    /// Whether diagnostics can be sent.
+    /// - Default: `false`
+    var currentLocationIndex: Int? {
+        get {
+            let savedValue = defaults.integer(forKey: SettingKey.currentLocationIndex.rawValue)
+            if savedValue == 0 {
+                return nil
+            } else {
+                return savedValue - 1
+            }
+        }
+        set {
+            guard let newValue = newValue else {
+                defaults.set(0, forKey: SettingKey.currentLocationIndex.rawValue)
+                defaults.synchronize()
+                return
+            }
+            defaults.set(newValue + 1, forKey: SettingKey.currentLocationIndex.rawValue)
             defaults.synchronize()
         }
     }

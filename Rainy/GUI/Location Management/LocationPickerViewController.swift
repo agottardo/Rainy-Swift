@@ -12,9 +12,11 @@ import UIKit
 class LocationPickerViewModel {
     var geoCoder: CLGeocoder
     var locations: [Location] = []
+    var locationsManager: LocationsManager
 
-    init() {
+    init(locationsManager: LocationsManager = .shared) {
         geoCoder = CLGeocoder()
+        self.locationsManager = locationsManager
     }
 
     func search(placemarkKeyword: String,
@@ -22,7 +24,6 @@ class LocationPickerViewModel {
         geoCoder.geocodeAddressString(placemarkKeyword) { placemarks, error in
             if let error = error {
                 Log.warning("CLGeocoder error: \(error)")
-                // completion(.failure(error as NSError))
                 return
             }
 
@@ -46,9 +47,14 @@ class LocationPickerViewModel {
     }
 }
 
+protocol LocationPickerDelegate: AnyObject {
+    func didPickLocation(location: Location)
+}
+
 class LocationPickerViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     var viewModel = LocationPickerViewModel()
+    weak var delegate: LocationPickerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +78,21 @@ extension LocationPickerViewController: UITableViewDelegate, UITableViewDataSour
         }
         cell.configure(for: location)
         return cell
+    }
+
+    func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+        defer {
+            tableView.deselectRow(at: indexPath, animated: true)
+            dismiss(animated: true, completion: nil)
+        }
+
+        guard let location = viewModel.locations[safe: indexPath.row] else {
+            assertionFailure()
+            return
+        }
+
+        viewModel.locationsManager.locations.append(location)
+        delegate?.didPickLocation(location: location)
     }
 }
 

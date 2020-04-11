@@ -13,7 +13,7 @@ class CurrentInfoTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     @IBOutlet var temperatureLabel: UILabel!
     @IBOutlet var longTextLabel: UILabel!
 
-    func configure(with data: WeatherUpdate?, localityName _: String?) {
+    func configure(with data: WeatherUpdate?, location: Location?) {
         guard let data = data else {
             longTextLabel.text = "Loading data, please wait."
             temperatureLabel.text = nil
@@ -25,7 +25,10 @@ class CurrentInfoTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
             return
         }
 
-        var insight: String = "It's \(summary.lowercased()).\n"
+        var insight: String = "It's \(summary.lowercased())"
+        if let location = location {
+            insight += " in \(location.displayName)"
+        }
 
         // The two variables here contain the precipitation amount expected
         // in the next 18 hours, and in the next 6 hours (close).
@@ -51,11 +54,11 @@ class CurrentInfoTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
         }
 
         if totalRainSumClose > 0.20 {
-            insight += "Rain everywhere... so depressing! 😭"
+            insight += ", with rain expected in the next six hours."
         } else if totalRainSum > 0.20 {
-            insight += "Remember the umbrella. It's going to rain soon. ☹️"
+            insight += ", and rain is expected soon."
         } else {
-            insight += "No rain expected any time soon. 😎"
+            insight += ".\nNo rain expected any time soon. 😎"
         }
 
         longTextLabel.text = insight
