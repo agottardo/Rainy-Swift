@@ -27,14 +27,18 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
         super.viewDidLoad()
         viewModel = HomeTableViewModel(delegate: self)
         setupTableView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         startRefresh()
     }
 
     private func setupTableView() {
         tableView.register(CurrentInfoTableViewCell.self)
         tableView.register(HourlyTableViewCell.self)
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(startRefresh), for: .valueChanged)
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(startRefresh), for: .valueChanged)
     }
 
     @objc private func startRefresh() {
@@ -43,6 +47,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
 
     @IBAction func didPressLocationsButton(_: Any) {
         let vc = StoryboardScene.Locations.locationsList.instantiate()
+        vc.delegate = self
         let navVC = UINavigationController(rootViewController: vc)
         present(navVC, animated: true, completion: nil)
     }
@@ -67,7 +72,8 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
         switch indexPath.row {
         case 0:
             let cell: CurrentInfoTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(with: viewModel.latestWU, localityName: viewModel.localityName)
+            cell.configure(with: viewModel.latestWU,
+                           location: viewModel.locationsManager.currentLocation)
             return cell
 
         default:
@@ -78,7 +84,9 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
                 return cell
             }
             let currentData = hourlyData[indexPath.row - 1]
-            cell.configure(using: currentData, timeFormatter: timeFormatter)
+            cell.configure(using: currentData,
+                           previous: hourlyData[safe: indexPath.row - 2],
+                           timeFormatter: timeFormatter)
             return cell
         }
     }
@@ -92,23 +100,18 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
 
     func didStartFetchingData() {
         DispatchQueue.main.async {
-            self.refreshControl?.beginRefreshing()
+            self.tableView.refreshControl?.beginRefreshing()
         }
     }
 
     func didEndFetchingData() {
         DispatchQueue.main.async {
-            self.refreshControl?.endRefreshing()
             self.tableView.reloadData()
+            self.tableView.refreshControl?.endRefreshing()
         }
     }
 
-    func didChangeStatus(newStatus: FetchStatus) {
-        DispatchQueue.main.async {
-            self.refreshControl?.attributedTitle = NSAttributedString(string: newStatus.localizedString,
-                                                                      attributes: [NSAttributedString.Key.font: Constants.defaultFont])
-        }
-    }
+    func didChangeStatus(newStatus _: FetchStatus) {}
 
     func didOccurError(error: NSError) {
         DispatchQueue.main.async {

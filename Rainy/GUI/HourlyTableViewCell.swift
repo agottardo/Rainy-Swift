@@ -20,7 +20,9 @@ class HourlyTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     @IBOutlet var icon: UIImageView!
     @IBOutlet var rainBoxConstraint: NSLayoutConstraint!
 
-    func configure(using data: HourCondition, timeFormatter: DateFormatter) {
+    func configure(using data: HourCondition,
+                   previous: HourCondition?,
+                   timeFormatter: DateFormatter) {
         if let time = data.time {
             let hourStr = timeFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(time)))
             timeLabel.text = hourStr
@@ -30,15 +32,21 @@ class HourlyTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
             temperatureLabel.text = temperature.stringRepresentation()
         }
 
-        if let summary = data.summary {
-            conditionLabel.isHidden = false
-            conditionLabel.text = summary
-        } else {
-            conditionLabel.isHidden = true
-        }
-
         if let icon = data.icon {
             self.icon.image = icon.icon
+        }
+
+        if let summary = data.summary {
+            conditionLabel.text = summary
+            if previous?.summary != summary {
+                conditionLabel.textColor = .label
+                icon.tintColor = .label
+            } else {
+                conditionLabel.textColor = .tertiaryLabel
+                icon.tintColor = .tertiaryLabel
+            }
+        } else {
+            conditionLabel.text = nil
         }
 
         if let precipProbability = data.precipProbability,
