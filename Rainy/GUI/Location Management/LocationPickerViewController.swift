@@ -24,13 +24,14 @@ class LocationPickerViewModel {
         geoCoder.geocodeAddressString(placemarkKeyword) { placemarks, error in
             if let error = error {
                 Log.warning("CLGeocoder error: \(error)")
+                completion(.failure(error as NSError))
                 return
             }
 
             guard let placemarks = placemarks else {
                 Log.debug("No placemark results found.")
                 self.locations = []
-                completion(.success([]))
+                completion(.failure(NSError(domain: "No results found.", code: 1, userInfo: nil)))
                 return
             }
 
@@ -92,6 +93,7 @@ extension LocationPickerViewController: UITableViewDelegate, UITableViewDataSour
         }
 
         viewModel.locationsManager.locations.append(location)
+        viewModel.locationsManager.currentLocation = location
         delegate?.didPickLocation(location: location)
     }
 }
@@ -111,8 +113,8 @@ extension LocationPickerViewController: UISearchBarDelegate {
                 self.tableView.reloadData()
 
             case let .failure(error):
-                let alert = UIAlertController(title: "Could not search for locations.", message: error.localizedDescription, preferredStyle: .alert)
-                alert.addAction(.init(title: "OK", style: .default, handler: nil))
+                let alert = UIAlertController(title: "Location Search Failed", message: error.localizedDescription, preferredStyle: .alert)
+                alert.addAction(.init(title: "Dismiss", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
         })

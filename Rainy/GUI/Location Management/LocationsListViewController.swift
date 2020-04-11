@@ -62,6 +62,8 @@ extension LocationsListViewController: LocationPickerDelegate {
         searchController.searchBar.text = nil
         searchController.dismiss(animated: true) { [weak self] in
             self?.tableView.reloadData()
+            self?.delegate?.currentLocationWasChanged()
+            self?.dismiss(animated: true, completion: nil)
         }
     }
 }
