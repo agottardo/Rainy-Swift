@@ -69,7 +69,7 @@ enum WeatherIcon: String, Codable {
     case tornado
 
     var icon: UIImage? {
-        let configuration: UIImage.SymbolConfiguration = .init(weight: .light)
+        let configuration: UIImage.SymbolConfiguration = .init(weight: .regular)
         switch self {
         case .clearDay:
             return UIImage(systemName: "sun.max", withConfiguration: configuration)
