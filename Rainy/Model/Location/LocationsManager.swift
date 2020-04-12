@@ -39,7 +39,10 @@ class LocationsManager {
                 return
             }
             settingsManager.currentLocationIndex = locations.firstIndex(of: newValue)
-            Log.debug("The current location is now: \(newValue.displayName)")
+            Log.debug("Current location changed to: \(newValue.displayName)")
+            NotificationCenter.default.post(name: NotificationName.currentLocationDidChange.name,
+                                            object: nil,
+                                            userInfo: ["location_uuid": newValue.uuid.uuidString])
         }
     }
 

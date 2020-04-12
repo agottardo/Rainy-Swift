@@ -7,6 +7,7 @@
 //
 
 import CoreLocation
+import MBProgressHUD
 import UIKit
 
 class LocationPickerViewModel {
@@ -100,6 +101,7 @@ extension LocationPickerViewController: UITableViewDelegate, UITableViewDataSour
 
 extension LocationPickerViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        MBProgressHUD.showAdded(to: view, animated: true)
         searchBar.resignFirstResponder()
 
         guard let keyword = searchBar.text?.nilIfEmpty else {
@@ -107,7 +109,9 @@ extension LocationPickerViewController: UISearchBarDelegate {
         }
 
         Log.debug("Searching for: \(keyword)")
-        viewModel.search(placemarkKeyword: keyword, completion: { result in
+        viewModel.search(placemarkKeyword: keyword, completion: { [weak self] result in
+            guard let self = self else { return }
+            MBProgressHUD.hide(for: self.view, animated: true)
             switch result {
             case .success:
                 self.tableView.reloadData()

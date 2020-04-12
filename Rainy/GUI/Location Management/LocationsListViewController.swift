@@ -6,6 +6,7 @@
 //  Copyright © 2020 Andrea Gottardo. All rights reserved.
 //
 
+import MBProgressHUD
 import UIKit
 
 class LocationsListViewModel {
@@ -20,20 +21,25 @@ class LocationsListViewModel {
     }
 }
 
-protocol LocationsListDelegate: AnyObject {
-    func currentLocationWasChanged()
-}
-
 class LocationsListViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     var searchController: UISearchController!
     lazy var viewModel: LocationsListViewModel! = LocationsListViewModel()
-    weak var delegate: LocationsListDelegate?
+    lazy var locationBrain = LocationBrain(delegate: self)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupSearchController()
+        setupBarItems()
+    }
+
+    private func setupBarItems() {
+        let editButton = UIBarButtonItem(image: UIImage(systemName: "location"),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(didPressLocationButton))
+        navigationItem.leftBarButtonItem = editButton
     }
 
     private func setupSearchController() {
@@ -44,7 +50,7 @@ class LocationsListViewController: UIViewController {
         searchController.searchBar.autocapitalizationType = .none
         searchController.obscuresBackgroundDuringPresentation = true
         searchController.searchBar.delegate = resultsVC
-        searchController.searchBar.placeholder = "Add Locations"
+        searchController.searchBar.placeholder = "Add a Location"
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
@@ -55,6 +61,11 @@ class LocationsListViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(LocationTableViewCell.self)
     }
+
+    @objc private func didPressLocationButton() {
+        locationBrain.start()
+        MBProgressHUD.showAdded(to: view, animated: true)
+    }
 }
 
 extension LocationsListViewController: LocationPickerDelegate {
@@ -62,7 +73,6 @@ extension LocationsListViewController: LocationPickerDelegate {
         searchController.searchBar.text = nil
         searchController.dismiss(animated: true) { [weak self] in
             self?.tableView.reloadData()
-            self?.delegate?.currentLocationWasChanged()
             self?.dismiss(animated: true, completion: nil)
         }
     }
@@ -96,6 +106,10 @@ extension LocationsListViewController: UITableViewDataSource {
     }
 
     func tableView(_: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard viewModel.locations.count > 1 else {
+            return nil
+        }
+
         let deleteAction = UIContextualAction(
             style: .destructive,
             title: nil
@@ -104,16 +118,21 @@ extension LocationsListViewController: UITableViewDataSource {
             self.tableView.beginUpdates()
             self.viewModel.locationsManager.locations.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .left)
+            if self.viewModel.locationsManager.currentLocation == nil {
+                self.viewModel.locationsManager.currentLocation = self.viewModel.locations.first
+                self.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
+            }
             completion(true)
             self.tableView.endUpdates()
         }
         deleteAction.image = UIImage(systemName: "trash")
+
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
+        Vibration.selectionChanged()
         if let currentLocation = viewModel.locationsManager.currentLocation,
             let currentLocationIndex = viewModel.locations.firstIndex(of: currentLocation) {
             let previousCheckmarkIndexPath = IndexPath(row: currentLocationIndex, section: 0)
@@ -127,7 +146,6 @@ extension LocationsListViewController: UITableViewDataSource {
         self.tableView.reloadRows(at: [indexPath], with: .fade)
         self.tableView.endUpdates()
 
-        delegate?.currentLocationWasChanged()
         dismiss(animated: true, completion: nil)
     }
 }
@@ -141,5 +159,23 @@ extension LocationsListViewController: UISearchControllerDelegate {
 
     func didDismissSearchController(_: UISearchController) {
         tableView.reloadData()
+    }
+}
+
+extension LocationsListViewController: LocationBrainDelegate {
+    func didFetchLocation(location: Location) {
+        MBProgressHUD.hide(for: view, animated: true)
+        viewModel.locationsManager.locations.append(location)
+        viewModel.locationsManager.currentLocation = location
+        dismiss(animated: true, completion: nil)
+    }
+
+    func didErrorOccur(error: NSError) {
+        MBProgressHUD.hide(for: view, animated: true)
+        let alert = UIAlertController(title: "Could not fetch current location.",
+                                      message: error.localizedDescription,
+                                      preferredStyle: .alert)
+        alert.addAction(.init(title: "Dismiss", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }

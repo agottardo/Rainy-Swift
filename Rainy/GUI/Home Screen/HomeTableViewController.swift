@@ -28,6 +28,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
         viewModel = HomeTableViewModel(delegate: self)
         title = viewModel.locationsManager.currentLocation?.displayName ?? "Rainy"
         setupTableView()
+        setupObservers()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -38,6 +39,11 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         showLocationPickerIfFirstStart()
+    }
+
+    private func setupObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(currentLocationWasChanged), name: NotificationName.currentLocationDidChange.name, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(themeWasChanged), name: NotificationName.themeDidChange.name, object: nil)
     }
 
     private func setupTableView() {
@@ -67,7 +73,6 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
 
     @IBAction func didPressLocationsButton(_: Any) {
         let vc = StoryboardScene.Locations.locationsList.instantiate()
-        vc.delegate = self
         let navVC = UINavigationController(rootViewController: vc)
         present(navVC, animated: true, completion: nil)
     }
@@ -157,15 +162,15 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
 
     func didEndFetchingData() {
         DispatchQueue.main.async {
+            Vibration.success()
             self.tableView.reloadData()
             self.tableView.refreshControl?.endRefreshing()
         }
     }
 
-    func didChangeStatus(newStatus _: FetchStatus) {}
-
     func didOccurError(error: NSError) {
         DispatchQueue.main.async {
+            Vibration.error()
             let controller: UIAlertController = UIAlertController(title: "An error occurred ☹️",
                                                                   message: error.localizedDescription,
                                                                   preferredStyle: .alert)
@@ -181,17 +186,19 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
         }
         settingsVC.setDelegate(self)
     }
+
+    @objc func currentLocationWasChanged() {
+        title = viewModel.locationsManager.currentLocation?.displayName
+        viewModel.startFetching()
+    }
+
+    @objc func themeWasChanged() {
+        tableView.reloadData()
+    }
 }
 
 extension HomeTableViewController: SettingsViewControllerDelegate {
     func didChangeTempUnitSetting(toUnit _: TempUnit) {
         tableView.reloadData()
-    }
-}
-
-extension HomeTableViewController: LocationsListDelegate {
-    func currentLocationWasChanged() {
-        title = viewModel.locationsManager.currentLocation?.displayName
-        viewModel.startFetching()
     }
 }

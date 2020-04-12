@@ -35,13 +35,10 @@ extension ThemePickerViewController: UITableViewDataSource, UITableViewDelegate 
         "Choose a theme"
     }
 
-    func tableView(_: UITableView, titleForFooterInSection _: Int) -> String? {
-        "Applying a theme may require force restarting the app."
-    }
-
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         Theme.current = Theme.allCases[indexPath.row]
         tableView.reloadData()
+        Vibration.selectionChanged()
     }
 }

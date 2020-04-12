@@ -23,14 +23,15 @@ class SiriDonation {
             let activity = NSUserActivity(activityType: String(hashValue))
             switch self {
             case let .getWeather(location):
+                Log.debug("Constructing userActivity for location: \(location.displayName)")
                 activity.keywords.insert(location.displayName)
                 activity.keywords.insert(location.subtitle)
                 activity.suggestedInvocationPhrase = "Weather for \(location.displayName)"
-                activity.title = "Show weather for \(location.displayName)"
-                activity.userInfo = ["location": location.displayName]
+                activity.title = "Weather for \(location.displayName)"
+                activity.userInfo = ["location_uuid": location.uuid.uuidString]
             }
             activity.keywords = ["weather", "rainy"]
-            activity.isEligibleForHandoff = true
+            activity.isEligibleForHandoff = false
             activity.isEligibleForPublicIndexing = true
             activity.isEligibleForSearch = true
             activity.isEligibleForPrediction = true

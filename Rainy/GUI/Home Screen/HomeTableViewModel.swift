@@ -9,26 +9,8 @@
 import CoreLocation
 import Foundation
 
-enum FetchStatus {
-    case fetchingLocation
-    case fetchingData
-    case done
-
-    var localizedString: String {
-        switch self {
-        case .fetchingData:
-            return "Fetching the latest weather data..."
-        case .fetchingLocation:
-            return "Fetching your location..."
-        case .done:
-            return "Pull to refresh! 😍"
-        }
-    }
-}
-
 protocol HomeTableViewModelDelegate: AnyObject {
     func didStartFetchingData()
-    func didChangeStatus(newStatus: FetchStatus)
     func didEndFetchingData()
     func didOccurError(error: NSError)
 }
@@ -51,7 +33,6 @@ class HomeTableViewModel {
 
     func startFetching() {
         delegate.didStartFetchingData()
-        delegate.didChangeStatus(newStatus: .fetchingLocation)
         guard let currentLocation = locationsManager.currentLocation else {
             // TODO: handle no current location saved.
             return
@@ -63,7 +44,6 @@ class HomeTableViewModel {
             case let .success(data):
                 self.latestWU = data
                 self.storage.save(.weatherCache, codable: data)
-                self.delegate.didChangeStatus(newStatus: .done)
                 self.delegate.didEndFetchingData()
                 self.siriActivity?.becomeCurrent()
 

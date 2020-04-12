@@ -24,4 +24,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.tintColor = Theme.current.accentTint
         return true
     }
+
+    func application(_: UIApplication, continue userActivity: NSUserActivity, restorationHandler _: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        let locationsManager = LocationsManager.shared
+        guard let uuidString = userActivity.userInfo?["location_uuid"] as? String,
+            let uuid = UUID(uuidString: uuidString),
+            let location = locationsManager.locations.first(where: { $0.uuid == uuid }) else {
+            Log.error("No location with UUID.")
+            return false
+        }
+        locationsManager.currentLocation = location
+        return true
+    }
 }

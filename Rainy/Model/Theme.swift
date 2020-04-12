@@ -26,6 +26,8 @@ enum Theme: String, CaseIterable {
         set {
             SettingsManager.shared.theme = newValue
             UIApplication.shared.windows.first?.tintColor = newValue.accentTint
+            NotificationCenter.default.post(name: NotificationName.themeDidChange.name,
+                                            object: nil, userInfo: nil)
         }
     }
 

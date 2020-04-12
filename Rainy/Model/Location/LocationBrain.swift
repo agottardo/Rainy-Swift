@@ -10,18 +10,16 @@ import CoreLocation
 import Foundation
 
 protocol LocationBrainDelegate: AnyObject {
-    func didFetchLocation(location: CLLocationCoordinate2D, name: String?)
+    func didFetchLocation(location: Location)
     func didErrorOccur(error: NSError)
 }
 
 /**
  A class that handles user location, by using the CoreLocation APIs.
- - Todo: Implement this as a singleton.
- - Todo: Replace callbackHome field with a completion handler.
  */
 final class LocationBrain: NSObject, CLLocationManagerDelegate {
     let manager = CLLocationManager()
-    var lastLocation: CLLocation?
+    var lastLocation: Location?
     weak var delegate: LocationBrainDelegate?
 
     init(delegate: LocationBrainDelegate) {
@@ -56,16 +54,20 @@ final class LocationBrain: NSObject, CLLocationManagerDelegate {
             return
         }
         manager.stopUpdatingLocation()
-        self.lastLocation = lastLocation
 
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(lastLocation) { placemarks, error in
             // Inform the calling view controller that a location is available.
-            guard error == nil, let placemark = placemarks?.first else {
-                self.delegate?.didFetchLocation(location: lastLocation.coordinate, name: nil)
+            if let error = error {
+                self.delegate?.didErrorOccur(error: error as NSError)
                 return
             }
-            self.delegate?.didFetchLocation(location: lastLocation.coordinate, name: placemark.locality)
+            guard let placemark = placemarks?.first else {
+                Log.error("No placemark found.")
+                return
+            }
+            let location = Location(placemark: placemark, coordinate: lastLocation.coordinate)
+            self.delegate?.didFetchLocation(location: location)
         }
     }
 

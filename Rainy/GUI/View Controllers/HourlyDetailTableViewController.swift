@@ -85,6 +85,7 @@ class HourlyDetailViewController: UIViewController {
 
     private func setupTableView() {
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.reloadData()
     }
 }
@@ -94,7 +95,9 @@ extension HourlyDetailViewController: UITableViewDataSource {
         guard let row = viewModel.visibleRows[safe: indexPath.row] else {
             return UITableViewCell()
         }
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "hourly") else {
+            return UITableViewCell()
+        }
         cell.textLabel?.text = row.localizedString
         return cell
     }
@@ -113,3 +116,5 @@ extension HourlyDetailViewController: UITableViewDataSource {
         viewModel.visibleRows.count
     }
 }
+
+extension HourlyDetailViewController: UITableViewDelegate {}
