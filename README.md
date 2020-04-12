@@ -1,7 +1,7 @@
 # Rainy for iOS ☔️
 <img src="https://api.travis-ci.org/agottardo/Rainy-Swift.svg?branch=master" alt="Travis Status" /> ![GitHub](https://img.shields.io/github/license/agottardo/Rainy-Swift.svg) ![GitHub release](https://img.shields.io/github/release/agottardo/Rainy-Swift/all.svg)
 
-<img src="http://rainyapp.com/img/rainy-screenshot2.png" alt="A screenshot of Rainy" height="200" />
+<img src="Screenshots/HomeScreen.PNG" alt="A screenshot of Rainy" height="450" />
 
 ☔️ Rainy is a nice-looking, rain-oriented weather app for iOS, written in Swift. Basically, the ideal tool if you live in a place like Vancouver. Currently available for download [on the iOS App Store](https://itunes.apple.com/fm/app/rainy-rain-forecasts/id1312152536).
 
