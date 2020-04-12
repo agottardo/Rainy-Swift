@@ -165,6 +165,8 @@ class SettingsViewController: UITableViewController {
             return
         }
         let svc = SFSafariViewController(url: url)
+        svc.preferredBarTintColor = Theme.current.accentTint
+        svc.preferredControlTintColor = .label
         present(svc, animated: true, completion: nil)
     }
 
