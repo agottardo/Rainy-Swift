@@ -26,6 +26,10 @@
 	<string>Rainy uses your location to fetch the weather for the location closest to you.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Rainy uses your location to fetch the weather for the location closest to you.</string>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>IntentIntent</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

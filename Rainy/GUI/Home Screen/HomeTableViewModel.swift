@@ -40,6 +40,7 @@ class HomeTableViewModel {
     var storage = CodableStorage<WeatherUpdate>()
     var locationsManager: LocationsManager
     let delegate: HomeTableViewModelDelegate
+    var siriActivity: NSUserActivity?
 
     init(delegate: HomeTableViewModelDelegate,
          locationsManager: LocationsManager = .shared) {
@@ -55,6 +56,7 @@ class HomeTableViewModel {
             // TODO: handle no current location saved.
             return
         }
+        siriActivity = SiriDonation.Action.getWeather(location: currentLocation).userActivity
         provider.getWeatherDataForCoordinates(coordinates: currentLocation.coordinate) { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -63,6 +65,7 @@ class HomeTableViewModel {
                 self.storage.save(.weatherCache, codable: data)
                 self.delegate.didChangeStatus(newStatus: .done)
                 self.delegate.didEndFetchingData()
+                self.siriActivity?.becomeCurrent()
 
             case let .failure(error):
                 self.delegate.didOccurError(error: error as NSError)
