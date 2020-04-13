@@ -50,6 +50,7 @@
 		656925882442A6160074C84D /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 656925872442A6160074C84D /* Intents.intentdefinition */; };
 		6569258A2442A9E90074C84D /* SiriDonation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656925892442A9E90074C84D /* SiriDonation.swift */; };
 		65724E472442DA9C00964C9A /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 65724E462442DA9C00964C9A /* MBProgressHUD */; };
+		65D39F4524440DB300775D53 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D39F4424440DB300775D53 /* URL.swift */; };
 		65ECB1B1230528D000BA3320 /* TempUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ECB1B0230528D000BA3320 /* TempUnit.swift */; };
 		65F353FB2442859000F57DD9 /* ThemePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F353F92442859000F57DD9 /* ThemePickerTableViewCell.swift */; };
 		65F353FC2442859000F57DD9 /* ThemePickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65F353FA2442859000F57DD9 /* ThemePickerTableViewCell.xib */; };
@@ -100,6 +101,7 @@
 		6548F7B5243E5D5B003B46BA /* LocationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListViewController.swift; sourceTree = "<group>"; };
 		656925872442A6160074C84D /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 		656925892442A9E90074C84D /* SiriDonation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriDonation.swift; sourceTree = "<group>"; };
+		65D39F4424440DB300775D53 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		65ECB1B0230528D000BA3320 /* TempUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempUnit.swift; sourceTree = "<group>"; };
 		65F353F92442859000F57DD9 /* ThemePickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePickerTableViewCell.swift; sourceTree = "<group>"; };
 		65F353FA2442859000F57DD9 /* ThemePickerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThemePickerTableViewCell.xib; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				650A1B72243C33C5006FDB84 /* Array.swift */,
 				6548F530243EEA7C0054A280 /* String.swift */,
 				6548F536243EF0370054A280 /* CLLocationCoordinate2D.swift */,
+				65D39F4424440DB300775D53 /* URL.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 				650A1B7C243C3604006FDB84 /* ib-scenes.swift in Sources */,
 				4053FE82213DB7D1002C2235 /* ProviderError.swift in Sources */,
 				650A1B66243C0F61006FDB84 /* CurrentInfoTableViewCell.swift in Sources */,
+				65D39F4524440DB300775D53 /* URL.swift in Sources */,
 				650A1B7D243C3604006FDB84 /* assets-images.swift in Sources */,
 				650A1B73243C33C5006FDB84 /* Array.swift in Sources */,
 				65292E52243D708700A41B50 /* SettingsManager.swift in Sources */,

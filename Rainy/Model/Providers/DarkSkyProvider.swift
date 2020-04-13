@@ -14,7 +14,7 @@ import UIKit
 final class DarkSkyProvider: Provider {
     struct Constants {
         /// Base API URL
-        static let baseUrl = "https://api.darksky.net/forecast/1e9b4ab3c751d4dab0fbb82f3dab1737/"
+        static let baseUrl = "https://api.rainyapp.com/weather/"
         /// 10 seconds before network requests timeouts.
         static let maxTimeoutLimit = TimeInterval(10)
     }
@@ -24,7 +24,11 @@ final class DarkSkyProvider: Provider {
         // Setup a HTTP request to the API, using the default caching policy
         // for HTTP.
         let urlSession = URLSession(configuration: URLSessionConfiguration.ephemeral)
-        let requestURL = URL(string: Constants.baseUrl + String(coordinates.latitude) + "," + String(coordinates.longitude))!
+        var requestURL = URL(string: Constants.baseUrl)!
+        requestURL.appendQueryParams([
+            "lat": String(coordinates.latitude),
+            "lon": String(coordinates.longitude),
+        ])
         let urlRequest = URLRequest(url: requestURL,
                                     cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy,
                                     timeoutInterval: Constants.maxTimeoutLimit)
