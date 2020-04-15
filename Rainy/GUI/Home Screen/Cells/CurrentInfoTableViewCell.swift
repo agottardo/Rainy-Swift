@@ -18,23 +18,15 @@ class CurrentInfoTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
         return formatter
     }()
 
-    func configure(with data: WeatherUpdate?, location _: Location?) {
+    func configure(with dailyConditions: [DailyCondition], location _: Location?) {
         backgroundColor = Theme.current.accentTint
-        guard let data = data else {
-            Log.error("No data to fill current weather data.")
-            return
-        }
-
-        guard let dailyData = data.daily?.data else {
-            return
-        }
         stackView.distribution = .fillEqually
         stackView.arrangedSubviews.forEach {
             stackView.removeArrangedSubview($0)
             $0.removeFromSuperview()
         }
         var count = 0
-        for day in dailyData {
+        for day in dailyConditions {
             if count > 4 {
                 break
             }

@@ -19,6 +19,7 @@ struct WeatherUpdate: Codable {
     let hourly: HourlyData?
     let daily: DailyData?
     let offset: Int?
+    let alerts: [WeatherAlert]?
 }
 
 class Temperature: Codable {
@@ -124,12 +125,12 @@ struct HourCondition: Codable {
 struct DailyData: Codable {
     let summary: String?
     let icon: String?
-    let data: [Datum]?
+    let data: [DailyCondition]?
 }
 
 // MARK: - Datum
 
-struct Datum: Codable {
+struct DailyCondition: Codable {
     let time: Int?
     let summary: String?
     let icon: WeatherIcon?

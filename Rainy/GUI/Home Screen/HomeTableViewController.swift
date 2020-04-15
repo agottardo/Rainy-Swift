@@ -6,6 +6,7 @@
 //
 
 import CoreLocation
+import SafariServices
 import UIKit
 
 class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate {
@@ -26,7 +27,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = HomeTableViewModel(delegate: self)
-        title = viewModel.locationsManager.currentLocation?.displayName ?? "Rainy"
+        title = viewModel.locationsManager.currentLocation?.displayName ?? "Welcome to Rainy"
         setupTableView()
         setupObservers()
     }
@@ -49,6 +50,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
     private func setupTableView() {
         tableView.register(CurrentInfoTableViewCell.self)
         tableView.register(HourlyTableViewCell.self)
+        tableView.register(WeatherAlertTableViewCell.self)
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(startRefresh), for: .valueChanged)
     }
@@ -79,77 +81,103 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in _: UITableView) -> Int {
-        1
-    }
-
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        guard viewModel.locationsManager.currentLocation != nil else {
-            return 0
-        }
-
-        guard let wu = viewModel.latestWU,
-            let hourlyData = wu.hourly?.data else {
-            return 1
-        }
-
-        return 1 + hourlyData.count
+        viewModel.visibleRows.count
     }
 
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case 0:
+        guard let cellEnum = viewModel.visibleRows[safe: indexPath.row] else {
+            Log.error("No cell enum at \(indexPath)")
+            return UITableViewCell()
+        }
+        switch cellEnum {
+        case let .fourDays(dailyConditions):
             let cell: CurrentInfoTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(with: viewModel.latestWU,
+            cell.configure(with: dailyConditions,
                            location: viewModel.locationsManager.currentLocation)
             return cell
 
-        default:
+        case let .hourly(condition):
             let cell: HourlyTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            guard let wu = viewModel.latestWU,
-                let hourlyData = wu.hourly?.data else {
-                Log.info("No hourly weather data available yet.")
-                return cell
-            }
-            let currentData = hourlyData[indexPath.row - 1]
-            cell.configure(using: currentData,
-                           previous: hourlyData[safe: indexPath.row - 2],
+            let previousData: HourCondition? = viewModel
+                .visibleRows[safe: indexPath.row - 1]
+                .flatMap {
+                    switch $0 {
+                    case let .hourly(condition):
+                        return condition
+                    default:
+                        return nil
+                    }
+                }
+            cell.configure(using: condition,
+                           previous: previousData,
                            timeFormatter: timeFormatter)
             cell.selectionStyle = .default
             return cell
+
+        case let .alert(alert):
+            let cell: WeatherAlertTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.configure(with: alert)
+            cell.accessoryType = .disclosureIndicator
+            cell.selectionStyle = .default
+            return cell
+
+        case .dayHeader:
+            Log.error("Not implemented.")
+            assertionFailure()
+            return UITableViewCell()
         }
     }
 
     override func tableView(_: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard indexPath.row > 0 else {
-            // Do not show trailing swipe action on the first cell.
+        guard let cellEnum = viewModel.visibleRows[safe: indexPath.row] else {
+            Log.error("No cell enum at \(indexPath)")
             return nil
         }
-        let detailsAction = UIContextualAction(
-            style: .normal,
-            title: nil
-        ) { [weak self] _, _, completion in
-            guard let self = self, let wu = self.viewModel.latestWU,
-                let hourlyData = wu.hourly?.data else {
-                Log.info("No hourly weather data to show.")
-                return
+        switch cellEnum {
+        case let .hourly(condition):
+            let detailsAction = UIContextualAction(
+                style: .normal,
+                title: nil
+            ) { [weak self] _, _, completion in
+                guard let self = self else { return }
+                let detailsVC = StoryboardScene.Main.hourlyDetail.instantiate()
+                detailsVC.viewModel = HourlyDetailViewModel(hourlyData: condition)
+                self.present(UINavigationController(rootViewController: detailsVC), animated: true, completion: nil)
+                completion(true)
             }
-
-            let detailsVC = StoryboardScene.Main.hourlyDetail.instantiate()
-            let data = hourlyData[indexPath.row - 1]
-            detailsVC.viewModel = HourlyDetailViewModel(hourlyData: data)
-            self.present(UINavigationController(rootViewController: detailsVC), animated: true, completion: nil)
-            completion(true)
+            detailsAction.image = UIImage(systemName: "list.dash")
+            detailsAction.backgroundColor = .systemOrange
+            return UISwipeActionsConfiguration(actions: [detailsAction])
+        case .alert, .dayHeader, .fourDays:
+            return nil
         }
-        detailsAction.image = UIImage(systemName: "list.dash")
-        detailsAction.backgroundColor = .systemOrange
-        return UISwipeActionsConfiguration(actions: [detailsAction])
     }
 
     override func tableView(_: UITableView,
                             heightForRowAt _: IndexPath) -> CGFloat {
         UITableView.automaticDimension
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let cellEnum = viewModel.visibleRows[safe: indexPath.row] else {
+            return
+        }
+        switch cellEnum {
+        case let .alert(alert):
+            guard let url = alert.uri else {
+                return
+            }
+            let svc = SFSafariViewController(url: url)
+            svc.preferredBarTintColor = alert.severity.color
+            svc.preferredControlTintColor = .label
+            present(svc, animated: true, completion: nil)
+
+        default:
+            return
+        }
     }
 
     // MARK: - View model delegate

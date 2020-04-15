@@ -16,13 +16,44 @@ protocol HomeTableViewModelDelegate: AnyObject {
 }
 
 class HomeTableViewModel {
+    /// Represents a kind of row displayed in the home screen.
+    enum Row {
+        /// Used for weather alerts.
+        case alert(alert: WeatherAlert)
+        /// Contains a 4-days forecast.
+        case fourDays(dailyConditions: [DailyCondition])
+        /// Header representing the day in hourly forecasts.
+        case dayHeader
+        /// Shows an hourly forecast.
+        case hourly(condition: HourCondition)
+    }
+
+    var visibleRows: [Row] {
+        guard locationsManager.currentLocation != nil else {
+            return []
+        }
+
+        var acc = [Row]()
+
+        for alert in latestWU?.alerts ?? [] {
+            acc.append(.alert(alert: alert))
+        }
+
+        if let dailyConditions = latestWU?.daily?.data {
+            acc.append(.fourDays(dailyConditions: dailyConditions))
+        }
+
+        acc += latestWU?.hourly?.data?.compactMap { Row.hourly(condition: $0) } ?? []
+
+        return acc
+    }
+
     let provider: Provider = DarkSkyProvider()
-    var latestWU: WeatherUpdate?
-    var insight = "Welcome back. Rainy is fetching your weather..."
+    private var latestWU: WeatherUpdate?
     var storage = CodableStorage<WeatherUpdate>()
     var locationsManager: LocationsManager
     let delegate: HomeTableViewModelDelegate
-    var siriActivity: NSUserActivity?
+    private var siriActivity: NSUserActivity?
 
     init(delegate: HomeTableViewModelDelegate,
          locationsManager: LocationsManager = .shared) {
