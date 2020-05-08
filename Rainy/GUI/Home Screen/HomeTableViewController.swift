@@ -1,14 +1,16 @@
 //
 //  HomeTableViewController.swift
-//
+//  Rainy
 //
 //  Created by Andrea Gottardo on 10/11/17.
+//  Copyright © 2017 Andrea Gottardo. All rights reserved.
 //
 
 import CoreLocation
 import SafariServices
 import UIKit
 
+/// Home screen view controller.
 class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate {
     struct Constants {
         static let defaultFont = UIFont.systemFont(ofSize: 20.0)
@@ -48,7 +50,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
     }
 
     private func setupTableView() {
-        tableView.register(CurrentInfoTableViewCell.self)
+        tableView.register(FiveDaysTableViewCell.self)
         tableView.register(HourlyTableViewCell.self)
         tableView.register(WeatherAlertTableViewCell.self)
         tableView.refreshControl = UIRefreshControl()
@@ -93,7 +95,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
         }
         switch cellEnum {
         case let .fourDays(dailyConditions):
-            let cell: CurrentInfoTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            let cell: FiveDaysTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.configure(with: dailyConditions,
                            location: viewModel.locationsManager.currentLocation)
             return cell
@@ -127,31 +129,6 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
             Log.error("Not implemented.")
             assertionFailure()
             return UITableViewCell()
-        }
-    }
-
-    override func tableView(_: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard let cellEnum = viewModel.visibleRows[safe: indexPath.row] else {
-            Log.error("No cell enum at \(indexPath)")
-            return nil
-        }
-        switch cellEnum {
-        case let .hourly(condition):
-            let detailsAction = UIContextualAction(
-                style: .normal,
-                title: nil
-            ) { [weak self] _, _, completion in
-                guard let self = self else { return }
-                let detailsVC = StoryboardScene.Main.hourlyDetail.instantiate()
-                detailsVC.viewModel = HourlyDetailViewModel(hourlyData: condition)
-                self.present(UINavigationController(rootViewController: detailsVC), animated: true, completion: nil)
-                completion(true)
-            }
-            detailsAction.image = UIImage(systemName: "list.dash")
-            detailsAction.backgroundColor = .systemOrange
-            return UISwipeActionsConfiguration(actions: [detailsAction])
-        case .alert, .dayHeader, .fourDays:
-            return nil
         }
     }
 
@@ -226,7 +203,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewModelDelegate
 }
 
 extension HomeTableViewController: SettingsViewControllerDelegate {
-    func didChangeTempUnitSetting(toUnit _: TempUnit) {
+    func didChangeTempUnitSetting(toUnit _: TemperatureUnit) {
         tableView.reloadData()
     }
 }

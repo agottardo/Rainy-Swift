@@ -9,19 +9,7 @@
 import MBProgressHUD
 import UIKit
 
-class LocationsListViewModel {
-    var locationsManager: LocationsManager
-
-    var locations: [Location] {
-        LocationsManager.shared.locations
-    }
-
-    init(locationsManager: LocationsManager = .shared) {
-        self.locationsManager = locationsManager
-    }
-}
-
-class LocationsListViewController: UIViewController {
+final class LocationsListViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     var searchController: UISearchController!
     lazy var viewModel: LocationsListViewModel! = LocationsListViewModel()

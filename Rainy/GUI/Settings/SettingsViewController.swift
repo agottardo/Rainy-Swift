@@ -8,7 +8,7 @@ import Sentry
 import UIKit
 
 protocol SettingsViewControllerDelegate: AnyObject {
-    func didChangeTempUnitSetting(toUnit unit: TempUnit)
+    func didChangeTempUnitSetting(toUnit unit: TemperatureUnit)
 }
 
 class SettingsViewModel {
@@ -171,7 +171,7 @@ class SettingsViewController: UITableViewController {
     }
 
     @IBAction func didChangeTempUnits(_: Any) {
-        guard let newUnit = TempUnit(rawValue: tempUnitsControl.selectedSegmentIndex) else {
+        guard let newUnit = TemperatureUnit(rawValue: tempUnitsControl.selectedSegmentIndex) else {
             Log.error("Failed to determine newly selected temperature unit.")
             return
         }

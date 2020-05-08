@@ -9,8 +9,10 @@
 import CoreLocation
 import UIKit
 
+/// Cell used in the locations list.
 class LocationTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
     struct Constants {
+        /// Used for testing. - Todo: remove?
         static let vancouver = CLLocationCoordinate2D(latitude: 49.246292,
                                                       longitude: -123.116226)
     }

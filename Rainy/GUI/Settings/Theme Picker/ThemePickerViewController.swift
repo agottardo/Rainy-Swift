@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// A view controller used to select the current color theme.
 class ThemePickerViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     override func viewDidLoad() {

@@ -8,6 +8,8 @@
 
 import UIKit
 
+/// A cell displayed at the top of the home screen to show weather advisories. Tapping it leads the
+/// user to a SFSafariViewController with further details provided by the local weather service.
 class WeatherAlertTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     @IBOutlet var severityIcon: UIImageView!
     @IBOutlet var titleLabel: UILabel!
@@ -17,5 +19,6 @@ class WeatherAlertTableViewCell: UITableViewCell, ReusableView, NibLoadableView 
         backgroundColor = alert.severity.color
         titleLabel.text = alert.severity.localizedString + " in effect"
         severityIcon.image = alert.severity.icon
+        severityLabel.text = alert.title
     }
 }

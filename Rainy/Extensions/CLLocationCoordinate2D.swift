@@ -10,6 +10,7 @@ import CoreLocation
 import Foundation
 
 extension CLLocationCoordinate2D {
+    /// Returns the distance from this `CLLocationCoordinate2D` to the given location, expressed in meters.
     func distance(to coordinate: CLLocationCoordinate2D) -> Double {
         let location = CLLocation(latitude: coordinate.latitude,
                                   longitude: coordinate.longitude)

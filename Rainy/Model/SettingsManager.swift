@@ -25,9 +25,9 @@ final class SettingsManager {
 
     /// Temperature unit chosen by the user.
     /// - Default: `.celsius`
-    var temperatureUnit: TempUnit {
+    var temperatureUnit: TemperatureUnit {
         get {
-            TempUnit(rawValue: defaults.integer(forKey: SettingKey.temperatureUnit.rawValue)) ?? .celsius
+            TemperatureUnit(rawValue: defaults.integer(forKey: SettingKey.temperatureUnit.rawValue)) ?? .celsius
         }
         set {
             defaults.set(newValue.rawValue, forKey: SettingKey.temperatureUnit.rawValue)

@@ -9,10 +9,14 @@
 import Foundation
 import UIKit
 
+/// Represents a weather alert, advisory or watch provided by the API.
 struct WeatherAlert: Codable {
     enum Severity: String, Codable {
+        /// Low priority
         case advisory
+        /// Medium priority
         case watch
+        /// High priority
         case warning
 
         var localizedString: String {
@@ -26,6 +30,7 @@ struct WeatherAlert: Codable {
             }
         }
 
+        /// The color used in the bar at the top of the home screen to represent this alert.
         var color: UIColor {
             switch self {
             case .advisory:

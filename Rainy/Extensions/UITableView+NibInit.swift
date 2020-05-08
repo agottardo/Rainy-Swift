@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+// Protocols and extensions to easily handle reusable nib-based table view cells.
+
 public protocol ReusableView: AnyObject {
     static var defaultReuseIdentifier: String { get }
 }
@@ -42,7 +44,7 @@ extension UITableView {
 
     func dequeueReusableCell<T: UITableViewCell>(forIndexPath indexPath: IndexPath) -> T where T: ReusableView {
         guard let cell = dequeueReusableCell(withIdentifier: T.defaultReuseIdentifier, for: indexPath) as? T else {
-            fatalError("Could not dequeue cell with identifier: \(T.defaultReuseIdentifier)")
+            fatalError("Could not dequeue any cell with identifier: \(T.defaultReuseIdentifier)")
         }
 
         return cell

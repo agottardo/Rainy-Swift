@@ -8,8 +8,13 @@
 
 import Foundation
 
+/// Represents anything that can be donated to Siri as a donation.
+protocol DonatedToSiri {
+    var userActivity: NSUserActivity { get }
+}
+
 class SiriDonation {
-    enum Action: Hashable {
+    enum Action: Hashable, DonatedToSiri {
         case getWeather(location: Location)
 
         func hash(into hasher: inout Hasher) {

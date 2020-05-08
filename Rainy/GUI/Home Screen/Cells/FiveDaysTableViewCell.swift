@@ -8,7 +8,8 @@
 
 import UIKit
 
-class CurrentInfoTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
+/// Cell that shows five days of daily forecasts, used at the top of the home screen.
+class FiveDaysTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     @IBOutlet var stackView: UIStackView!
 
     lazy var dateFormatter: DateFormatter = {

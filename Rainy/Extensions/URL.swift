@@ -9,6 +9,8 @@
 import Foundation
 
 extension URL {
+    /// Appends the given key-value pairs to this URL as GET request parameters.
+    /// - Parameter params: key-value pairs
     mutating func appendQueryParams(_ params: [String: String]) {
         var acc = ""
         var count = 0
@@ -17,6 +19,10 @@ extension URL {
             acc += "\(key)=\(value)"
             count += 1
         }
-        self = URL(string: absoluteString + acc)!
+        guard let newURL = URL(string: absoluteString + acc) else {
+            Log.warning("Could not create new URL from parameters!")
+            return
+        }
+        self = newURL
     }
 }

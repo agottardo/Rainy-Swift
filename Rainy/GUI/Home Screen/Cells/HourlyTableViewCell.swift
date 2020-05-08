@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Cells that shows one hour of weather information, used in the home screen.
 class HourlyTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     /// Hour label.
     @IBOutlet var timeLabel: UILabel!

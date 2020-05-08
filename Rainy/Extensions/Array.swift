@@ -19,6 +19,8 @@ extension Array {
 }
 
 extension Array where Element: Hashable {
+    /// Returns a copy of this array with no duplicates.
+    /// - Complexity: O(n), where n is the number of elements in this array.
     var uniques: Array {
         var buffer = Array()
         var added = Set<Element>()

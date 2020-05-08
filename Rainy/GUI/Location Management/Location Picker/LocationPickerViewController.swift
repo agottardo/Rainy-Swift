@@ -10,50 +10,12 @@ import CoreLocation
 import MBProgressHUD
 import UIKit
 
-class LocationPickerViewModel {
-    var geoCoder: CLGeocoder
-    var locations: [Location] = []
-    var locationsManager: LocationsManager
-
-    init(locationsManager: LocationsManager = .shared) {
-        geoCoder = CLGeocoder()
-        self.locationsManager = locationsManager
-    }
-
-    func search(placemarkKeyword: String,
-                completion: @escaping (Result<[Location], NSError>) -> Void) {
-        geoCoder.geocodeAddressString(placemarkKeyword) { placemarks, error in
-            if let error = error {
-                Log.warning("CLGeocoder error: \(error)")
-                completion(.failure(error as NSError))
-                return
-            }
-
-            guard let placemarks = placemarks else {
-                Log.debug("No placemark results found.")
-                self.locations = []
-                completion(.failure(NSError(domain: "No results found.", code: 1, userInfo: nil)))
-                return
-            }
-
-            let locations: [Location] = placemarks.compactMap {
-                guard let coordinate = $0.location?.coordinate else {
-                    Log.debug("Skipping placemark \($0) with no coordinates.")
-                    return nil
-                }
-                return Location(placemark: $0, coordinate: coordinate)
-            }
-            self.locations = locations
-            completion(.success(locations))
-        }
-    }
-}
-
+/// Used by objects that receive location changes updates.
 protocol LocationPickerDelegate: AnyObject {
     func didPickLocation(location: Location)
 }
 
-class LocationPickerViewController: UIViewController {
+final class LocationPickerViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     var viewModel = LocationPickerViewModel()
     weak var delegate: LocationPickerDelegate?

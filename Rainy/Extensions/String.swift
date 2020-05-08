@@ -9,6 +9,7 @@
 import Foundation
 
 extension String {
+    /// Returns `nil` if `self` is the empty string.
     var nilIfEmpty: String? {
         if isEmpty {
             return nil

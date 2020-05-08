@@ -9,8 +9,16 @@
 import Foundation
 import UIKit
 
-/// A wrapper around UIFeedbackGenerator subclasses.
+/// A wrapper around UIFeedbackGenerator subclasses so we don't have to deal with multiple objects
+/// thanks to static methods.
 class Vibration {
+    /// The intensity of a impact feedback.
+    enum Intensity: CGFloat {
+        case light = 0.5
+        case medium = 0.75
+        case strong = 1
+    }
+
     static let notificationGenerator = UINotificationFeedbackGenerator()
     static let selectionGenerator = UISelectionFeedbackGenerator()
     static let impactGenerator = UIImpactFeedbackGenerator()
@@ -29,6 +37,10 @@ class Vibration {
 
     static func selectionChanged() {
         selectionGenerator.selectionChanged()
+    }
+
+    static func impact(_ intensity: Intensity) {
+        impactGenerator.impactOccurred(intensity: intensity.rawValue)
     }
 
     static func impactStrong() {
