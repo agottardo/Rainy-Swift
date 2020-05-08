@@ -14,21 +14,21 @@ import UIKit
 final class DarkSkyProvider: Provider {
     struct Constants {
         /// Base API URL
-        static let baseUrl = "https://api.darksky.net/forecast/1e9b4ab3c751d4dab0fbb82f3dab1737/"
+        static let baseUrl = "https://api.rainyapp.com/weather/"
         /// 10 seconds before network requests timeouts.
         static let maxTimeoutLimit = TimeInterval(10)
     }
 
     func getWeatherDataForCoordinates(coordinates: CLLocationCoordinate2D,
                                       completion: @escaping (Result<WeatherUpdate, ProviderError>) -> Void) {
-        // Start spinning the networking activity indicator. Will be stopped
-        // at the end of parsing.
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-
         // Setup a HTTP request to the API, using the default caching policy
         // for HTTP.
         let urlSession = URLSession(configuration: URLSessionConfiguration.ephemeral)
-        let requestURL = URL(string: Constants.baseUrl + String(coordinates.latitude) + "," + String(coordinates.longitude))!
+        var requestURL = URL(string: Constants.baseUrl)!
+        requestURL.appendQueryParams([
+            "lat": String(coordinates.latitude),
+            "lon": String(coordinates.longitude),
+        ])
         let urlRequest = URLRequest(url: requestURL,
                                     cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy,
                                     timeoutInterval: Constants.maxTimeoutLimit)
@@ -37,14 +37,14 @@ final class DarkSkyProvider: Provider {
 
             if let error = error {
                 // Networking error
-                NSLog(error.localizedDescription)
+                Log.warning("Networking error: \(error)")
                 completion(.failure(ProviderError.network(networkError: error as NSError)))
                 return
             }
 
             guard let data = data,
                 let weatherUpdate = try? JSONDecoder().decode(WeatherUpdate.self, from: data) else {
-                NSLog("Parsing failed.")
+                Log.error("Parsing failed.")
                 completion(.failure(ProviderError.parsing(parsingError: NSError(domain: "parsing", code: -1, userInfo: nil))))
                 return
             }
