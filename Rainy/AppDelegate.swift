@@ -41,4 +41,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         locationsManager.currentLocation = location
         return true
     }
+
+    /// Constructs the UIMenu for the macOS version of the app.
+    override func buildMenu(with builder: UIMenuBuilder) {
+        super.buildMenu(with: builder)
+        builder.remove(menu: .services)
+        builder.remove(menu: .format)
+        builder.remove(menu: .toolbar)
+        builder.remove(menu: .edit)
+        builder.remove(menu: .help)
+    }
 }
