@@ -22,6 +22,8 @@
 	<string>public.app-category.weather</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>© 2017-2020 Andrea Gottardo. Weather data provided by Dark Sky.</string>
 	<key>NSLocationUsageDescription</key>
 	<string>Rainy uses your location to fetch the weather for the location closest to you.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -51,7 +53,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSHumanReadableCopyright</key>
-	<string>© 2017-2020 Andrea Gottardo. Weather data provided by Dark Sky.</string>
 </dict>
 </plist>
