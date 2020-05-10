@@ -51,4 +51,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         builder.remove(menu: .edit)
         builder.remove(menu: .help)
     }
+
+    func application(_: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Log.debug("Registered for notifications with token: \(deviceToken), will contact server")
+        let urlSession = URLSession(configuration: .ephemeral)
+        var requestURL = URL(string: "https://api.rainyapp.com/register")!
+        guard let encodedToken = String(data: deviceToken, encoding: .ascii) else {
+            Log.warning("Failed to encode token.")
+            return
+        }
+        requestURL.appendQueryParams([
+            "token": encodedToken,
+        ])
+        let urlRequest = URLRequest(url: requestURL,
+                                    cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
+                                    timeoutInterval: 10.0)
+
+        let task = urlSession.dataTask(with: urlRequest) { _, _, error in
+            if let error = error {
+                // Networking error
+                Log.warning("Failed to subscribe to notifications with backend: \(error)")
+                return
+            }
+        }
+        // Start the HTTP request.
+        task.resume()
+    }
+
+    func application(_: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        Log.error(error.localizedDescription)
+    }
+
+    func application(_: UIApplication, didFailToContinueUserActivityWithType _: String, error: Error) {
+        Log.error(error.localizedDescription)
+    }
 }

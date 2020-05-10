@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="shp-K1-Sb9">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -126,7 +126,7 @@
             </objects>
             <point key="canvasLocation" x="1483" y="915"/>
         </scene>
-        <!--About Rainy-->
+        <!--Settings-->
         <scene sceneID="UXI-9R-IdK">
             <objects>
                 <tableViewController id="flf-8H-clz" customClass="SettingsViewController" customModule="Rainy" customModuleProvider="target" sceneMemberID="viewController">
@@ -136,25 +136,24 @@
                         <sections>
                             <tableViewSection id="wtC-p7-yiL">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="142" id="cJm-SZ-aaD">
-                                        <rect key="frame" x="20" y="18" width="374" height="142"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="84" id="cJm-SZ-aaD">
+                                        <rect key="frame" x="20" y="18" width="374" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cJm-SZ-aaD" id="CaG-bX-Ifp">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="142"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="84"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="kli-Bm-7ua">
-                                                    <rect key="frame" x="20" y="11" width="334" height="120"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="kli-Bm-7ua">
+                                                    <rect key="frame" x="20" y="11" width="334" height="62"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks for using Rainy." lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6G-9P-tXv">
-                                                            <rect key="frame" x="0.0" y="0.0" width="185" height="20.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks for using Rainy." textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6G-9P-tXv">
+                                                            <rect key="frame" x="74.5" y="0.0" width="185" height="20.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6QI-6r-L0D">
-                                                            <rect key="frame" x="0.0" y="30.5" width="309" height="89.5"/>
-                                                            <string key="text">A simple, privacy-aware weather app that tells you when it's gonna rain without the BS.
-
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6QI-6r-L0D">
+                                                            <rect key="frame" x="53.5" y="25.5" width="227" height="36.5"/>
+                                                            <string key="text">A simple, privacy-aware weather app.
 Made with love in Vancouver. 🇨🇦</string>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
@@ -172,7 +171,7 @@ Made with love in Vancouver. 🇨🇦</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="rJg-Wg-fIJ" style="IBUITableViewCellStyleDefault" id="yfE-CD-9fV">
-                                        <rect key="frame" x="20" y="160" width="374" height="44"/>
+                                        <rect key="frame" x="20" y="102" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yfE-CD-9fV" id="RJN-2j-ueK">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
@@ -188,7 +187,7 @@ Made with love in Vancouver. 🇨🇦</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="TJe-vM-AlK" style="IBUITableViewCellStyleDefault" id="bkT-K5-1Um">
-                                        <rect key="frame" x="20" y="204" width="374" height="44"/>
+                                        <rect key="frame" x="20" y="146" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bkT-K5-1Um" id="BEM-6Q-6ze">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
@@ -207,8 +206,25 @@ Made with love in Vancouver. 🇨🇦</string>
                             </tableViewSection>
                             <tableViewSection headerTitle="Customization" id="dfZ-QA-ZPI">
                                 <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="NQV-qJ-LtC" style="IBUITableViewCellStyleDefault" id="Vvb-Lv-dq8">
+                                        <rect key="frame" x="20" y="246" width="374" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vvb-Lv-dq8" id="OEs-t9-L2y">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Notifications &amp; Alerts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NQV-qJ-LtC">
+                                                    <rect key="frame" x="20" y="0.0" width="315" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="84" id="rid-Ks-dbJ">
-                                        <rect key="frame" x="20" y="304" width="374" height="84"/>
+                                        <rect key="frame" x="20" y="290" width="374" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rid-Ks-dbJ" id="SLL-rP-bJw">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="84"/>
@@ -247,7 +263,7 @@ Made with love in Vancouver. 🇨🇦</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="qL4-kL-etN" detailTextLabel="PXC-GD-b49" style="IBUITableViewCellStyleValue1" id="alp-xI-AuF">
-                                        <rect key="frame" x="20" y="388" width="374" height="44"/>
+                                        <rect key="frame" x="20" y="374" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="alp-xI-AuF" id="12N-Kr-AFT">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
@@ -276,10 +292,10 @@ Made with love in Vancouver. 🇨🇦</string>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Diagnostics" id="yDK-8g-smf">
-                                <string key="footerTitle">Sends information about crashes to Sentry.io, helping the developer address issues. No personally identifiable information will be sent. The default is off, and you can opt-out at any time.</string>
+                                <string key="footerTitle">Sends info about crashes to Sentry.io, helping the developer address issues. No personally identifiable information will be sent. The default is off, and you can opt-out at any time.</string>
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="44" id="jLe-8n-8BE">
-                                        <rect key="frame" x="20" y="495.5" width="374" height="44"/>
+                                        <rect key="frame" x="20" y="481.5" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jLe-8n-8BE" id="7Oc-hw-Ke2">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
@@ -330,7 +346,7 @@ Made with love in Vancouver. 🇨🇦</string>
                             <outlet property="delegate" destination="flf-8H-clz" id="wfB-bc-gEt"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="About Rainy" id="RvP-fl-4yV">
+                    <navigationItem key="navigationItem" title="Settings" id="RvP-fl-4yV">
                         <barButtonItem key="leftBarButtonItem" style="done" systemItem="done" id="Poz-Aw-JGW">
                             <connections>
                                 <action selector="didPressDoneButton:" destination="flf-8H-clz" id="P1V-uV-ZMB"/>

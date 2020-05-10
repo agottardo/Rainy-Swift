@@ -35,6 +35,12 @@ internal enum StoryboardScene {
 
         internal static let themePicker = SceneType<Rainy.ThemePickerViewController>(storyboard: Main.self, identifier: "themePicker")
     }
+
+    internal enum PushNotifications: StoryboardType {
+        internal static let storyboardName = "PushNotifications"
+
+        internal static let notificationsHome = SceneType<Rainy.NotificationsViewController>(storyboard: PushNotifications.self, identifier: "notificationsHome")
+    }
 }
 
 // swiftlint:enable explicit_type_interface identifier_name line_length type_body_length type_name

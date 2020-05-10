@@ -14,6 +14,7 @@ enum SettingKey: String, CaseIterable {
     case diagnostics
     case currentLocationIndex
     case themeName
+    case notificationsEnabled
 }
 
 /// Central point of entry for all settings. Add new properties by adding a new computed property
@@ -47,8 +48,8 @@ final class SettingsManager {
         }
     }
 
-    /// Whether diagnostics can be sent.
-    /// - Default: `false`
+    /// The index of the current location.
+    /// - Default: `nil`
     var currentLocationIndex: Int? {
         get {
             let savedValue = defaults.integer(forKey: SettingKey.currentLocationIndex.rawValue)
@@ -69,6 +70,7 @@ final class SettingsManager {
         }
     }
 
+    /// The current color theme.
     var theme: Theme {
         get {
             guard let name = defaults.string(forKey: SettingKey.themeName.rawValue) else {
@@ -78,6 +80,17 @@ final class SettingsManager {
         }
         set {
             defaults.set(newValue.rawValue, forKey: SettingKey.themeName.rawValue)
+            defaults.synchronize()
+        }
+    }
+
+    /// The current color theme.
+    var notificationsEnabled: Bool {
+        get {
+            defaults.bool(forKey: SettingKey.notificationsEnabled.rawValue)
+        }
+        set {
+            defaults.set(newValue, forKey: SettingKey.notificationsEnabled.rawValue)
             defaults.synchronize()
         }
     }

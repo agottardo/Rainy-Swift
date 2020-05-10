@@ -36,6 +36,7 @@ class SettingsViewController: UITableViewController {
     }
 
     enum CustomizationRow: Int, CaseIterable {
+        case notifications
         case units
         case theme
     }
@@ -119,6 +120,10 @@ class SettingsViewController: UITableViewController {
     }
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+        defer {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+
         guard let section = visibleSections[safe: indexPath.section] else {
             return
         }
@@ -142,6 +147,10 @@ class SettingsViewController: UITableViewController {
                 return
             }
             switch row {
+            case .notifications:
+                let vc = StoryboardScene.PushNotifications.notificationsHome.instantiate()
+                navigationController?.pushViewController(vc, animated: true)
+
             case .theme:
                 Log.debug("Pressed theme.")
                 return
