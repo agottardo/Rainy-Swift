@@ -9,73 +9,6 @@
 import UIKit
 
 class NotificationsViewController: UIViewController {
-    enum Section: Int, CaseIterable, Localizable {
-        case enableAndLocation
-        case notifications
-
-        var localizedString: String {
-            switch self {
-            case .enableAndLocation:
-                return ""
-            case .notifications:
-                return "Active notifications"
-            }
-        }
-    }
-
-    enum EnableCell: Int, CaseIterable, Localizable {
-        case enable
-        case location
-
-        var localizedString: String {
-            switch self {
-            case .enable:
-                return "Enable"
-            case .location:
-                return "Location"
-            }
-        }
-    }
-
-    enum NotificationCell: Int, CaseIterable, Localizable {
-        case morning
-        case evening
-        case alerts
-        case rainNotification
-
-        var localizedString: String {
-            switch self {
-            case .morning:
-                return "Morning Briefing"
-
-            case .evening:
-                return "Evening Briefing"
-
-            case .alerts:
-                return "Weather Alerts"
-
-            case .rainNotification:
-                return "Rain Notification"
-            }
-        }
-
-        var longDescription: String {
-            switch self {
-            case .morning:
-                return "Forecast for the day, delivered at 7 in the morning."
-
-            case .evening:
-                return "Forecast for the following day. Delivered at 9 in the evening."
-
-            case .alerts:
-                return "Weather alerts, watches and advisories issued by your local weather service."
-
-            case .rainNotification:
-                return "Issued if a moderate to high amount of rain is expected in your location within the following 6 hours."
-            }
-        }
-    }
-
     var visibleSections: [Section] {
         Section.allCases
     }
@@ -93,7 +26,31 @@ class NotificationsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        UIApplication.shared.registerForRemoteNotifications()
+        let options: UNAuthorizationOptions = [
+            .alert,
+            .badge,
+            .criticalAlert,
+            .providesAppNotificationSettings,
+            .sound,
+        ]
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.requestAuthorization(options: options) { didAuthorize, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    Log.error(error.localizedDescription)
+                    UIAlertController.present(withError: .couldNotRegisterForPushNotifications, inController: self)
+                    return
+                }
+
+                guard didAuthorize else {
+                    Log.warning("Did not authorize push notifications.")
+                    UIAlertController.present(withError: .systemNotificationsDisabled, inController: self)
+                    return
+                }
+
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+        }
     }
 
     private func setupTableView() {
