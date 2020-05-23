@@ -54,6 +54,7 @@
 		65724E472442DA9C00964C9A /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 65724E462442DA9C00964C9A /* MBProgressHUD */; };
 		65CC08B124651AAF001868B0 /* WeatherIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CC08B024651AAF001868B0 /* WeatherIcon.swift */; };
 		65D39F4524440DB300775D53 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D39F4424440DB300775D53 /* URL.swift */; };
+		65DD6FF42479A37000D9DC9E /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD6FF32479A37000D9DC9E /* Errors.swift */; };
 		65ECB1B1230528D000BA3320 /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ECB1B0230528D000BA3320 /* Temperature.swift */; };
 		65F353FB2442859000F57DD9 /* ThemePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F353F92442859000F57DD9 /* ThemePickerTableViewCell.swift */; };
 		65F353FC2442859000F57DD9 /* ThemePickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65F353FA2442859000F57DD9 /* ThemePickerTableViewCell.xib */; };
@@ -110,6 +111,7 @@
 		656925892442A9E90074C84D /* SiriDonation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriDonation.swift; sourceTree = "<group>"; };
 		65CC08B024651AAF001868B0 /* WeatherIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherIcon.swift; sourceTree = "<group>"; };
 		65D39F4424440DB300775D53 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		65DD6FF32479A37000D9DC9E /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		65ECB1B0230528D000BA3320 /* Temperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temperature.swift; sourceTree = "<group>"; };
 		65F353F92442859000F57DD9 /* ThemePickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePickerTableViewCell.swift; sourceTree = "<group>"; };
 		65F353FA2442859000F57DD9 /* ThemePickerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThemePickerTableViewCell.xib; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				656925892442A9E90074C84D /* SiriDonation.swift */,
 				6506B46B24427DB00054F92F /* Theme.swift */,
 				4030D605213DCD1B000CA8B9 /* Weather Data */,
+				65DD6FF32479A37000D9DC9E /* Errors.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -383,7 +386,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0910;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = "Andrea Gottardo";
 				TargetAttributes = {
 					40D8D6E01FB64B3E002CFD6A = {
@@ -515,6 +518,7 @@
 				65D39F4524440DB300775D53 /* URL.swift in Sources */,
 				650A1B7D243C3604006FDB84 /* assets-images.swift in Sources */,
 				650A1B73243C33C5006FDB84 /* Array.swift in Sources */,
+				65DD6FF42479A37000D9DC9E /* Errors.swift in Sources */,
 				65292E52243D708700A41B50 /* SettingsManager.swift in Sources */,
 				650A1B6A243C178C006FDB84 /* UITableView+NibInit.swift in Sources */,
 				40E5C0F41FB69CD000A4C884 /* LocationBrain.swift in Sources */,
@@ -678,10 +682,6 @@
 		40D8D7021FB64B3F002CFD6A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					x86_64h,
-				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Rainy/Rainy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -707,10 +707,6 @@
 		40D8D7031FB64B3F002CFD6A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					x86_64h,
-				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Rainy/Rainy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
