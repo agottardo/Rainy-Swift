@@ -11,7 +11,7 @@ import Foundation
 
 protocol LocationBrainDelegate: AnyObject {
     func didFetchLocation(location: Location)
-    func didErrorOccur(error: NSError)
+    func didErrorOccur(error: RainyError)
 }
 
 /**
@@ -33,11 +33,7 @@ final class LocationBrain: NSObject, CLLocationManagerDelegate {
         guard CLLocationManager.locationServicesEnabled() else {
             // If location access was not available, tell the calling view
             // controller to display an error message.
-            delegate?.didErrorOccur(error: NSError(domain: "location",
-                                                   code: -1,
-                                                   userInfo: [
-                                                       NSLocalizedDescriptionKey: "Location Services were not authorized.",
-                                                   ]))
+            delegate?.didErrorOccur(error: .locationServicesDisabled)
             return
         }
         manager.delegate = self
@@ -59,7 +55,8 @@ final class LocationBrain: NSObject, CLLocationManagerDelegate {
         geocoder.reverseGeocodeLocation(lastLocation) { placemarks, error in
             // Inform the calling view controller that a location is available.
             if let error = error {
-                self.delegate?.didErrorOccur(error: error as NSError)
+                Log.error("Geocoder error occurred: \(error)")
+                self.delegate?.didErrorOccur(error: .geocoderError)
                 return
             }
             guard let placemark = placemarks?.first else {
@@ -74,6 +71,6 @@ final class LocationBrain: NSObject, CLLocationManagerDelegate {
     func locationManager(_: CLLocationManager, didFailWithError error: Error) {
         // Inform the calling view controller that something went wrong when
         // obtaining the user location.
-        delegate?.didErrorOccur(error: error as NSError)
+        delegate?.didErrorOccur(error: .locationServicesCustom(error: error as NSError))
     }
 }

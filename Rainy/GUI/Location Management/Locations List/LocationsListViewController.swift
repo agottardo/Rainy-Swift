@@ -51,8 +51,8 @@ final class LocationsListViewController: UIViewController {
     }
 
     @objc private func didPressLocationButton() {
-        locationBrain.start()
         MBProgressHUD.showAdded(to: view, animated: true)
+        locationBrain.start()
     }
 }
 
@@ -158,7 +158,8 @@ extension LocationsListViewController: LocationBrainDelegate {
         dismiss(animated: true, completion: nil)
     }
 
-    func didErrorOccur(error: NSError) {
+    func didErrorOccur(error: RainyError) {
+        Log.error(error.localizedDescription)
         MBProgressHUD.hide(for: view, animated: true)
         let alert = UIAlertController(title: "Could not fetch current location.",
                                       message: error.localizedDescription,
