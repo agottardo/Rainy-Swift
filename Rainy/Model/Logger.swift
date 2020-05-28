@@ -11,6 +11,10 @@ import os
 import Sentry
 
 class Log {
+    private struct Constants {
+        static let sentryDsn = "https://6940618716d54c108188e82ba381383a@o304136.ingest.sentry.io/5193012"
+    }
+
     enum Level {
         case error
         case warning
@@ -34,7 +38,7 @@ class Log {
             }
         }
 
-        var sentrySeverity: SentrySeverity {
+        var sentrySeverity: SentryLevel {
             switch self {
             case .error:
                 return .error
@@ -54,7 +58,7 @@ class Log {
         if level.shouldBeUploadedToSentry {
             let sentryEvent = Event(level: level.sentrySeverity)
             sentryEvent.message = message
-            Client.shared?.send(event: sentryEvent, completion: nil)
+            SentrySDK.capture(event: sentryEvent)
         }
     }
 
@@ -72,5 +76,29 @@ class Log {
 
     static func debug(_ message: String) {
         Log.log(.debug, message: message)
+    }
+
+    static func initializeSentry() {
+        // Register the app with Sentry.
+        do {
+            let sentryOptions = try Options(dict: [
+                "dsn": Constants.sentryDsn,
+            ])
+            sentryOptions.enableAutoSessionTracking = true
+
+            // This feature is strictly opt-in to preserve user privacy, so we check whether
+            // the user enabled it and disable the library if the setting value is zero.
+            sentryOptions.enabled = SettingsManager.shared.diagnosticsEnabled as NSNumber
+
+            #if DEBUG
+                // More verbose logging in development environment.
+                sentryOptions.debug = true
+            #endif
+
+            SentrySDK.start(options: sentryOptions)
+        } catch {
+            // Sentry is not yet initialized here, so we cannot use the `Log`.
+            print("\(error)")
+        }
     }
 }
