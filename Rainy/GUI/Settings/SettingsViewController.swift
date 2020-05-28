@@ -185,6 +185,6 @@ class SettingsViewController: UITableViewController {
             return
         }
         viewModel.settingsManager.diagnosticsEnabled = switchControl.isOn
-        Client.shared?.enabled = switchControl.isOn as NSNumber
+        Log.initializeSentry()
     }
 }
