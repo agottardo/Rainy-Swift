@@ -34,7 +34,7 @@ class LocationsManager {
         }
         set {
             guard let newValue = newValue else {
-                Log.warning("Setting current location to nil, was this intended?")
+                Log.error("Setting current location to nil, was this intended?")
                 settingsManager.currentLocationIndex = nil
                 return
             }
@@ -47,4 +47,22 @@ class LocationsManager {
     }
 
     private init() {}
+
+    func deleteLocation(at indexToRemove: Int) {
+        locations.remove(at: indexToRemove)
+
+        guard let currentLocationIndex = settingsManager.currentLocationIndex else {
+            Log.error("Removing location without a current location set, this should not be possible.")
+            return
+        }
+
+        if indexToRemove == currentLocationIndex {
+            let proposed = indexToRemove - 1
+            if let proposedLocation = locations[safe: proposed] {
+                currentLocation = proposedLocation
+            } else {
+                settingsManager.currentLocationIndex = nil
+            }
+        }
+    }
 }

@@ -93,29 +93,20 @@ extension LocationsListViewController: UITableViewDataSource {
         return cell
     }
 
-    func tableView(_: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(_: UITableView, editingStyleForRowAt _: IndexPath) -> UITableViewCell.EditingStyle {
         guard viewModel.locations.count > 1 else {
-            return nil
+            return .none
         }
+        return .delete
+    }
 
-        let deleteAction = UIContextualAction(
-            style: .destructive,
-            title: nil
-        ) { [weak self] _, _, completion in
-            guard let self = self else { return }
-            self.tableView.beginUpdates()
-            self.viewModel.locationsManager.locations.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: .left)
-            if self.viewModel.locationsManager.currentLocation == nil {
-                self.viewModel.locationsManager.currentLocation = self.viewModel.locations.first
-                self.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
-            }
-            completion(true)
-            self.tableView.endUpdates()
+    func tableView(_: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else {
+            Log.error("Unhandled editingStyle: \(editingStyle)")
+            return
         }
-        deleteAction.image = UIImage(systemName: "trash")
-
-        return UISwipeActionsConfiguration(actions: [deleteAction])
+        viewModel.locationsManager.deleteLocation(at: indexPath.row)
+        tableView.reloadData()
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
